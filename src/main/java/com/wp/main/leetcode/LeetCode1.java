@@ -31,8 +31,8 @@ public class LeetCode1 {
      * （1）声明一个hashmap，通过该hashmap存储已经遍历过的数据。key存储数组中的数据，value存储该数据在数组中的索引
      * （2）判断：如果hashmap中存在目标结果(target)减去当前遍历数据(nums[i])的entryset对象，则证明找到了满足target的两个数字
      *
-     * @param nums
-     * @param target
+     * @param nums：元数组
+     * @param target：要得到的加和值
      * @return
      */
     private static Integer[] standardExecute(Integer[] nums, Integer target) {
