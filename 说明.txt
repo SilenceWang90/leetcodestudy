@@ -1,0 +1,2 @@
+1、类名是根据leetcode题的顺序进行标序
+2、方法中standardExecute是官方答案
