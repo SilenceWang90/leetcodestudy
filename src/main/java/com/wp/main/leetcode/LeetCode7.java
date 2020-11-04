@@ -27,8 +27,10 @@ public class LeetCode7 {
     public static void main(String[] args) {
         Integer x = Integer.valueOf("1435230921");
         Integer y = Integer.valueOf("-843523094");
-        standardExecute(x);
-        standardExecute(y);
+//        standardExecute(x);
+//        standardExecute(y);
+        myExecute(String.valueOf(x));
+        myExecute(String.valueOf(y));
     }
 
     /**
@@ -67,5 +69,27 @@ public class LeetCode7 {
             result = result * 10 + pop;
         }
         System.out.println("翻转结果为：" + result);
+    }
+
+    private static void myExecute(String x) {
+        StringBuilder stringBuilder = new StringBuilder(x);
+        String symbol = stringBuilder.substring(0, 1);
+        if (symbol.equals("-") || symbol.equals("+")) {
+            String figure = stringBuilder.reverse().substring(0, x.length() - 1);
+            String reverseStr = symbol + figure;
+            try {
+                Integer result = Integer.valueOf(reverseStr);
+                System.out.println("转换结果为：" + result);
+            } catch (Exception e) {
+                System.out.println("数据转换溢出：" + e);
+            }
+        }else{
+            try{
+                Integer result = Integer.valueOf(stringBuilder.reverse().toString());
+                System.out.println("转换结果为：" + result);
+            }catch(Exception e){
+                System.out.println("数据转换溢出：" + e);
+            }
+        }
     }
 }
