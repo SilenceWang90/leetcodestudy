@@ -16,7 +16,7 @@ import java.util.Map;
  * @Date 2020/11/3 16:26
  * @Created by wangpeng116
  */
-public class LeetCodeOne {
+public class LeetCode1 {
     public static void main(String[] args) {
         Integer[] nums = {1, 3, 4, 5, 6, 8, 9};
         Integer target = 10;
