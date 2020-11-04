@@ -25,7 +25,7 @@ package com.wp.main.leetcode;
  */
 public class LeetCode7 {
     public static void main(String[] args) {
-        Integer x = Integer.valueOf("843523094");
+        Integer x = Integer.valueOf("1435230921");
         Integer y = Integer.valueOf("-843523094");
         standardExecute(x);
         standardExecute(y);
