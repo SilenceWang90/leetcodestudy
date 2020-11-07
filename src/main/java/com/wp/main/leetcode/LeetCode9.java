@@ -30,12 +30,12 @@ public class LeetCode9 {
         Integer example4 = -234454432;
         Integer example5 = 0;
         Integer example6 = 123443210;
-        System.out.println(execute(example1));
-        System.out.println(execute(example2));
-        System.out.println(execute(example3));
-        System.out.println(execute(example4));
-        System.out.println(execute(example5));
-        System.out.println(execute(example6));
+        System.out.println(standardExecute(example1));
+        System.out.println(standardExecute(example2));
+        System.out.println(standardExecute(example3));
+        System.out.println(standardExecute(example4));
+        System.out.println(standardExecute(example5));
+        System.out.println(standardExecute(example6));
     }
 
     /**
@@ -47,7 +47,7 @@ public class LeetCode9 {
      * @param target
      * @return
      */
-    private static boolean execute(Integer target) {
+    private static boolean standardExecute(Integer target) {
         boolean result = false;
         //每次求余的值
         Integer pop;
