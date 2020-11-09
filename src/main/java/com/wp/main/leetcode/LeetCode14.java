@@ -54,6 +54,7 @@ public class LeetCode14 {
                 }
             }
         }
+        //一直都符合公共前缀，则当前字符串就是最长公共前缀
         return str;
     }
 }
