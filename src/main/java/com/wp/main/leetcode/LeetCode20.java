@@ -45,12 +45,14 @@ public class LeetCode20 {
     public static void main(String[] args) {
         String str1 = "(){}[]";
         String str2 = "([{}])";
-        String str3 = "({[}])";
+        String str3 = "({[(}(]))";
         String str4 = "({[]})[]";
+        String str5 = "(({[]}))[]";
         System.out.println("当前字符是否是有效括号：" + standardExecute(str1));
         System.out.println("当前字符是否是有效括号：" + standardExecute(str2));
         System.out.println("当前字符是否是有效括号：" + standardExecute(str3));
         System.out.println("当前字符是否是有效括号：" + standardExecute(str4));
+        System.out.println("当前字符是否是有效括号：" + standardExecute(str5));
     }
 
     /**
