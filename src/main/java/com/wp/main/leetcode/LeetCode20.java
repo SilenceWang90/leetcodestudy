@@ -9,6 +9,35 @@ import java.util.Map;
 /**
  * @Classname LeetCode20
  * @Description 有效的括号
+ * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+ *
+ * 有效字符串需满足：
+ *
+ * 左括号必须用相同类型的右括号闭合。
+ * 左括号必须以正确的顺序闭合。
+ * 注意空字符串可被认为是有效字符串。
+ *
+ * 示例 1:
+ *
+ * 输入: "()"
+ * 输出: true
+ * 示例 2:
+ *
+ * 输入: "()[]{}"
+ * 输出: true
+ * 示例 3:
+ *
+ * 输入: "(]"
+ * 输出: false
+ * 示例 4:
+ *
+ * 输入: "([)]"
+ * 输出: false
+ * 示例 5:
+ *
+ * 输入: "{[]}"
+ * 输出: true
+ *
  * @Date 2020/11/10 14:22
  * @Created by wangpeng116
  */
@@ -22,6 +51,11 @@ public class LeetCode20 {
         System.out.println("当前字符是否是有效括号：" + standardExecute(str3));
     }
 
+    /**
+     * 通过堆栈解决该问题
+     * @param target
+     * @return
+     */
     private static Boolean standardExecute(String target) {
         //1、如果字符串长度为奇数，则肯定不符合有效括号的要求
         if (target.length() % 2 == 1) {
@@ -43,6 +77,7 @@ public class LeetCode20 {
                 if (stack.isEmpty() || bracketsMap.get(ch) != stack.peek()) {
                     return false;
                 } else {
+                    //如果匹配则从栈顶弹出该数据
                     stack.pop();
                 }
             } else {
