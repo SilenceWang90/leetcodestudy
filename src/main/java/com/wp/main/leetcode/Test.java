@@ -15,7 +15,7 @@ public class Test {
         Deque<String> stack = Lists.newLinkedList();
         Deque<String> queue = Lists.newLinkedList();
         /**1、堆栈使用方法**/
-        //1、堆栈压入数据
+        /*//1、堆栈压入数据
         stack.push("111");
         //2、查看堆栈头部数据，不会清除该数据
         System.out.println(stack.peek());
@@ -31,10 +31,10 @@ public class Test {
         }
         //5、查看栈头和栈尾
         System.out.println("stack.peekFirst()：" + stack.peekFirst());
-        System.out.println("stack.peekLast()：" + stack.peekLast());
+        System.out.println("stack.peekLast()：" + stack.peekLast());*/
         /**2、队列使用方法：队列尾用于插入数据，队列头用于读取数据**/
         //add()、offer()队列尾插入数据
-        /*queue.add("1");
+        queue.add("1");
         queue.offer("2");
         //First是向队列头部增加数据
         queue.addFirst("0");
@@ -44,6 +44,27 @@ public class Test {
         queue.push("4");
         for (String obj : queue) {
             System.out.println(obj);
-        }*/
+        }
+        //peek()和peekFirst()都是查看队列头部信息
+        System.out.println("queue.peek()：" + queue.peek());
+        System.out.println("queue.peekFirst()：" + queue.peekFirst());
+        //peekLast()是查看队列尾部信息
+        System.out.println("queue.peekLast()：" + queue.peekLast());
+        //获取队列头部信息
+        System.out.println("queue.getFirst()：" + queue.getFirst());
+        //获取队列尾部信息
+        System.out.println("queue.getLast()：" + queue.getLast());
+        //pop()和poll()都是取出队头的信息
+        System.out.println("queue.pop()：" + queue.pop());
+        System.out.println("queue.poll()：" + queue.poll());
+        for (String obj : queue) {
+            System.out.println(obj);
+        }
+        //poll()：取出队列First头部信息；取出队列Last尾部信息
+        System.out.println("queue.pollFirst()：" + queue.pollFirst());
+        System.out.println("queue.pollLast()：" + queue.pollLast());
+        for (String obj : queue) {
+            System.out.println(obj);
+        }
     }
 }
