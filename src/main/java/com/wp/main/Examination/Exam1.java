@@ -2,12 +2,12 @@ package com.wp.main.Examination;
 
 import com.google.common.collect.Lists;
 
+import java.util.Arrays;
 import java.util.Deque;
 
 /**
  * @Classname Exam1
- * @Description
- * 一对中括号代表一组鱼群，中括号里面的中括号代表下一层深度
+ * @Description 一对中括号代表一组鱼群，中括号里面的中括号代表下一层深度
  * 一对中括号中的数字之和是鱼群中鱼的数量
  * 需要求出不同深度的鱼的数量
  * @Date 2020/11/13 14:07
@@ -24,7 +24,7 @@ public class Exam1 {
         for (int i = 0; i < fish.length(); i++) {
             Character str = fish.charAt(i);
             if (str.equals('[')) {
-                //如果是左括号，则存储括号以及括号索引的位置
+                //如果是左括号，则存储括号索引的位置
                 data.push(i);
             } else if (str.equals(']')) {
                 //如果是右括号，那么堆栈顶部的左括号一定和他是一组的
@@ -41,9 +41,7 @@ public class Exam1 {
                 result[data.size()] += sum;
             }
         }
-
-        for (int p = 0; p < result.length; p++) {
-            System.out.println(result[p]);
-        }
+        //输出结果
+        System.out.println(Arrays.toString(result));
     }
 }
