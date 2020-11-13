@@ -16,7 +16,8 @@ import java.util.Deque;
 public class Exam1 {
     public static void main(String[] args) {
 //        String fish = "[1,[4,[6]]]";
-        String fish = "[[1,1],6,[1,2]]";
+//        String fish = "[[1,1],6,[1,2]]";
+        String fish = "[[1,1],[[2]],[[2]],[[7,3]],[1,1]]";
         int[] result = new int[fish.length()];
         //堆栈存储括号以及括号的索引位置
         Deque<Integer> data = Lists.newLinkedList();
