@@ -1,4 +1,4 @@
-package com.wp.main.leetcode;
+package com.wp.main.leetcode.easy;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

@@ -1,4 +1,4 @@
-package com.wp.main.leetcode;
+package com.wp.main.leetcode.easy;
 
 /**
  * @Classname LeetCode13
