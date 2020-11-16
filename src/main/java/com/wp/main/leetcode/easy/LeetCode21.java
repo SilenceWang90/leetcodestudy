@@ -16,23 +16,29 @@ import com.wp.main.leetcode.common.ListNode;
  */
 public class LeetCode21 {
     public static void main(String[] args) {
-        //链表1
-        ListNode headL1 = new ListNode(1);
+        //链表1：l1是链表1的头
+        ListNode l1 = new ListNode(1);
         ListNode l11 = new ListNode(2);
         ListNode l12 = new ListNode(4);
         ListNode l13 = new ListNode(7);
-        headL1.setNext(l11);
+        l1.setNext(l11);
         l11.setNext(l12);
         l12.setNext(l13);
-        //链表2
-        ListNode headL2 = new ListNode(1);
+        //链表2：l2是链表2的头
+        ListNode l2 = new ListNode(1);
         ListNode l22 = new ListNode(3);
         ListNode l23 = new ListNode(4);
         ListNode l24 = new ListNode(6);
-        headL2.setNext(l22);
+        l2.setNext(l22);
         l22.setNext(l23);
         l23.setNext(l24);
-        standardExecute(headL1, headL2);
+        //3、获取最终链表
+        ListNode result = standardExecute(l1, l2);
+        //4、输出链表的值
+        while (result.getNext() != null) {
+            System.out.println(result.getValue());
+            result = result.getNext();
+        }
     }
 
     /**
@@ -46,17 +52,11 @@ public class LeetCode21 {
      * @return
      */
     private static ListNode standardExecute(ListNode listNode1, ListNode listNode2) {
-        if (listNode1 == null) {
-            //1、L1为空返回L2
-            return listNode2;
-        } else if (listNode2 == null) {
-            //2、L2为空返回L1
-            return listNode1;
-        } else if (listNode1.getValue() >= listNode2.getValue()) {
-            //3、L1的值大于L2的值
-            listNode2.setNext(listNode1);
-        } else {
-            //4、
-        }
+        //最终队列的头
+        ListNode result = new ListNode(-1);
+
+
+
+        return result;
     }
 }
