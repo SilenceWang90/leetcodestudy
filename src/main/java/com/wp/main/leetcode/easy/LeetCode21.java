@@ -53,7 +53,7 @@ public class LeetCode21 {
      * 思路：
      * 一、定义最终结果链表：
      * 1.1、新增最终队列ListNode Result
-     * 1.2、preNode记录最终链表的最末尾的值，便于指向比较后的最新值
+     * 1.2、preNode始终记录最终链表的最末尾的值，便于指向比较后的最新值
      * 二、迭代比较
      * 2.1、比较两个链表表头的值，新链表的末尾指向小的值
      * 2.2、被指向的值的队列，队列头部节点后移（比如l1和l2的值中，l1的值小。那么result指向l1的当前值，所以l1后移一位便于继续比较）
@@ -70,14 +70,18 @@ public class LeetCode21 {
         ListNode preNode = result;
         while (listNode1 != null && listNode2 != null) {
             if (listNode1.getValue() < listNode2.getValue()) {
-                //如果第一个链表的值小于第二个链表的值，则最终链表指向第一个链表
+                //如果第一个链表的值小于第二个链表的值，则最终链表的末尾指向第一个链表
                 preNode.setNext(listNode1);
+                //preNode后移到最终链表的末尾
                 preNode = listNode1;
+                //被处理的链表头部后移，便于下一次比较
                 listNode1 = listNode1.getNext();
             } else {
-                //如果第一个链表的值大于等于第二个链表的值，则最终链表指向第二个链表
+                //如果第一个链表的值大于等于第二个链表的值，则最终链表的末尾指向第二个链表
                 preNode.setNext(listNode2);
+                //preNode后移到最终链表的末尾
                 preNode = listNode2;
+                //被处理的链表头部后移，便于下一次比较
                 listNode2 = listNode2.getNext();
             }
         }
