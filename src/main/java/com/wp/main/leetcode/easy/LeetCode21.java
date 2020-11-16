@@ -21,21 +21,29 @@ public class LeetCode21 {
         ListNode l11 = new ListNode(2);
         ListNode l12 = new ListNode(4);
         ListNode l13 = new ListNode(7);
+        ListNode l14 = new ListNode(13);
+        ListNode l15 = new ListNode(14);
         l1.setNext(l11);
         l11.setNext(l12);
         l12.setNext(l13);
+        l13.setNext(l14);
+        l14.setNext(l15);
         //链表2：l2是链表2的头
         ListNode l2 = new ListNode(1);
         ListNode l22 = new ListNode(3);
         ListNode l23 = new ListNode(4);
         ListNode l24 = new ListNode(6);
+//        ListNode l25 = new ListNode(13);
+//        ListNode l26 = new ListNode(14);
         l2.setNext(l22);
         l22.setNext(l23);
         l23.setNext(l24);
+//        l24.setNext(l25);
+//        l25.setNext(l26);
         //3、获取最终链表
         ListNode result = standardExecute(l1, l2);
         //4、输出链表的值
-        while (result.getNext() != null) {
+        while (result != null && result.getValue() != null) {
             System.out.println(result.getValue());
             result = result.getNext();
         }
@@ -72,7 +80,13 @@ public class LeetCode21 {
                 listNode2 = listNode2.getNext();
             }
         }
-
+        //listNode1和listNode2有一个为空才会跳出
+        //所以只需要结果链表指向一个不为空的即可
+        if (listNode1 == null) {
+            preNode.setNext(listNode2);
+        } else {
+            preNode.setNext(listNode1);
+        }
 
         return result;
     }

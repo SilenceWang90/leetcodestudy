@@ -10,10 +10,10 @@ import lombok.Data;
  */
 @Data
 public class ListNode {
-    private int value;
+    private Integer value;
     private ListNode next;
 
-    public ListNode(int value) {
+    public ListNode(Integer value) {
         this.value = value;
     }
 }
