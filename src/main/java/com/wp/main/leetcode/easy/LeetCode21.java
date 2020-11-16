@@ -57,7 +57,8 @@ public class LeetCode21 {
      * 二、迭代比较
      * 2.1、比较两个链表表头的值，新链表的末尾指向小的值
      * 2.2、被指向的值的队列，队列头部节点后移（比如l1和l2的值中，l1的值小。那么result指向l1的当前值，所以l1后移一位便于继续比较）
-     *
+     * 三、剩余链表处理
+     * 迭代结束后可能还存在剩余的链表，因此结果链表的尾部直接指向剩余链表的头部即可。
      * @param listNode1
      * @param listNode2
      * @return
@@ -83,6 +84,7 @@ public class LeetCode21 {
         //listNode1和listNode2有一个为空才会跳出
         //所以只需要结果链表指向一个不为空的即可
         if (listNode1 == null) {
+            //虽然listNode2也有可能为空，但是暂且忽略~~~因为即使为空也不影响结果
             preNode.setNext(listNode2);
         } else {
             preNode.setNext(listNode1);
