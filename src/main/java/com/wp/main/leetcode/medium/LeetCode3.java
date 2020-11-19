@@ -30,10 +30,11 @@ import java.util.Map;
  */
 public class LeetCode3 {
     public static void main(String[] args) {
-//        String target = "abcabcbb";
+        String target = "abcabcbb";
 //        String target = "bbbbb";
-        String target = "pwwkew";
-        System.out.println("最长公共字符串长度为：" + myExecute(target));
+//        String target = "pwwkew";
+//        System.out.println("最长公共字符串长度为：" + myExecute(target));
+        System.out.println("最长公共字符串长度为：" + standardExecute(target));
     }
 
     /**
@@ -43,6 +44,7 @@ public class LeetCode3 {
      * 3、每遍历一个字符就尝试向map中插入：
      * （1）如果map中不存在就插入；
      * （2）如果存在则判断当前字符是最大，如果是则更新最大长度字符信息。且无论当前字符串是否是最长，因为有重复字符都要清空map重新遍历
+     * 4、左侧索引i向右移动一位，右侧索引从左侧索引开始重新遍历
      *
      * @param target
      * @return
@@ -69,6 +71,50 @@ public class LeetCode3 {
                     map.clear();
                     break;
                 }
+            }
+        }
+        System.out.println("最长字符串为：" + str);
+        return max;
+    }
+
+    /**
+     * 标准答案：
+     * 和个人思路相比优化的是：
+     * 当遇到重复字符的时候，右侧索引不需要重新从左侧索引相邻的位置重新开始，因为当前已经遍历过字符确认没有重复的了，所以可右侧索引可以继续右移即可。
+     *
+     * @param target
+     * @return
+     */
+    private static int standardExecute(String target) {
+        int max = 0;
+        Map<Character, Integer> map = Maps.newHashMap();
+        int rightIndex = 0;
+        String str = "";
+        for (int i = 0; i < target.length(); i++) {
+            //获取当前索引
+            Character ch = target.charAt(i);
+            //只要不重复就一直遍历
+            while (!map.containsKey(ch) && rightIndex < target.length()) {
+                map.put(ch, i);
+                rightIndex++;
+            }
+            //跳出循环2种情况：
+            //1、遍历结束也没发现重复字符
+            //2、遍历未结束，发现重复字符
+            if (rightIndex == target.length() - 1) {
+                //（1）遍历结束
+                max = rightIndex - i + 1 > max ? rightIndex - i + 1 : max;
+                break;
+            } else {
+                //2、遇到重复时：
+                //（1）更新最大索引值
+                max = rightIndex - i > max ? rightIndex - i : max;
+                //（2）左侧索引直接移动到重复字符的下一位
+                i = map.get(ch) + 1;
+                //（3）更新当前重复字符键值对的索引信息为右侧索引，相当于抛弃左侧重复的字符
+                map.put(ch, rightIndex);
+                //（4）右侧索引继续移动即可
+                rightIndex++;
             }
         }
         System.out.println("最长字符串为：" + str);
