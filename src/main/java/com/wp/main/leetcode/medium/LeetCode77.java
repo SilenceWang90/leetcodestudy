@@ -41,7 +41,6 @@ public class LeetCode77 {
         List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup5, sup6, sup7, sup8);
 //        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
-        //ArrayDeque优于LikedArrayList，因为ArrayDeque底层基于数组，LikedArrayList底层基于链表，对于当前业务ArrayDeque性能更高
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
         List<List<BiddingSupplierInfo>> result = Lists.newArrayList();
