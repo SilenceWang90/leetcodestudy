@@ -1,12 +1,5 @@
 package com.wp.main.leetcode.medium;
 
-import com.google.common.collect.Lists;
-import com.wp.main.leetcode.common.BiddingSupplierInfo;
-
-import java.math.BigDecimal;
-import java.util.Deque;
-import java.util.List;
-
 /**
  * @Classname LeetCode77
  * @Description 组合
@@ -31,7 +24,6 @@ public class LeetCode77 {
     public static void main(String[] args) {
 
     }
-
 
 
 }
