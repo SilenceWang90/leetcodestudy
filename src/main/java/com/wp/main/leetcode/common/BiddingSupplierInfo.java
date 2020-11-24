@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 /**
  * @Classname BiddingSupplierInfo
- * @Description 中标单位信息
+ * @Description 穷举供应商信息
  * @Date 2020/11/23 18:44
  * @Created by wangpeng116
  */

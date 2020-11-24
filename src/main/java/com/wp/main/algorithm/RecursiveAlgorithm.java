@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
  * @Created by wangpeng116
  */
 public class RecursiveAlgorithm {
+
+    private static BigDecimal optimal;
+
     public static void main(String[] args) {
         BiddingSupplierInfo sup1 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(10)).setSectionId("标段一");
         BiddingSupplierInfo sup2 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(12)).setSectionId("标段一");
@@ -44,8 +47,8 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup48 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup49 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
 
-        BiddingSupplierInfo sup19 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段三");
-        BiddingSupplierInfo sup20 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段三");
+        BiddingSupplierInfo sup19 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(8)).setSectionId("标段三");
+        BiddingSupplierInfo sup20 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(10)).setSectionId("标段三");
         BiddingSupplierInfo sup21 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段三");
         BiddingSupplierInfo sup22 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段三");
         BiddingSupplierInfo sup23 = new BiddingSupplierInfo().setSupplierId("5").setSupplierName("5供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段三");
@@ -81,25 +84,29 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup55 = new BiddingSupplierInfo().setSupplierId("27").setSupplierName("27供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
 
         //数据集合
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup5, sup6, sup7, sup8, sup9
-                , sup10, sup11, sup12, sup13, sup14, sup15, sup16, sup17, sup18
-                , sup19, sup20, sup21, sup22, sup23, sup24, sup25, sup26, sup27
-                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
-                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
-                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
+//        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup5, sup6, sup7, sup8, sup9
+//                , sup10, sup11, sup12, sup13, sup14, sup15, sup16, sup17, sup18
+//                , sup19, sup20, sup21, sup22, sup23, sup24, sup25, sup26, sup27
+//                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
+//                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
+//                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup16, sup19, sup20);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
         List<List<BiddingSupplierInfo>> result = Lists.newArrayList();
         //初始从第一个位置开始
         long start = System.currentTimeMillis();
-        calculate(0, 5, list.size(), selectedStack, list, result);
+        //最优解(金额或得分)
+        optimal = BigDecimal.valueOf(-1);
+        calculate(0, 2, list.size(), selectedStack, list, result);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
-        /*for (List<BiddingSupplierInfo> obj : result) {
+        for (List<BiddingSupplierInfo> obj : result) {
             System.out.println(obj.toString());
-        }*/
+        }
+        System.out.println("最优价格是：" + optimal);
     }
 
     /**
@@ -120,7 +127,10 @@ public class RecursiveAlgorithm {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
         if (selectedStack.size() == select) {
             List<BiddingSupplierInfo> selectedList = Lists.newArrayList(selectedStack);
+            //符合规则放入结果集中
             if (shotDemand(selectedList, select)) {
+                //清除上一个结果，只保留最优解
+                result.clear();
                 result.add(selectedList);
             }
             return;
@@ -135,14 +145,31 @@ public class RecursiveAlgorithm {
         }
     }
 
+    /**
+     * 判断内容：先判断好判断的，依次去找不好判断的。这样效率高！！！！！！
+     *
+     * @param selectedStack
+     * @param select
+     * @return
+     */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedStack, int select) {
-        boolean result = true;
         //1、重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
         if (selectedStack.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
-            result = false;
+            return false;
         }
-        //2、todo：各标段供应商数量不正确
-        return result;
+        //2、todo：组合价格小于等于当前最优价格。
+        BigDecimal currentPrice = selectedStack.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
+        if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
+            optimal = currentPrice;
+        } else if (currentPrice.compareTo(optimal) >= 0) {
+            return false;
+        }
+        //3、todo：各标段供应商数量不正确
+//        if(){
+//            return false;
+//        }
+        optimal = currentPrice;
+        return true;
     }
 
 }
