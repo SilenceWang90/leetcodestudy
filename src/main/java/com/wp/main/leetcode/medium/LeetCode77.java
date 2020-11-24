@@ -4,8 +4,6 @@ import com.google.common.collect.Lists;
 import com.wp.main.leetcode.common.BiddingSupplierInfo;
 
 import java.math.BigDecimal;
-import java.sql.Array;
-import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
