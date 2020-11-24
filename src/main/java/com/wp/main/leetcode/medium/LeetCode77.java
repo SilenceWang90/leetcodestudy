@@ -47,14 +47,13 @@ public class LeetCode77 {
         List<List<BiddingSupplierInfo>> result = Lists.newArrayList();
         //初始从第一个位置开始
         long start = System.currentTimeMillis();
-        calculate(0, 3, list.size(), selectedStack, list, result);
+        calculate(0, 4, list.size(), selectedStack, list, result);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
         /*for (List<BiddingSupplierInfo> obj : result) {
             System.out.println(obj.toString());
         }*/
-
     }
 
     /**
