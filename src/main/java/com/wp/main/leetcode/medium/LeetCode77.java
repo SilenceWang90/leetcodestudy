@@ -44,7 +44,7 @@ public class LeetCode77 {
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
         List<List<BiddingSupplierInfo>> result = Lists.newArrayList();
-        calculate(0, 2, selectedStack, list, result);
+        calculate(0, 2, list.size(), selectedStack, list, result);
         System.out.println(result.toString());
     }
 
@@ -52,26 +52,28 @@ public class LeetCode77 {
      * 思路：递归
      * （1）递归终点：选择到了足够的供应商
      * （2）每个递归要做的事情：从begin到n(队列长度)之间选择供应商
-     * （3）递归结束后：
+     * （3）递归结束后：清除栈顶数据用于当前递归下一次遍历选择数据(不清除，已选择的栈就一直是满的，选不到新的组合)
      *
      * @param begin         起始位置，从begin到队列长度之间选一个数据
      * @param select        要选出几个数据
+     * @param n             数据总量
      * @param selectedStack 当前遍历已选的供应商数量
      * @param list          所有供应商数据
      * @param result        选出的组合结果
      */
-    public static void calculate(int begin, int select, Deque<BiddingSupplierInfo> selectedStack
+    public static void calculate(int begin, int select, int n, Deque<BiddingSupplierInfo> selectedStack
             , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result) {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
         if (selectedStack.size() == select) {
             result.add(Lists.newArrayList(selectedStack));
             return;
         }
-        //未选择足够供应商，继续从begin到n之间选择
-        for (int i = begin; i < list.size(); i++) {
+        //未选择足够供应商，继续从begin到剩余可选(总数量n+1与未选数量的差值)之间选择。
+        //剪枝：不用遍历到n是因为如果从begin开始到结尾还剩不足需要组合的供应商数量可选，那么就没必要继续循环
+        for (int i = begin; i < n + 1 - (select - selectedStack.size()); i++) {
             selectedStack.push(list.get(i));
-            calculate(i + 1, select, selectedStack, list, result);
-            //当前递归结束后，清除栈顶数据用于末级递归下一次数据选择
+            calculate(i + 1, select, n, selectedStack, list, result);
+            //当前递归结束后，清除栈顶数据用于末级递归下一次数据选择(否则堆栈一直是满的无法选到新的组合)
             selectedStack.pop();
         }
     }
