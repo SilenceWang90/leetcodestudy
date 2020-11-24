@@ -39,7 +39,6 @@ public class LeetCode77 {
         BiddingSupplierInfo sup8 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         //数据集合
         List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup5, sup6, sup7, sup8);
-//        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
