@@ -69,9 +69,10 @@ public class LeetCode77 {
         }
         //未选择足够供应商，继续从begin到n之间选择
         for (int i = begin; i < list.size(); i++) {
-            selectedStack.addLast(list.get(i));
-            calculate(i + 1, 2, selectedStack, list, result);
-            selectedStack.removeLast();
+            selectedStack.push(list.get(i));
+            calculate(i + 1, select, selectedStack, list, result);
+            //当前递归结束后，清除栈顶数据用于末级递归下一次数据选择
+            selectedStack.pop();
         }
     }
 
