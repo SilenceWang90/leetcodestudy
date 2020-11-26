@@ -1,11 +1,13 @@
 package com.wp.main.algorithm;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.wp.main.leetcode.common.BiddingSupplierInfo;
 
 import java.math.BigDecimal;
 import java.util.Deque;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -90,7 +92,7 @@ public class RecursiveAlgorithm {
 //                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
 //                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
 //                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup16, sup19, sup20);
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup10, sup16, sup19, sup20);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
@@ -99,7 +101,8 @@ public class RecursiveAlgorithm {
         long start = System.currentTimeMillis();
         //最优解(金额或得分)
         optimal = BigDecimal.valueOf(-1);
-        calculate(0, 2, list.size(), selectedStack, list, result);
+        Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
+        calculate(0, 2, list.size(), selectedStack, list, result, selectedSupplierIdMap);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
@@ -123,25 +126,36 @@ public class RecursiveAlgorithm {
      * @param result        选出的组合结果
      */
     public static void calculate(int begin, int select, int n, Deque<BiddingSupplierInfo> selectedStack
-            , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result) {
+            , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result, Map<String, String> selectedSupplierIdMap) {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
         if (selectedStack.size() == select) {
             List<BiddingSupplierInfo> selectedList = Lists.newArrayList(selectedStack);
             //符合规则放入结果集中
-            if (shotDemand(selectedList, select)) {
+            /*if (shotDemand(selectedList, select)) {
                 //清除上一个结果，只保留最优解
                 result.clear();
                 result.add(selectedList);
-            }
+            }*/
+            result.add(selectedList);
             return;
         }
         //未选择足够供应商，继续从begin到剩余可选(总数量n+1与未选数量的差值)之间选择。
         //剪枝：不用遍历到n是因为如果从begin开始到结尾还剩不足需要组合的供应商数量可选，那么就没必要继续循环
         for (int i = begin; i < n + 1 - (select - selectedStack.size()); i++) {
-            selectedStack.push(list.get(i));
-            calculate(i + 1, select, n, selectedStack, list, result);
-            //当前递归结束后，清除栈顶数据用于末级递归下一次数据选择(否则堆栈一直是满的无法选到新的组合)
+            //当前获取供应商信息
+            BiddingSupplierInfo currentSupplier = list.get(i);
+            //剪枝：如果已选的供应商中存在了当前供应商id，则不需要继续选择了
+            if (selectedSupplierIdMap.containsKey(currentSupplier.getSupplierId())) {
+                continue;
+            }
+            //如果没有重复，则放入map和堆栈中
+            selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
+            selectedStack.push(currentSupplier);
+            calculate(i + 1, select, n, selectedStack, list, result, selectedSupplierIdMap);
+            //下层递归结束后，清除栈顶数据用于末级递归下一次数据选择(否则堆栈一直是满的无法选到新的组合)
             selectedStack.pop();
+            //下层递归结束后，清除当前参与递归的供应商id
+            selectedSupplierIdMap.remove(currentSupplier.getSupplierId());
         }
     }
 
