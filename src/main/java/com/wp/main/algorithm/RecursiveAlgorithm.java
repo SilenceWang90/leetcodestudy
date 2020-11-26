@@ -166,7 +166,8 @@ public class RecursiveAlgorithm {
      * @return
      */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedStack, int select) {
-        //1、重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中（剪枝方式优化）
+        //1、废弃判断是否有重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
+        //已通过剪枝方式优化
         /*if (selectedStack.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
             return false;
         }*/
