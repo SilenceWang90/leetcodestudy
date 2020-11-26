@@ -28,7 +28,7 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup1 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(10)).setSectionId("标段一");
         BiddingSupplierInfo sup2 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(12)).setSectionId("标段一");
         BiddingSupplierInfo sup3 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(29)).setSectionId("标段一");
-        BiddingSupplierInfo sup4 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(37)).setSectionId("标段一");
+//        BiddingSupplierInfo sup4 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(37)).setSectionId("标段一");
         BiddingSupplierInfo sup5 = new BiddingSupplierInfo().setSupplierId("5").setSupplierName("5供应商").setPrice(BigDecimal.valueOf(8)).setSectionId("标段一");
         BiddingSupplierInfo sup6 = new BiddingSupplierInfo().setSupplierId("6").setSupplierName("6供应商").setPrice(BigDecimal.valueOf(24)).setSectionId("标段一");
         BiddingSupplierInfo sup7 = new BiddingSupplierInfo().setSupplierId("7").setSupplierName("7供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段一");
@@ -37,7 +37,7 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup46 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
         BiddingSupplierInfo sup47 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
 
-        BiddingSupplierInfo sup10 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
+//        BiddingSupplierInfo sup10 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup11 = new BiddingSupplierInfo().setSupplierId("8").setSupplierName("8供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup12 = new BiddingSupplierInfo().setSupplierId("9").setSupplierName("9供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup13 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
@@ -92,7 +92,7 @@ public class RecursiveAlgorithm {
 //                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
 //                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
 //                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup10, sup16, sup19, sup20);
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup16);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
@@ -102,7 +102,7 @@ public class RecursiveAlgorithm {
         //最优解(金额或得分)
         optimal = BigDecimal.valueOf(-1);
         Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
-        calculate(0, 2, list.size(), selectedStack, list, result, selectedSupplierIdMap);
+        calculate(0, 3, list.size(), selectedStack, list, result, selectedSupplierIdMap);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
@@ -167,10 +167,10 @@ public class RecursiveAlgorithm {
      * @return
      */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedStack, int select) {
-        //1、重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
-        if (selectedStack.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
+        //1、重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中（剪枝方式优化）
+        /*if (selectedStack.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
             return false;
-        }
+        }*/
         //2、todo：各标段供应商数量不正确
 //        if(){
 //            return false;
