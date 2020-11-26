@@ -8,14 +8,13 @@ import java.math.BigDecimal;
 import java.util.Deque;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @Classname RecursiveAlgorithm
  * @Description 递归算法
  * 递归的三要素：
  * 1、明确递归终止条件，即递归深度；
- * 2、提取重复的逻辑，缩小问题规模。
+ * 2、当前方法要做什么处理，每次递归所有的处理方式都相同(可以简单的把递归就是当做一个方法的调用，你调用这个方法要做什么)。
  * 3、给出递归终止时的处理办法；
  * @Date 2020/11/23 15:12
  * @Created by wangpeng116
