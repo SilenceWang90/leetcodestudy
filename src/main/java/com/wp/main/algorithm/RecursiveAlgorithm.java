@@ -98,7 +98,7 @@ public class RecursiveAlgorithm {
 //                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
 //                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
 //                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4
                 , sup10, sup16, sup17, sup18);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
@@ -113,8 +113,8 @@ public class RecursiveAlgorithm {
         Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
         //2、用于判断各标段数量是否满足拟中标单位数的数量
         Map<String, Integer> proposedBidNum = Maps.newHashMap();
-        proposedBidNum.put("标段一", 2);
-        proposedBidNum.put("标段二", 2);
+        proposedBidNum.put("标段一", 3);
+        proposedBidNum.put("标段二", 1);
         Map<String, Integer> currentProposedBidNum = Maps.newHashMap();
         currentProposedBidNum.put("标段一", 0);
         currentProposedBidNum.put("标段二", 0);
