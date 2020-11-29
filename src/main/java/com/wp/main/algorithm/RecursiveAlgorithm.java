@@ -33,8 +33,8 @@ public class RecursiveAlgorithm {
     public static void main(String[] args) {
         BiddingSupplierInfo sup1 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(10)).setSectionId("标段一");
         BiddingSupplierInfo sup2 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(12)).setSectionId("标段一");
-        BiddingSupplierInfo sup3 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(29)).setSectionId("标段一");
-        BiddingSupplierInfo sup4 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(37)).setSectionId("标段一");
+        BiddingSupplierInfo sup3 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(14)).setSectionId("标段一");
+        BiddingSupplierInfo sup4 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(25)).setSectionId("标段一");
         BiddingSupplierInfo sup5 = new BiddingSupplierInfo().setSupplierId("5").setSupplierName("5供应商").setPrice(BigDecimal.valueOf(8)).setSectionId("标段一");
         BiddingSupplierInfo sup6 = new BiddingSupplierInfo().setSupplierId("6").setSupplierName("6供应商").setPrice(BigDecimal.valueOf(24)).setSectionId("标段一");
         BiddingSupplierInfo sup7 = new BiddingSupplierInfo().setSupplierId("7").setSupplierName("7供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段一");
@@ -49,9 +49,9 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup13 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup14 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup15 = new BiddingSupplierInfo().setSupplierId("13").setSupplierName("13供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup16 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup17 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup18 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
+        BiddingSupplierInfo sup16 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(17)).setSectionId("标段二");
+        BiddingSupplierInfo sup17 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段二");
+        BiddingSupplierInfo sup18 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(16)).setSectionId("标段二");
         BiddingSupplierInfo sup48 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
         BiddingSupplierInfo sup49 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
 
@@ -201,7 +201,7 @@ public class RecursiveAlgorithm {
         /*if(){
             return false;
         }*/
-        //3、todo：组合价格小于等于当前最优价格。
+        //3、组合价格小于等于当前最优价格。
         BigDecimal currentPrice = selectedList.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
         //第一个值为-1，所以直接赋值
         if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
