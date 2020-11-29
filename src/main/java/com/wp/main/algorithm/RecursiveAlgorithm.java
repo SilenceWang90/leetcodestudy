@@ -113,18 +113,18 @@ public class RecursiveAlgorithm {
         Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
         //2、用于判断各标段数量是否满足拟中标单位数的数量
         Map<String, Integer> proposedBidNum = Maps.newHashMap();
-        proposedBidNum.put("标段一", 2);
-        proposedBidNum.put("标段二", 2);
-        proposedBidNum.put("标段三", 2);
-        proposedBidNum.put("标段四", 2);
-        proposedBidNum.put("标段五", 2);
+        proposedBidNum.put("标段一", 1);
+        proposedBidNum.put("标段二", 1);
+        proposedBidNum.put("标段三", 1);
+        proposedBidNum.put("标段四", 1);
+        proposedBidNum.put("标段五", 1);
         Map<String, Integer> currentProposedBidNum = Maps.newHashMap();
         currentProposedBidNum.put("标段一", 0);
         currentProposedBidNum.put("标段二", 0);
         currentProposedBidNum.put("标段三", 0);
         currentProposedBidNum.put("标段四", 0);
         currentProposedBidNum.put("标段五", 0);
-        calculate(0, 10, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
+        calculate(0, 5, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
