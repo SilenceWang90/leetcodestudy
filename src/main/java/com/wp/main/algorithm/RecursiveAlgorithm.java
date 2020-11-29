@@ -149,12 +149,11 @@ public class RecursiveAlgorithm {
         if (selectedStack.size() == select) {
             List<BiddingSupplierInfo> selectedList = Lists.newArrayList(selectedStack);
             //符合规则放入结果集中
-            /*if (shotDemand(selectedList, select)) {
+            if (shotDemand(selectedList)) {
                 //清除上一个结果，只保留最优解
                 result.clear();
                 result.add(selectedList);
-            }*/
-            result.add(selectedList);
+            }
             return;
         }
         //未选择足够供应商，继续从begin到剩余可选(总数量n+1与未选数量的差值)之间选择。
@@ -189,14 +188,13 @@ public class RecursiveAlgorithm {
     /**
      * 判断内容：先判断好判断的，依次去找不好判断的。这样效率高！！！！！！
      *
-     * @param selectedStack
-     * @param select
+     * @param selectedList
      * @return
      */
-    private static boolean shotDemand(List<BiddingSupplierInfo> selectedStack, int select) {
+    private static boolean shotDemand(List<BiddingSupplierInfo> selectedList) {
         //1、废弃判断是否有重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
         //已通过剪枝方式优化
-        /*if (selectedStack.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
+        /*if (selectedList.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
             return false;
         }*/
         //2、todo：各标段供应商数量不正确
@@ -204,7 +202,8 @@ public class RecursiveAlgorithm {
             return false;
         }*/
         //3、todo：组合价格小于等于当前最优价格。
-        BigDecimal currentPrice = selectedStack.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
+        BigDecimal currentPrice = selectedList.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
+        //第一个值为-1，所以直接赋值
         if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
             optimal = currentPrice;
         } else if (currentPrice.compareTo(optimal) >= 0) {
