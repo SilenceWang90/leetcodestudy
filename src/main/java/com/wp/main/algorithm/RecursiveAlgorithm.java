@@ -40,20 +40,20 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup7 = new BiddingSupplierInfo().setSupplierId("7").setSupplierName("7供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段一");
         BiddingSupplierInfo sup8 = new BiddingSupplierInfo().setSupplierId("8").setSupplierName("8供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
         BiddingSupplierInfo sup9 = new BiddingSupplierInfo().setSupplierId("9").setSupplierName("9供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
-        BiddingSupplierInfo sup46 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
-        BiddingSupplierInfo sup47 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段一");
+        BiddingSupplierInfo sup46 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(21.8)).setSectionId("标段一");
+        BiddingSupplierInfo sup47 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19.0)).setSectionId("标段一");
 
-        BiddingSupplierInfo sup10 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup11 = new BiddingSupplierInfo().setSupplierId("8").setSupplierName("8供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup12 = new BiddingSupplierInfo().setSupplierId("9").setSupplierName("9供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup13 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup14 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup15 = new BiddingSupplierInfo().setSupplierId("13").setSupplierName("13供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup16 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(17)).setSectionId("标段二");
-        BiddingSupplierInfo sup17 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段二");
+        BiddingSupplierInfo sup10 = new BiddingSupplierInfo().setSupplierId("4").setSupplierName("4供应商").setPrice(BigDecimal.valueOf(19.9)).setSectionId("标段二");
+        BiddingSupplierInfo sup11 = new BiddingSupplierInfo().setSupplierId("8").setSupplierName("8供应商").setPrice(BigDecimal.valueOf(12.4)).setSectionId("标段二");
+        BiddingSupplierInfo sup12 = new BiddingSupplierInfo().setSupplierId("9").setSupplierName("9供应商").setPrice(BigDecimal.valueOf(16.6)).setSectionId("标段二");
+        BiddingSupplierInfo sup13 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(27)).setSectionId("标段二");
+        BiddingSupplierInfo sup14 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(32.2)).setSectionId("标段二");
+        BiddingSupplierInfo sup15 = new BiddingSupplierInfo().setSupplierId("13").setSupplierName("13供应商").setPrice(BigDecimal.valueOf(47)).setSectionId("标段二");
+        BiddingSupplierInfo sup16 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(18)).setSectionId("标段二");
+        BiddingSupplierInfo sup17 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(15.9)).setSectionId("标段二");
         BiddingSupplierInfo sup18 = new BiddingSupplierInfo().setSupplierId("3").setSupplierName("3供应商").setPrice(BigDecimal.valueOf(16)).setSectionId("标段二");
-        BiddingSupplierInfo sup48 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
-        BiddingSupplierInfo sup49 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段二");
+        BiddingSupplierInfo sup48 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(22.2)).setSectionId("标段二");
+        BiddingSupplierInfo sup49 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(23.1)).setSectionId("标段二");
 
         BiddingSupplierInfo sup19 = new BiddingSupplierInfo().setSupplierId("1").setSupplierName("1供应商").setPrice(BigDecimal.valueOf(8)).setSectionId("标段三");
         BiddingSupplierInfo sup20 = new BiddingSupplierInfo().setSupplierId("2").setSupplierName("2供应商").setPrice(BigDecimal.valueOf(10)).setSectionId("标段三");
@@ -77,28 +77,27 @@ public class RecursiveAlgorithm {
         BiddingSupplierInfo sup35 = new BiddingSupplierInfo().setSupplierId("8").setSupplierName("8供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段四");
         BiddingSupplierInfo sup36 = new BiddingSupplierInfo().setSupplierId("9").setSupplierName("9供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段四");
         BiddingSupplierInfo sup52 = new BiddingSupplierInfo().setSupplierId("19").setSupplierName("19供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段四");
-        BiddingSupplierInfo sup53 = new BiddingSupplierInfo().setSupplierId("20").setSupplierName("20供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段四");
+        BiddingSupplierInfo sup53 = new BiddingSupplierInfo().setSupplierId("20").setSupplierName("20供应商").setPrice(BigDecimal.valueOf(33)).setSectionId("标段四");
 
-        BiddingSupplierInfo sup37 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup38 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup39 = new BiddingSupplierInfo().setSupplierId("12").setSupplierName("12供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup40 = new BiddingSupplierInfo().setSupplierId("13").setSupplierName("13供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup41 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup42 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup43 = new BiddingSupplierInfo().setSupplierId("16").setSupplierName("16供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup44 = new BiddingSupplierInfo().setSupplierId("17").setSupplierName("17供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup45 = new BiddingSupplierInfo().setSupplierId("18").setSupplierName("18供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup54 = new BiddingSupplierInfo().setSupplierId("26").setSupplierName("26供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
-        BiddingSupplierInfo sup55 = new BiddingSupplierInfo().setSupplierId("27").setSupplierName("27供应商").setPrice(BigDecimal.valueOf(19)).setSectionId("标段五");
+        BiddingSupplierInfo sup37 = new BiddingSupplierInfo().setSupplierId("10").setSupplierName("10供应商").setPrice(BigDecimal.valueOf(15.5)).setSectionId("标段五");
+        BiddingSupplierInfo sup38 = new BiddingSupplierInfo().setSupplierId("11").setSupplierName("11供应商").setPrice(BigDecimal.valueOf(17.6)).setSectionId("标段五");
+        BiddingSupplierInfo sup39 = new BiddingSupplierInfo().setSupplierId("12").setSupplierName("12供应商").setPrice(BigDecimal.valueOf(10.9)).setSectionId("标段五");
+        BiddingSupplierInfo sup40 = new BiddingSupplierInfo().setSupplierId("13").setSupplierName("13供应商").setPrice(BigDecimal.valueOf(13.3)).setSectionId("标段五");
+        BiddingSupplierInfo sup41 = new BiddingSupplierInfo().setSupplierId("14").setSupplierName("14供应商").setPrice(BigDecimal.valueOf(30)).setSectionId("标段五");
+        BiddingSupplierInfo sup42 = new BiddingSupplierInfo().setSupplierId("15").setSupplierName("15供应商").setPrice(BigDecimal.valueOf(28.1)).setSectionId("标段五");
+        BiddingSupplierInfo sup43 = new BiddingSupplierInfo().setSupplierId("16").setSupplierName("16供应商").setPrice(BigDecimal.valueOf(13.2)).setSectionId("标段五");
+        BiddingSupplierInfo sup44 = new BiddingSupplierInfo().setSupplierId("17").setSupplierName("17供应商").setPrice(BigDecimal.valueOf(17)).setSectionId("标段五");
+        BiddingSupplierInfo sup45 = new BiddingSupplierInfo().setSupplierId("18").setSupplierName("18供应商").setPrice(BigDecimal.valueOf(22)).setSectionId("标段五");
+        BiddingSupplierInfo sup54 = new BiddingSupplierInfo().setSupplierId("26").setSupplierName("26供应商").setPrice(BigDecimal.valueOf(40)).setSectionId("标段五");
+        BiddingSupplierInfo sup55 = new BiddingSupplierInfo().setSupplierId("27").setSupplierName("27供应商").setPrice(BigDecimal.valueOf(13)).setSectionId("标段五");
 
         //数据集合
         List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4, sup5, sup6, sup7, sup8, sup9
                 , sup10, sup11, sup12, sup13, sup14, sup15, sup16, sup17, sup18
                 , sup19, sup20, sup21, sup22, sup23, sup24, sup25, sup26, sup27
-//                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
+                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
                 , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
-                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55
-                );
+                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
 //        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4
 //                , sup10, sup16, sup17, sup18);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
@@ -114,18 +113,18 @@ public class RecursiveAlgorithm {
         Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
         //2、用于判断各标段数量是否满足拟中标单位数的数量
         Map<String, Integer> proposedBidNum = Maps.newHashMap();
-        proposedBidNum.put("标段一", 4);
-        proposedBidNum.put("标段二", 2);
-        proposedBidNum.put("标段三", 3);
+        proposedBidNum.put("标段一", 1);
+        proposedBidNum.put("标段二", 1);
+        proposedBidNum.put("标段三", 1);
         proposedBidNum.put("标段四", 1);
-        proposedBidNum.put("标段五", 2);
+        proposedBidNum.put("标段五", 1);
         Map<String, Integer> currentProposedBidNum = Maps.newHashMap();
         currentProposedBidNum.put("标段一", 0);
         currentProposedBidNum.put("标段二", 0);
         currentProposedBidNum.put("标段三", 0);
         currentProposedBidNum.put("标段四", 0);
         currentProposedBidNum.put("标段五", 0);
-        calculate(0, 8, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
+        calculate(0, 5, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
