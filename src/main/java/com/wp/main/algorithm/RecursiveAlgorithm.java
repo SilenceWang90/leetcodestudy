@@ -15,10 +15,10 @@ import java.util.Map;
  * 递归的三要素(递归函数A，1,2代表递归次数)：
  * 1、明确递归终止条件，即递归深度。如果没有终止条件将无限递归导致堆栈溢出。终止条件一般都是方法体最先判断的代码
  * 2、递归方法要做什么处理，每次递归所有的处理方式都应相同（这一点一般是递归逻辑最复杂的点）：可以简单的把递归就是当做一个方法的调用，你调用这个方法要做什么，通常只
- *      需要2层递归(A1,A2)，即可把当前递归函数的逻辑全部整理出来。
+ * 需要2层递归(A1,A2)，即可把当前递归函数的逻辑全部整理出来。
  * 3、给出递归终止时的处理办法：其实就是上一层调用下一层，下一层结束后返回，上一层要做什么处理：简说就是A1调用A2，A2结束返回，A1要做什么处理。
- *
- *
+ * <p>
+ * <p>
  * 如下例子就是：
  * 1、递归函数要做的内容：每次递归就是遍历当前可选的数字，并通过for循环选择一个数字放入堆栈
  * 2、终止条件：只要堆栈不满足需要的深度，那么就继续递归选择，直到堆栈深度满足要求，递归结束。
@@ -98,7 +98,7 @@ public class RecursiveAlgorithm {
 //                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
 //                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
 //                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup16);
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup10, sup11, sup17, sup18);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
@@ -107,8 +107,19 @@ public class RecursiveAlgorithm {
         long start = System.currentTimeMillis();
         //最优解(金额或得分)
         optimal = BigDecimal.valueOf(-1);
+        /**满足供应商要求的判断所需要的数据组合**/
+        //1、用于判断供应商是否有重复
         Map<String, String> selectedSupplierIdMap = Maps.newHashMap();
-        calculate(0, 3, list.size(), selectedStack, list, result, selectedSupplierIdMap);
+        //2、用于判断各标段数量是否满足拟中标单位数的数量
+        Map<String, Integer> proposedBidNum = Maps.newHashMap();
+        proposedBidNum.put("标段一", 2);
+        proposedBidNum.put("标段二", 2);
+        proposedBidNum.put("标段三", 0);
+        Map<String, Integer> currentProposedBidNum = Maps.newHashMap();
+        currentProposedBidNum.put("标段一", 0);
+        currentProposedBidNum.put("标段二", 0);
+        currentProposedBidNum.put("标段三", 0);
+        calculate(0, 4, list.size(), selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
@@ -124,15 +135,17 @@ public class RecursiveAlgorithm {
      * （2）每个递归要做的事情：从begin到n(队列长度)之间选择供应商
      * （3）递归结束后：清除栈顶数据用于当前递归下一次遍历选择数据(不清除，已选择的栈就一直是满的，选不到新的组合)
      *
-     * @param begin         起始位置，从begin到队列长度之间选一个数据
-     * @param select        要选出几个数据
-     * @param n             数据总量
-     * @param selectedStack 当前遍历已选的供应商数量
-     * @param list          所有供应商数据
-     * @param result        选出的组合结果
+     * @param begin                 起始位置，从begin到队列长度之间选一个数据
+     * @param select                要选出几个数据
+     * @param n                     数据总量
+     * @param selectedStack         当前遍历已选的供应商数量
+     * @param list                  所有供应商数据
+     * @param selectedSupplierIdMap 保存已选择的供应商id，在插入队列前判断是否重复
+     * @param result                选出的组合结果
      */
     public static void calculate(int begin, int select, int n, Deque<BiddingSupplierInfo> selectedStack
-            , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result, Map<String, String> selectedSupplierIdMap) {
+            , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result, Map<String, String> selectedSupplierIdMap
+            , Map<String, Integer> proposedBidNum, Map<String, Integer> currentProposedBidNum) {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
         if (selectedStack.size() == select) {
             List<BiddingSupplierInfo> selectedList = Lists.newArrayList(selectedStack);
@@ -146,22 +159,30 @@ public class RecursiveAlgorithm {
             return;
         }
         //未选择足够供应商，继续从begin到剩余可选(总数量n+1与未选数量的差值)之间选择。
-        //剪枝：不用遍历到n是因为如果从begin开始到结尾还剩不足需要组合的供应商数量可选，那么就没必要继续循环
+        //剪枝1：不用遍历到n是因为如果从begin开始到结尾还剩不足需要组合的供应商数量可选，那么就没必要继续循环
         for (int i = begin; i < n + 1 - (select - selectedStack.size()); i++) {
             //当前获取供应商信息
             BiddingSupplierInfo currentSupplier = list.get(i);
-            //剪枝：如果已选的供应商中存在了当前供应商id，则不需要继续选择了
+            //剪枝2：如果已选的供应商中存在了当前供应商id，则不需要继续选择了
             if (selectedSupplierIdMap.containsKey(currentSupplier.getSupplierId())) {
                 continue;
             }
-            //如果没有重复，则放入map和堆栈中
+            //如果没有重复，则放入map和堆栈中，map的值随意。
             selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
+            //剪枝3：如果不重复，判断标段中拟中标单位数是否超过标准
+            if ((currentProposedBidNum.get(currentSupplier.getSectionId()) + 1) > proposedBidNum.get(currentSupplier.getSectionId())) {
+                continue;
+            }
+            //如果没有超过则加入统计
+            currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) + 1);
             selectedStack.push(currentSupplier);
-            calculate(i + 1, select, n, selectedStack, list, result, selectedSupplierIdMap);
+            calculate(i + 1, select, n, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
             //下层递归结束后，清除栈顶数据用于末级递归下一次数据选择(否则堆栈一直是满的无法选到新的组合)
             selectedStack.pop();
             //下层递归结束后，清除当前参与递归的供应商id
             selectedSupplierIdMap.remove(currentSupplier.getSupplierId());
+            //下层递归结束后，减去当前参与递归供应商所属标段的拟中标单位数量
+            currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) - 1);
         }
     }
 
