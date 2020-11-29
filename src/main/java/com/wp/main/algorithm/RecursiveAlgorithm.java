@@ -200,9 +200,9 @@ public class RecursiveAlgorithm {
             return false;
         }*/
         //2、todo：各标段供应商数量不正确
-//        if(){
-//            return false;
-//        }
+        /*if(){
+            return false;
+        }*/
         //3、todo：组合价格小于等于当前最优价格。
         BigDecimal currentPrice = selectedStack.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
         if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
