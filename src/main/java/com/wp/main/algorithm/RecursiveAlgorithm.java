@@ -192,6 +192,7 @@ public class RecursiveAlgorithm {
      * @return
      */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedList) {
+        List<BigDecimal> prices = Lists.newArrayList();
         //1、废弃判断是否有重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
         //已通过剪枝方式优化
         /*if (selectedList.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
@@ -202,7 +203,7 @@ public class RecursiveAlgorithm {
             return false;
         }*/
         //3、组合价格小于等于当前最优价格。
-        BigDecimal currentPrice = selectedList.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).get();
+        BigDecimal currentPrice = selectedList.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).orElseGet(() -> BigDecimal.valueOf(-1));
         //第一个值为-1，所以直接赋值
         if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
             optimal = currentPrice;
@@ -212,5 +213,4 @@ public class RecursiveAlgorithm {
         optimal = currentPrice;
         return true;
     }
-
 }
