@@ -192,7 +192,6 @@ public class RecursiveAlgorithm {
      * @return
      */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedList) {
-        List<BigDecimal> prices = Lists.newArrayList();
         //1、废弃判断是否有重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
         //已通过剪枝方式优化
         /*if (selectedList.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
