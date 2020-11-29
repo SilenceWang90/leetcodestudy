@@ -173,7 +173,7 @@ public class RecursiveAlgorithm {
             //切记要等所有判断都做完了再处理，不能做一步处理一步，不然是逻辑bug哦~~
             //如果没有重复，则放入map和堆栈中，map的值随意。
             selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
-            //如果没有超过则加入统计
+            //如果没有超过各标段拟入围单位数量则加入统计
             currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) + 1);
             selectedStack.push(currentSupplier);
             calculate(i + 1, select, n, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
