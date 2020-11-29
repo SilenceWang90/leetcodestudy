@@ -98,7 +98,8 @@ public class RecursiveAlgorithm {
 //                , sup28, sup29, sup30, sup31, sup32, sup33, sup34, sup35, sup36
 //                , sup37, sup38, sup39, sup40, sup41, sup42, sup43, sup44, sup45
 //                , sup46, sup47, sup48, sup49, sup50, sup51, sup52, sup53, sup54, sup55);
-        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup10, sup11, sup17, sup18);
+        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3
+                , sup10, sup16, sup17, sup18);
         //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
@@ -114,11 +115,9 @@ public class RecursiveAlgorithm {
         Map<String, Integer> proposedBidNum = Maps.newHashMap();
         proposedBidNum.put("标段一", 2);
         proposedBidNum.put("标段二", 2);
-        proposedBidNum.put("标段三", 0);
         Map<String, Integer> currentProposedBidNum = Maps.newHashMap();
         currentProposedBidNum.put("标段一", 0);
         currentProposedBidNum.put("标段二", 0);
-        currentProposedBidNum.put("标段三", 0);
         calculate(0, 4, list.size(), selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
@@ -167,12 +166,13 @@ public class RecursiveAlgorithm {
             if (selectedSupplierIdMap.containsKey(currentSupplier.getSupplierId())) {
                 continue;
             }
-            //如果没有重复，则放入map和堆栈中，map的值随意。
-            selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
             //剪枝3：如果不重复，判断标段中拟中标单位数是否超过标准
             if ((currentProposedBidNum.get(currentSupplier.getSectionId()) + 1) > proposedBidNum.get(currentSupplier.getSectionId())) {
                 continue;
             }
+            //切记要等所有判断都做完了再处理，不能做一步处理一步，不然是逻辑bug哦~~
+            //如果没有重复，则放入map和堆栈中，map的值随意。
+            selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
             //如果没有超过则加入统计
             currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) + 1);
             selectedStack.push(currentSupplier);
