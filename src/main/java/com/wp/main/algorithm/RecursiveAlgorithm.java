@@ -274,9 +274,6 @@ public class RecursiveAlgorithm {
                 , sup188, sup189, sup190, sup191, sup192, sup193, sup194, sup195, sup196, sup197
                 , sup198, sup199, sup200, sup201, sup202, sup203, sup204, sup205, sup206, sup207
                 , sup208, sup209, sup210, sup211, sup212);
-//        List<BiddingSupplierInfo> list = Lists.newArrayList(sup1, sup2, sup3, sup4
-//                , sup10, sup16, sup17, sup18);
-        //已选集合(堆栈，因为我们为了让选择[1,2][1,3][1,n]组合，就必须在每次递归结束后清除栈顶数据，这样才能保证找出所有需要选择的数据)
         Deque<BiddingSupplierInfo> selectedStack = Lists.newLinkedList();
         //结果集合
         List<List<BiddingSupplierInfo>> result = Lists.newArrayList();
@@ -334,15 +331,6 @@ public class RecursiveAlgorithm {
      * （1）递归终点：选择到了足够的供应商
      * （2）每个递归要做的事情：从begin到n(队列长度)之间选择供应商
      * （3）递归结束后：清除栈顶数据用于当前递归下一次遍历选择数据(不清除，已选择的栈就一直是满的，选不到新的组合)
-     *
-     * @param begin                 起始位置，从begin到队列长度之间选一个数据
-     * @param select                要选出几个数据
-     * @param selectedStack         当前遍历已选的供应商数量
-     * @param list                  所有供应商数据
-     * @param selectedSupplierIdMap 保存已选择的供应商id，在插入队列前判断是否重复
-     * @param result                选出的组合结果
-     * @param proposedBidNum        每个标段应选供应商个数
-     * @param currentProposedBidNum 每个标段已选供应商个数
      */
     public static void calculate(CalibrationCalculcationParam calibrationCalculcationParam) {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
@@ -394,16 +382,7 @@ public class RecursiveAlgorithm {
      * @return
      */
     private static boolean shotDemand(List<BiddingSupplierInfo> selectedList) {
-        //1、废弃判断是否有重复：按照id分组的map容量不等于应选组合数量，则肯定是有重复，不需要放入结果集队列中
-        //已通过剪枝方式优化
-        /*if (selectedList.stream().collect(Collectors.groupingBy(BiddingSupplierInfo::getSupplierId)).size() != select) {
-            return false;
-        }*/
-        //2、todo：各标段供应商数量不正确
-        /*if(){
-            return false;
-        }*/
-        //3、组合价格小于等于当前最优价格。
+        //组合价格小于等于当前最优价格。
         BigDecimal currentPrice = selectedList.stream().map(BiddingSupplierInfo::getPrice).reduce(BigDecimal::add).orElseGet(() -> BigDecimal.valueOf(-1));
         //第一个值为-1，所以直接赋值
         if (optimal.compareTo(BigDecimal.valueOf(-1)) == 0) {
