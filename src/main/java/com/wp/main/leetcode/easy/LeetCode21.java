@@ -1,6 +1,6 @@
 package com.wp.main.leetcode.easy;
 
-import com.wp.main.leetcode.common.ListNode;
+import com.wp.main.common.ListNode;
 
 /**
  * @Classname LeetCode21

@@ -1,6 +1,6 @@
 package com.wp.main.leetcode.medium;
 
-import com.wp.main.leetcode.common.ListNode;
+import com.wp.main.common.ListNode;
 
 /**
  * @Classname LeetCode2

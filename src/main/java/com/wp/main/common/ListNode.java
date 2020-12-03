@@ -1,4 +1,4 @@
-package com.wp.main.leetcode.common;
+package com.wp.main.common;
 
 import lombok.Data;
 

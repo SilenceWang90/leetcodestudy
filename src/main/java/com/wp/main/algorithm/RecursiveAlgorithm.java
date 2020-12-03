@@ -2,7 +2,7 @@ package com.wp.main.algorithm;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.wp.main.leetcode.common.BiddingSupplierInfo;
+import com.wp.main.common.BiddingSupplierInfo;
 
 import java.math.BigDecimal;
 import java.util.Deque;
