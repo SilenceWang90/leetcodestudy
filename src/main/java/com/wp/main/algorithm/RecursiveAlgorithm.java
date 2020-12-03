@@ -3,6 +3,7 @@ package com.wp.main.algorithm;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.wp.main.common.BiddingSupplierInfo;
+import com.wp.main.common.CalibrationCalculcationParam;
 
 import java.math.BigDecimal;
 import java.util.Deque;
@@ -309,7 +310,16 @@ public class RecursiveAlgorithm {
         currentProposedBidNum.put("标段八", 0);
         currentProposedBidNum.put("标段九", 0);
         currentProposedBidNum.put("标段十", 0);
-        calculate(0, 5, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
+        CalibrationCalculcationParam calibrationCalculcationParam = new CalibrationCalculcationParam();
+        calibrationCalculcationParam.setBegin(0);
+        calibrationCalculcationParam.setSelect(5);
+        calibrationCalculcationParam.setSelectedStack(selectedStack);
+        calibrationCalculcationParam.setList(list);
+        calibrationCalculcationParam.setResult(result);
+        calibrationCalculcationParam.setSelectedSupplierIdMap(selectedSupplierIdMap);
+        calibrationCalculcationParam.setProposedBidNum(proposedBidNum);
+        calibrationCalculcationParam.setCurrentProposedBidNum(currentProposedBidNum);
+        calculate(calibrationCalculcationParam);
         long end = System.currentTimeMillis();
         System.out.println(result.size());
         System.out.println("执行时长：" + (end - start) + "毫秒");
@@ -334,46 +344,46 @@ public class RecursiveAlgorithm {
      * @param proposedBidNum        每个标段应选供应商个数
      * @param currentProposedBidNum 每个标段已选供应商个数
      */
-    public static void calculate(int begin, int select, Deque<BiddingSupplierInfo> selectedStack
-            , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result, Map<String, String> selectedSupplierIdMap
-            , Map<String, Integer> proposedBidNum, Map<String, Integer> currentProposedBidNum) {
+    public static void calculate(CalibrationCalculcationParam calibrationCalculcationParam) {
         //选到了足够的供应商，则加入到最终队列中作为结果集的数据
-        if (selectedStack.size() == select) {
-            List<BiddingSupplierInfo> selectedList = Lists.newArrayList(selectedStack);
+        if (calibrationCalculcationParam.getSelectedStack().size() == calibrationCalculcationParam.getSelect()) {
+            List<BiddingSupplierInfo> selectedList = Lists.newArrayList(calibrationCalculcationParam.getSelectedStack());
             //符合规则放入结果集中
             if (shotDemand(selectedList)) {
                 //清除上一个结果，只保留最优解
-                result.clear();
-                result.add(selectedList);
+                calibrationCalculcationParam.getResult().clear();
+                calibrationCalculcationParam.getResult().add(selectedList);
             }
             return;
         }
         //未选择足够供应商，继续从begin到剩余可选(总数量n+1与未选数量的差值)之间选择。
         //剪枝1：不用遍历到n是因为如果从begin开始到结尾还剩不足需要组合的供应商数量可选，那么就没必要继续循环
-        for (int i = begin; i < list.size() + 1 - (select - selectedStack.size()); i++) {
+        for (int i = calibrationCalculcationParam.getBegin(); i < calibrationCalculcationParam.getList().size() + 1 - (calibrationCalculcationParam.getSelect() - calibrationCalculcationParam.getSelectedStack().size()); i++) {
             //当前获取供应商信息
-            BiddingSupplierInfo currentSupplier = list.get(i);
+            BiddingSupplierInfo currentSupplier = calibrationCalculcationParam.getList().get(i);
             //剪枝2：如果已选的供应商中存在了当前供应商id，则不需要继续选择了
-            if (selectedSupplierIdMap.containsKey(currentSupplier.getSupplierId())) {
+            if (calibrationCalculcationParam.getSelectedSupplierIdMap().containsKey(currentSupplier.getSupplierId())) {
                 continue;
             }
             //剪枝3：如果不重复，判断标段中拟中标单位数是否超过标准
-            if ((currentProposedBidNum.get(currentSupplier.getSectionId()) + 1) > proposedBidNum.get(currentSupplier.getSectionId())) {
+            if ((calibrationCalculcationParam.getCurrentProposedBidNum().get(currentSupplier.getSectionId()) + 1) > calibrationCalculcationParam.getProposedBidNum().get(currentSupplier.getSectionId())) {
                 continue;
             }
             //切记要等所有判断都做完了再处理，不能做一步处理一步，不然是逻辑bug哦~~
             //如果没有重复，则放入map和堆栈中，map的值随意。
-            selectedSupplierIdMap.put(currentSupplier.getSupplierId(), "");
+            calibrationCalculcationParam.getSelectedSupplierIdMap().put(currentSupplier.getSupplierId(), "");
             //如果没有超过各标段拟入围单位数量则加入统计
-            currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) + 1);
-            selectedStack.push(currentSupplier);
-            calculate(i + 1, select, selectedStack, list, result, selectedSupplierIdMap, proposedBidNum, currentProposedBidNum);
+            calibrationCalculcationParam.getCurrentProposedBidNum().put(currentSupplier.getSectionId(), calibrationCalculcationParam.getCurrentProposedBidNum().get(currentSupplier.getSectionId()) + 1);
+            calibrationCalculcationParam.getSelectedStack().push(currentSupplier);
+            //下一步起始位置为当前索引的下一位
+            calibrationCalculcationParam.setBegin(i + 1);
+            calculate(calibrationCalculcationParam);
             //下层递归结束后，清除栈顶数据用于末级递归下一次数据选择(否则堆栈一直是满的无法选到新的组合)
-            selectedStack.pop();
+            calibrationCalculcationParam.getSelectedStack().pop();
             //下层递归结束后，清除当前参与递归的供应商id
-            selectedSupplierIdMap.remove(currentSupplier.getSupplierId());
+            calibrationCalculcationParam.getSelectedSupplierIdMap().remove(currentSupplier.getSupplierId());
             //下层递归结束后，减去当前参与递归供应商所属标段的拟中标单位数量
-            currentProposedBidNum.put(currentSupplier.getSectionId(), currentProposedBidNum.get(currentSupplier.getSectionId()) - 1);
+            calibrationCalculcationParam.getCurrentProposedBidNum().put(currentSupplier.getSectionId(), calibrationCalculcationParam.getCurrentProposedBidNum().get(currentSupplier.getSectionId()) - 1);
         }
     }
 
