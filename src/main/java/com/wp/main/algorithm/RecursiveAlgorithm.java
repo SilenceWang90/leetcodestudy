@@ -331,6 +331,8 @@ public class RecursiveAlgorithm {
      * @param list                  所有供应商数据
      * @param selectedSupplierIdMap 保存已选择的供应商id，在插入队列前判断是否重复
      * @param result                选出的组合结果
+     * @param proposedBidNum        每个标段应选供应商个数
+     * @param currentProposedBidNum 每个标段已选供应商个数
      */
     public static void calculate(int begin, int select, Deque<BiddingSupplierInfo> selectedStack
             , List<BiddingSupplierInfo> list, List<List<BiddingSupplierInfo>> result, Map<String, String> selectedSupplierIdMap
