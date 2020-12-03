@@ -1,4 +1,4 @@
-package com.wp.main.Examination;
+package com.wp.main.examination;
 
 import com.google.common.collect.Lists;
 
