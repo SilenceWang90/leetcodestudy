@@ -4,6 +4,7 @@ package com.wp.main.algorithm.LinearCodeAlgorithm;
  * @Classname LinearCodeAlgorithm
  * @Description 线性规约算法
  * 参考：https://wenku.baidu.com/view/3eb3366f7375a417866f8fcd.html
+ * https://leetcode-cn.com/problems/maximum-students-taking-exam/solution/onmde-jie-fa-xiong-ya-li-suan-fa-by-code_zy/
  * 思路：
  * 1、二维矩阵(数组，横向是去重的供应商，纵向是标段，数据是每个供应商在每个标段的报价，如果没有在该标段报价则默认值是所有报价数据中的最大值+1，目的是最终选择时选不到这些没有报价的数据)
  * 2、补齐矩阵为n*n：
