@@ -55,14 +55,14 @@ public class LeetCode7 {
             x = x / 10;
             //防止溢出：上限
             //（1）result>Integer.MAX_VALUE / 10：意味着该值去掉末位都大于去掉末位的最大值，那么该值乘以10之后肯定溢出
-            //（2）result == Integer.MAX_VALUE / 10 && pop > 7：意味着去掉末位后数值一样大，但是末位比最大值的末位(7)还大，那肯定溢出
+            //（2）result == Integer.MAX_VALUE / 10 && pop > 7：意味着去掉末位后数值一样大，但是末位比最大值的末位(7)还大，那肯定溢出(整型最大值末位为7：2147483647)
             if (result > Integer.MAX_VALUE / 10 || result == Integer.MAX_VALUE / 10 && pop > 7) {
                 System.out.println("数据翻转时溢出上限，暂停翻转");
                 return;
             }
             //防止溢出：下限
             //（1）result < Integer.MIN_VALUE / 10：意味着该值去掉末位都小于去掉最小值的末位，那么该值乘以10之后肯定溢出
-            //（2）result == Integer.MIN_VALUE / 10 && pop < -8：意味着去掉末位后数值一样大，但是末位比最小值的末位(-8)还小，那肯定溢出
+            //（2）result == Integer.MIN_VALUE / 10 && pop < -8：意味着去掉末位后数值一样大，但是末位比最小值的末位(-8)还小，那肯定溢出(整型最小值末位为8：-2147483648)
             if (result < Integer.MIN_VALUE / 10 || result == Integer.MIN_VALUE / 10 && pop < -8) {
                 System.out.println("数据翻转时溢出下限，暂停翻转");
                 return;
