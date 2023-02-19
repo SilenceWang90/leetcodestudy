@@ -24,13 +24,14 @@ package com.wp.main.leetcode.medium;
 public class LeetCode5 {
     public static void main(String[] args) {
         // 回文字符串是奇数个
-//        standardExecute("abcdedcbmbc");
+        standardExecute("abcdedcbmbc");
         // 回文字符串是偶数个
-//        standardExecute("abccccb");
+        standardExecute("abccccb");
 //        standardExecute("bbceabcdedcbmbc");
-//        standardExecute("abded");
-//        standardExecute("bbce");
+        standardExecute("abded");
+        standardExecute("bbce");
         standardExecute("ccc");
+        standardExecute("bcccb");
     }
 
     /**
@@ -58,7 +59,7 @@ public class LeetCode5 {
             left = i;
             right = i;
             /**2.1、如果中心字符和右侧相邻字符相同，则需要将二者视为中心字符，右侧指针右移一下(注意越界)**/
-            if (i + 1 < target.length() && target.charAt(i) == target.charAt(i + 1)) {
+            while (right + 1 < target.length() && target.charAt(right) == target.charAt(right + 1)) {
                 right++;
             }
             /**2.2、从中心向两边扩散查找最大回文字符，注意越界**/
