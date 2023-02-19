@@ -58,7 +58,7 @@ public class LeetCode5 {
             // 初始化左右指针为当前中心字符
             left = i;
             right = i;
-            /**2.1、如果中心字符和右侧相邻字符相同，则需要将二者视为中心字符，右侧指针右移一下(注意越界)**/
+            /**2.1、如果中心字符和右侧相邻字符相同，则需要将其视为中心字符，右侧指针右移一下(注意越界)，可能存在连续多个一样的字符，所以就一直移动到最后一个相同字符即可**/
             while (right + 1 < target.length() && target.charAt(right) == target.charAt(right + 1)) {
                 right++;
             }
