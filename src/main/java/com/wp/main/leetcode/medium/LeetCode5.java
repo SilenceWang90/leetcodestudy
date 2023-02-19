@@ -26,10 +26,11 @@ public class LeetCode5 {
         // 回文字符串是奇数个
 //        standardExecute("abcdedcbmbc");
         // 回文字符串是偶数个
-        standardExecute("abccccb");
+//        standardExecute("abccccb");
 //        standardExecute("bbceabcdedcbmbc");
 //        standardExecute("abded");
 //        standardExecute("bbce");
+        standardExecute("ccc");
     }
 
     /**
