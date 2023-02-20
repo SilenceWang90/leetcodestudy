@@ -46,10 +46,41 @@ public class LeetCode6 {
         /*String target = "A";
         int numRows = 1;*/
         individualExecute(target, numRows);
+        standardExecute(target, numRows);
     }
 
-    private static String standardExecute(String target, int rows) {
-        return null;
+    /**
+     * 官方解法：思路一致，都是创建一个二维数组，找到列的周期规律计算存在的列数
+     * @param s
+     * @param numRows
+     * @return
+     */
+    private static String standardExecute(String s, int numRows) {
+        int n = s.length(), r = numRows;
+        if (r == 1 || r >= n) {
+            return s;
+        }
+        int t = r * 2 - 2;
+        int c = (n + t - 1) / t * (r - 1);
+        char[][] mat = new char[r][c];
+        for (int i = 0, x = 0, y = 0; i < n; ++i) {
+            mat[x][y] = s.charAt(i);
+            if (i % t < r - 1) {
+                ++x; // 向下移动
+            } else {
+                --x;
+                ++y; // 向右上移动
+            }
+        }
+        StringBuffer ans = new StringBuffer();
+        for (char[] row : mat) {
+            for (char ch : row) {
+                if (ch != 0) {
+                    ans.append(ch);
+                }
+            }
+        }
+        return ans.toString();
     }
 
     /**
