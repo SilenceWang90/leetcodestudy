@@ -39,6 +39,10 @@ public class LeetCode6 {
     public static void main(String[] args) {
         String target = "PAYPALISHIRING";
         int numRows = 3;
+        /*String target = "PAYPALISHIRING";
+        int numRows = 4;*/
+        /*String target = "A";
+        int numRows = 1;*/
         individualExecute(target, numRows);
     }
 
@@ -69,12 +73,12 @@ public class LeetCode6 {
         // 二维数组列的数量为column
         int columns = 0;
         /** 1.1、计算二维数组需要多少列**/
-        // 确认拼接N的'|'和'\'的字符数量
-        int jointChars = rows + (rows - 2);
+        // 确认拼接N的'|'和'\'的字符数量。存在一种特殊情况，当只有一行的时候其实不存在'|'和'\'的拼接，只'|'和'\'只视为'|'即可，且是1行
+        int jointChars = rows == 1 ? 1 : rows + (rows - 2);
         // 计算字符串中'|'和'\'共有多少组
         int countJointChars = target.length() / jointChars;
-        // 计算一组'|'和'\'一共需要多少列
-        int countJointCharsColums = 1 + (rows - 2);
+        // 计算一组'|'和'\'一共需要多少列。存在一种特殊情况，当只有一行的时候有多少个字符就有多少列
+        int countJointCharsColums = rows == 1 ? target.length() : 1 + (rows - 2);
         // 计算'|'和'\'组合之外剩余的字符串长度
         int leftCountJointChars = target.length() % jointChars;
         // 计算剩余的长度需要多少列
@@ -99,7 +103,7 @@ public class LeetCode6 {
         // 先遍历列y，然后遍历行x
         for (int y = 0; y < columns; y++) {
             // 对该列的性质做判断，确认该列是要放满还是在指定位置放入字符
-            int t = y % (rows - 1);
+            int t = y % (rows == 1 ? 1 : rows - 1);
             for (int x = 0; x < rows && n < target.length(); x++) {
                 if (t == 0) {
                     // t为0则表示该列要放满元素
@@ -119,7 +123,7 @@ public class LeetCode6 {
         /** 3、遍历数组，按行拼接字符串并输出结果*/
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < columns; y++) {
-                if (doubleDimension[x][y]!='\0') {
+                if (doubleDimension[x][y] != '\0') {
                     result.append(doubleDimension[x][y]);
                 }
             }
