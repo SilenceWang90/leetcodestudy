@@ -37,9 +37,11 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode6 {
     public static void main(String[] args) {
-        String target = "PAYPALISHIRING";
-        int numRows = 3;
         /*String target = "PAYPALISHIRING";
+        int numRows = 3;*/
+        String target = "PAYPALISHIRING";
+        int numRows = 4;
+        /*String target = "ABC";
         int numRows = 4;*/
         /*String target = "A";
         int numRows = 1;*/
