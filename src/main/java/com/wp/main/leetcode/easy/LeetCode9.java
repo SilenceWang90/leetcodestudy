@@ -49,11 +49,11 @@ public class LeetCode9 {
      */
     private static boolean standardExecute(Integer target) {
         boolean result = false;
-        //每次求余的值
+        // 每次求余的值
         Integer pop;
-        //每次去掉末尾数字的值
+        // 根据目标值进行重组的值
         Integer x = 0;
-        //余数为0但是数字不为0，则直接返回false即可，因为0放在首位不计
+        // 余数为0但是数字不为0，则直接返回false即可，因为0放在首位不计
         if (target % 10 == 0 && target != 0) {
             return false;
         }
@@ -62,7 +62,7 @@ public class LeetCode9 {
             target = target / 10;
             x = x * 10 + pop;
         }
-        //1221偶数长度直接比较相等即可；12321奇数个数需要排除掉最后一位再比较相等。
+        // 1221偶数长度直接比较相等即可；12321奇数个数需要排除掉最后一位再比较相等。
         if (x.equals(target) || x / 10 == target) {
             result = true;
         }
