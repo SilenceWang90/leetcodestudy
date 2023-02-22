@@ -65,14 +65,14 @@ import java.util.Map;
  */
 public class LeetCode8 {
     public static void main(String[] args) {
-//        String s = "4234";
+        String s = "4234";
 //        String s = "-4234";
 //        String s = "+4234-";
 //        String s = "  -4234";
 //        String s = "  4234 happy";
 //        String s = "  +0 123";
 //        String s = "2147483646";
-        String s = "  +  413";
+//        String s = "  +  413";
         individualExecute(s);
     }
 
