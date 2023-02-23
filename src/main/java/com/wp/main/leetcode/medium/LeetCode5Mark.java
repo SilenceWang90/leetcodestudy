@@ -1,6 +1,12 @@
 package com.wp.main.leetcode.medium;
 
 /**
+ * MARK：
+ * 中心扩散法：从每个字符开始，向两边循环找相同的字符
+ * 即从每个字符确定2个指针x和y，x和y同时向两边移动~
+ */
+
+/**
  * @Classname LeetCode5
  * @Description 最长回文字符串
  * 给你一个字符串 s，找到 s 中最长的回文子串。
@@ -21,7 +27,7 @@ package com.wp.main.leetcode.medium;
  * @Date 2023/02/19 16:04
  * @Created by wangpeng116
  */
-public class LeetCode5 {
+public class LeetCode5Mark {
     public static void main(String[] args) {
         // 回文字符串是奇数个
         standardExecute("abcdedcbmbc");

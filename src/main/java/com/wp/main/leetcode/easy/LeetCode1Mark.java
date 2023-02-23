@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * MARK：当需要进行2个内容的匹配时，可以利用map的key-value结构进行匹配选择
+ */
+
+/**
  * @Classname LeetCodeOne
  * @Description 两数之和，题干：
  * 给定一个整数数组 nums和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
@@ -16,7 +20,7 @@ import java.util.Map;
  * @Date 2020/11/3 16:26
  * @Created by wangpeng116
  */
-public class LeetCode1 {
+public class LeetCode1Mark {
     public static void main(String[] args) {
         Integer[] nums = {1, 3, 4, 5, 6, 8, 9};
         Integer target = 10;

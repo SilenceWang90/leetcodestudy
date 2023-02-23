@@ -1,15 +1,25 @@
 package com.wp.main.leetcode.easy;
 
 /**
+ * MARK：
+ * 1、数字处理：数字对10求余提取出最低位的值；对10进行除法
+ * 2、越界处理：32位数字越界处理
+ * 2.1、正数：
+ * “当前得到的值” > Integer.MAX_VALUE / 10 || “当前得到的值” == Integer.MAX_VALUE / 10 && pop > 7
+ * 2.2、负数：
+ * “当前得到的值” < Integer.MIN_VALUE / 10 || “当前得到的值” == Integer.MIN_VALUE / 10 && pop < -8
+ */
+
+/**
  * @Classname LeetCode7
  * @Description 整数反转
  * 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
  * <p>
- * 示例 1:
+ * 示例1:
  * <p>
  * 输入: 123
  * 输出: 321
- *  示例 2:
+ * 示例 2:
  * <p>
  * 输入: -123
  * 输出: -321
@@ -23,7 +33,7 @@ package com.wp.main.leetcode.easy;
  * @Date 2020/11/4 15:56
  * @Created by wangpeng116
  */
-public class LeetCode7 {
+public class LeetCode7Mark {
     public static void main(String[] args) {
         Integer x = Integer.valueOf("1435230921");
         Integer y = Integer.valueOf("-843523094");

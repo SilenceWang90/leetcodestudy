@@ -5,6 +5,12 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
+ * MARK：窗口滑动法
+ * 2个指针x和y从数组起始位置开始，先移动y指针
+ * 当出现目标逻辑后移动x至标记位，继续移动y；
+ */
+
+/**
  * @Classname LeetCode3
  * @Description 无重复字符的最长子串
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -28,7 +34,7 @@ import java.util.Map;
  * @Date 2020/11/18 20:22
  * @Created by wangpeng116
  */
-public class LeetCode3 {
+public class LeetCode3Mark {
     public static void main(String[] args) {
 //        String target = "abcabcbb";
 //        String target = "bbbbb";
