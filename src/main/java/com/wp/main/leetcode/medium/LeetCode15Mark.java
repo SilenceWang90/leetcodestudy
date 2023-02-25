@@ -2,12 +2,13 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 /**
  * MARK：
  * 数组中查找不重复的内容，可以通过排序处理。这样在遍历数组的时候，如果当前遍历的值与前一个值相同，则直接跳过
+ * 1、针对数组重复的问题，使用排序解决
+ * 2、降低数组的循环次数，使用双指针
  */
 
 /**
@@ -46,7 +47,7 @@ public class LeetCode15Mark {
     public static void main(String[] args) {
 //        int[] nums = {-1, 0, 1, 2, -1, -4};
 //        int[] nums = {0,1,1};
-        int[] nums = {0,0,0};
+        int[] nums = {0, 0, 0};
         standardExecute(nums);
     }
 
