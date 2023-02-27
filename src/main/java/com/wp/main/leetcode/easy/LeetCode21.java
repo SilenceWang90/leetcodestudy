@@ -59,6 +59,7 @@ public class LeetCode21 {
      * 2.2、被指向的值的队列，队列头部节点后移（比如l1和l2的值中，如果l1的值小，那么result的末尾指向l1的当前值，所以l1需要后移一位便于继续比较）
      * 三、剩余链表处理
      * 迭代结束后可能还存在剩余的链表，因此结果链表的尾部直接指向剩余链表的头部即可。
+     *
      * @param listNode1
      * @param listNode2
      * @return
@@ -95,5 +96,57 @@ public class LeetCode21 {
         }
 
         return result;
+    }
+
+    /**
+     * 个人思路：与标准答案一致(同时遍历两个链表，获取最小值拼接到最终合并的链表中)。
+     * 只是个人思路在每次循环的时候都判断了队列是否有空的，此处可以像标准答案一样优化，这样可以减少代码重复执行的次数
+     * @param listNode11
+     * @param listNode21
+     * @return
+     */
+    private static ListNode individualExecute(ListNode listNode11, ListNode listNode21) {
+        // 最终链表的表头
+        ListNode result = new ListNode(-1);
+        // 最终链表的表尾，初始时，表头表尾在一起
+        ListNode tail = result;
+        while (listNode11 != null || listNode21 != null) {
+            // 链表1已全部遍历
+            if (listNode11 == null) {
+                // 将链表2的下一个节点拼接在result上，排序即完成
+                tail.setNext(listNode21);
+                break;
+            }
+            // 链表2已全部遍历
+            if (listNode21 == null) {
+                // 将链表1的下一个节点拼接在result上，排序即完成
+                tail.setNext(listNode11);
+                break;
+            }
+            // 链表进行值比较，小的值加入到最终链表表尾。小的值所在链表的节点被使用后后移一位
+            if (listNode11.getValue() < listNode21.getValue()) {
+                // 最终链表加上此节点
+                tail.setNext(listNode11);
+                // 尾部节点后移一位
+                tail = tail.getNext();
+                // 当前节点已使用，进入到队列的下一个位置
+                listNode11 = listNode11.getNext();
+            } else {
+                // 最终链表加上此节点
+                tail.setNext(listNode21);
+                // 尾部节点后移一位
+                tail = tail.getNext();
+                // 当前节点已使用，进入到队列的下一个位置
+                listNode21 = listNode21.getNext();
+            }
+        }
+        // 输出链表
+        /*result = result.getNext();
+        while (result != null) {
+            System.out.println(result.getValue());
+            result = result.getNext();
+        }*/
+        // 舍去链表头，即最终合并的链表
+        return result.getNext();
     }
 }
