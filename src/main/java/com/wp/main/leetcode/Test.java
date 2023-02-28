@@ -1,8 +1,10 @@
 package com.wp.main.leetcode;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.Deque;
+import java.util.Map;
 
 /**
  * @Classname Test
@@ -34,7 +36,7 @@ public class Test {
         System.out.println("stack.peekLast()：" + stack.peekLast());*/
         /**2、队列使用方法：队列尾用于插入数据，队列头用于读取数据**/
         //add()、offer()队列尾插入数据
-        queue.add("1");
+        /*queue.add("1");
         queue.offer("2");
         //First是向队列头部增加数据
         queue.addFirst("0");
@@ -65,6 +67,27 @@ public class Test {
         System.out.println("queue.pollLast()：" + queue.pollLast());
         for (String obj : queue) {
             System.out.println(obj);
+        }*/
+
+        System.out.println(individualExecute("]"));
+    }
+
+    private static boolean individualExecute(String s) {
+        Map<Character, Character> comparison = Maps.newHashMap();
+        comparison.put('}', '{');
+        comparison.put(']', '[');
+        comparison.put(')', '(');
+        Deque<Character> stack = Lists.newLinkedList();
+        for (int i = 0; i < s.length(); i++) {
+            char temp = s.charAt(i);
+            if (comparison.containsKey(temp)) {
+                if (stack.isEmpty() || comparison.get(temp) != stack.pop()) {
+                    return false;
+                }
+            } else {
+                stack.push(temp);
+            }
         }
+        return stack.isEmpty();
     }
 }
