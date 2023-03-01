@@ -22,12 +22,7 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode43 {
     public static void main(String[] args) {
-        /*char a = '2';
-        char b = '6';
-        int c = (a - '0') * (b - '0');
-        System.out.println(c);*/
-        String a = "12";
-        System.out.println(a.charAt(-1));
+        System.out.println(strAdd("0", "123"));
 //        System.out.println(individualExecute("8", "123"));
     }
 
@@ -42,7 +37,7 @@ public class LeetCode43 {
      * @return
      */
     private static String individualExecute(String num1, String num2) {
-        String result = "";
+        String result = "0";
         for (int i = num1.length() - 1; i >= 0; i--) {
             int m = num1.charAt(i) - '0';
             // 用于拼接当前结果的字符串
@@ -66,10 +61,13 @@ public class LeetCode43 {
                 carry = m * n / 10;
                 temp.append(current);
             }
+            // 乘法计算完成后进位不为空，则将进位补入到结果中
+            if (carry != 0) {
+                temp.append(carry);
+            }
             String str = temp.reverse().toString();
-            strAdd(str, result);
+            result = strAdd(str, result);
         }
-
         return result;
     }
 
@@ -110,6 +108,7 @@ public class LeetCode43 {
             s.append((a + b) % 10 + carry);
             // 记录进位数
             carry = (a + b) / 10;
+            // 处理下一位字符
             m--;
             n--;
         }
