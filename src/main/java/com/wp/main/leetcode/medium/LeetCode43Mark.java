@@ -1,6 +1,12 @@
 package com.wp.main.leetcode.medium;
 
 /**
+ * 1、字符转数字，只需要用字符减去'0'即可，字符相减用的是字符对应的ASCII码与'0'进行减法。ASCII码中'0'-'9'是连续的数字，因此字符转数字只需要用字符减去'0'，刚好是对应的数字的值
+ * 2、字符加法中处理进位问题：数字加法的进位可以用当前数字乘以10即可，字符的话可以通过StringBuilder进行字符串拼接，从个位拼接到最高位，然后通过reverse()方法倒置后就是最终的结果
+ * 3、字符乘法中从乘数十位数开始时，计算的结果最低位就是十位，因此为了保证初始位数就是十位，需要补0,0的个数就是该位索引和字符串长度的差值
+ */
+
+/**
  * @Description 字符串相乘
  * 给定两个以字符串形式表示的非负整数num1和num2，返回num1和num2的乘积，它们的乘积也表示为字符串形式。
  * 注意：不能使用任何内置的 BigInteger 库或直接将输入转换为整数。
@@ -20,7 +26,7 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/2/28 21:40
  */
-public class LeetCode43 {
+public class LeetCode43Mark {
     public static void main(String[] args) {
 //        System.out.println(strAdd("0", "123"));
         System.out.println(individualExecute("123", "456"));
