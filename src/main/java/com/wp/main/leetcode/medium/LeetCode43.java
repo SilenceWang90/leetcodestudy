@@ -22,8 +22,10 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode43 {
     public static void main(String[] args) {
-        System.out.println(strAdd("0", "123"));
-//        System.out.println(individualExecute("8", "123"));
+//        System.out.println(strAdd("0", "123"));
+        System.out.println(individualExecute("123", "456"));
+        System.out.println(individualExecute("9133", "0"));
+        System.out.println(individualExecute("9133", "1"));
     }
 
     /**
@@ -37,6 +39,10 @@ public class LeetCode43 {
      * @return
      */
     private static String individualExecute(String num1, String num2) {
+        // 当有一个数字为0时，不需要计算，直接返回结果
+        if (num1.length() == 1 && "0".equals(num1) || num2.length() == 1 && "0".equals(num2)) {
+            return "0";
+        }
         String result = "0";
         for (int i = num1.length() - 1; i >= 0; i--) {
             int m = num1.charAt(i) - '0';
@@ -56,9 +62,9 @@ public class LeetCode43 {
             for (int j = num2.length() - 1; j >= 0; j--) {
                 int n = num2.charAt(j) - '0';
                 // 当前位
-                int current = m * n % 10 + carry;
+                int current = (m * n + carry) % 10;
                 // 进位数
-                carry = m * n / 10;
+                carry = (m * n + carry) / 10;
                 temp.append(current);
             }
             // 乘法计算完成后进位不为空，则将进位补入到结果中
@@ -105,9 +111,9 @@ public class LeetCode43 {
                 b = result.charAt(n) - '0';
             }
             // 字符加和，对10取余获得当前字符
-            s.append((a + b) % 10 + carry);
+            s.append((a + b + carry) % 10);
             // 记录进位数
-            carry = (a + b) / 10;
+            carry = (a + b + carry) / 10;
             // 处理下一位字符
             m--;
             n--;
