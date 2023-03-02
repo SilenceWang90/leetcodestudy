@@ -7,7 +7,7 @@ package com.wp.main.leetcode.medium;
  * <p>
  * 示例:
  * <p>
- * 输入: n = 4, k = 2
+ * 输入:n = 4, k = 2
  * 输出:
  * [
  * [2,4],

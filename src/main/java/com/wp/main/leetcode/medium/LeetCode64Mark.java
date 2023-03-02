@@ -2,6 +2,13 @@ package com.wp.main.leetcode.medium;
 
 /**
  * MARK：
+ * 一、动态规划：动态规划算法是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治或递归）的方式去解决。
+ * 1、
+ *
+ * 2、
+ *
+ *
+ * 二、二维数组
  * 1、二维数组定义：设int[][] arr = new int[3][4]，那么该二维数组的定义有2种解读方式
  * 1.1、解读一：二维数组中有3个一维数组，每个一维数组由4个元素组成。
  * 1.2、解读二：该二维数组对应一个3行4列的网格。结合解读一中的定义：
@@ -13,12 +20,12 @@ package com.wp.main.leetcode.medium;
  * 3、二维数组直接赋值的定义方式：int[][] arr = {{1, 3, 1, 6}, {1, 5, 1}, {4, 2, 1, 3}}。和第一种定义方式一样的表达，外面的大括号表示二维数组，
  * 里面的每一个大括号代表一个一维数组，从左到右表示第一个二维数组，第二个二维数组...
  * 4、二维数组的遍历：先遍历二维数组，即查找二位数中的一维数组；然后遍历二维数组，即遍历二维数组中的元素
- *         int[][] arr = {{1, 3, 1, 6}, {1, 5, 1}, {4, 2, 1, 3}};
- *         for (int x = 0; x < arr.length; x++) {// 遍历输出数组
- *             for (int y = 0; y < arr[x].length; y++) {// 遍历数组输出元素
- *                 System.out.println(arr[x][y]);
- *             }
- *         }
+ * int[][] arr = {{1, 3, 1, 6}, {1, 5, 1}, {4, 2, 1, 3}};
+ * for (int x = 0; x < arr.length; x++) {// 遍历输出数组
+ * for (int y = 0; y < arr[x].length; y++) {// 遍历数组输出元素
+ * System.out.println(arr[x][y]);
+ * }
+ * }
  */
 
 /**
@@ -56,9 +63,16 @@ public class LeetCode64Mark {
     }
 
 
+    /**
+     * 思路：
+     * 1、
+     * 2、
+     *
+     * @param grid 二维数组
+     * @return 返回最小路径和
+     */
     private static int individualExecute(int[][] grid) {
         int result = 0;
-
 
         return result;
     }
