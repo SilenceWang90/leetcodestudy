@@ -6,6 +6,10 @@ import java.util.Deque;
 import java.util.List;
 
 /**
+ * MARK：递归回溯，习惯用Stack记录每一次递归的内容，一层处理完成后pop结果，然后再进行下一层的调用
+ */
+
+/**
  * @Description 复原 IP 地址
  * 有效IP地址正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 '.' 分隔。
  * 例如："0.1.2.201" 和 "192.168.1.1" 是有效IP地址，但是"0.011.255.245"、"192.168.1.312" 和 "192.168@1.1" 是无效IP地址。
@@ -30,7 +34,7 @@ import java.util.List;
  * @Author admin
  * @Date 2023/3/5 14:16
  */
-public class LeetCode93 {
+public class LeetCode93Mark {
     public static void main(String[] args) {
 //        System.out.println(individualExecute("1234567891234"));
 //        System.out.println(individualExecute("12"));
