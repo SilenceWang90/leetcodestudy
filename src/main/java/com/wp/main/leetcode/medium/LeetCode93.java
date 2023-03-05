@@ -2,6 +2,7 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Lists;
 
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -31,18 +32,57 @@ import java.util.List;
  */
 public class LeetCode93 {
     public static void main(String[] args) {
-
+        System.out.println(individualExecute(""));
     }
 
     /**
-     * 个人思路：
+     * 个人思路：递归，当前
+     *
      * @param s 给定的IP字符串
      * @return 结果
      */
     private static List<String> individualExecute(String s) {
         List<String> result = Lists.newArrayList();
-
-
+        StringBuilder joint = new StringBuilder();
+        // 记录字符串拆解次数
+        Deque<String> stack = Lists.newLinkedList();
+        findValidIpStr(result, joint, s, stack);
         return result;
+    }
+
+    private static void findValidIpStr(List<String> result, StringBuilder joint, String str, Deque<String> stack) {
+        // 递归边界：字符串拆解3次即完成一个ip的查询
+        if (stack.size() == 3) {
+            // 符合IP规则，则加入到结果集中：
+            // （1）不为空
+            // （2）首位不是0
+            // （3）数字小于等于255
+            if (str != null && str.charAt(0) != '0' && Integer.parseInt(str) <= 255) {
+                joint.append(str);
+                result.add(joint.toString());
+            }
+            return;
+        }
+        if (str.length() <= (4 - stack.size()) * 3 && str.length() > 0) {
+            // 每层循环中，该层字符个数不能超过3
+            for (int i = 0; i < 3; i++) {
+                String currentStr = str.substring(0, i);
+                // 当层循环中：
+                // （1）数值大于255，则已经不符合IP规则，停止循环
+                // （2）该数值的首位是0(0可以，但是01，012这种就不行)，则已经不符合IP规则，停止循环
+                if (Integer.parseInt(currentStr) > 255 || (currentStr.length() > 1 && currentStr.charAt(0) != '0')) {
+                    break;
+                }
+                joint.append(currentStr).append(".");
+                stack.push(currentStr);
+                String remainStr = str.substring(i);
+                findValidIpStr(result, joint, remainStr, stack);
+                // 底层递归完成，将底层字符串在堆栈中的内容清除
+                stack.pop();
+                // 完成一次调用后，将刚加入的字符串从joint中删除
+                joint.delete(joint.length() - remainStr.length(), joint.length());
+            }
+        }
+
     }
 }
