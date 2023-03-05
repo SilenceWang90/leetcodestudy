@@ -56,7 +56,7 @@ public class LeetCode93 {
     }
 
     private static void findValidIpStr(List<String> result, StringBuilder joint, String str, Deque<Integer> stack) {
-        // 递归边界：字符串拆解3次即完成一个ip的查询
+        // 递归边界：字符串拆解3次即完成一个ip的查询，判断最后一组字符串是否合规，合规就加入结果集即可~
         if (stack.size() == 3) {
             // 符合IP规则，则加入到结果集中：
             // （1）不为空
