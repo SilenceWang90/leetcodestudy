@@ -46,7 +46,6 @@ public class LeetCode93 {
      * @param s 给定的IP字符串
      * @return 结果
      */
-    @Deprecated
     private static List<String> individualExecute(String s) {
         List<String> result = Lists.newArrayList();
         StringBuilder joint = new StringBuilder();
@@ -56,7 +55,6 @@ public class LeetCode93 {
         return result;
     }
 
-    @Deprecated
     private static void findValidIpStr(List<String> result, StringBuilder joint, String str, Deque<Integer> stack) {
         // 递归边界：字符串拆解3次即完成一个ip的查询
         if (stack.size() == 3) {
@@ -69,7 +67,7 @@ public class LeetCode93 {
                     && Integer.parseInt(str) <= 255) {
                 joint.append(str);
                 result.add(joint.toString());
-                // 记录完成后将拼接的字符串清除，用于下次遍历
+                // 有效IP记录完成后将拼接的字符串清除，用于上层递归的统一清理逻辑
                 joint.delete(joint.lastIndexOf(".") + 1, joint.length());
             }
             return;
@@ -88,12 +86,12 @@ public class LeetCode93 {
                     break;
                 }
                 joint.append(currentStr).append(".");
-                // 放入当前字符串的长度，记得带上"."，因为joint的时候把"."也带上了
+                // 记录当前字符串的长度，便于stringbuilder进行字符串拆解。当前字符长度+1是因为joint拼接时带上了"."
                 stack.push(currentStr.length() + 1);
                 // 截取剩余字符串
                 String remainStr = str.substring(i + 1);
                 findValidIpStr(result, joint, remainStr, stack);
-                // 底层递归完成，当前内容清理
+                // 统一清理逻辑：底层递归完成，当前内容清理（底层的递归无论是成功还是失败，当前内容都要清理）
                 int currentLength = stack.pop();
                 joint.delete(joint.length() - currentLength, joint.length());
             }
