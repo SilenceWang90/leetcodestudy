@@ -98,22 +98,10 @@ public class LeetCode93 {
                 joint.delete(joint.length() - currentLength, joint.length());
             }
         }
-        /*else {
-            // 当前IP规则不满足
-            if (stack.size() > 0) {
-                // 不符合IP规则，清理递归回溯过程中最近记录的内容(其实就是上一次调用的内容，就因为上一次调用的方案不合理才会导致本次失败，索引要把上一次的内容清理掉)
-                int length = stack.pop();
-                joint.delete(joint.length() - length, joint.length());
-            } else {
-                // 第一次查找就失败，不需要做任何处理。
-                // 这种情况是给定的字符串长度超过了12
-                System.out.println("给定字符串长度超过IP最大有效长度12，给定字符串长度为：" + str.length());
-            }
-        }*/
     }
 
     /**
-     * 官方解答：和个人思路一致...递归回溯
+     * 官方解答：和个人思路一致：递归回溯
      *
      * @param s 给定字符串
      * @return 结果集
