@@ -32,7 +32,8 @@ import java.util.List;
  */
 public class LeetCode93 {
     public static void main(String[] args) {
-        System.out.println(individualExecute(""));
+//        System.out.println(individualExecute("0000"));
+        System.out.println(individualExecute("25525511135"));
     }
 
     /**
@@ -55,9 +56,9 @@ public class LeetCode93 {
         if (stack.size() == 3) {
             // 符合IP规则，则加入到结果集中：
             // （1）不为空
-            // （2）首位不是0
+            // （2）不等于0的时候首位不是0，首位是0的时候只能是0
             // （3）数字小于等于255
-            if (str != null && str.charAt(0) != '0' && Integer.parseInt(str) <= 255) {
+            if (str != null && !"".equals(str) && (str.equals("0") || (str.length() > 1 && str.charAt(0) != '0')) && Integer.parseInt(str) <= 255) {
                 joint.append(str);
                 result.add(joint.toString());
             }
@@ -65,8 +66,8 @@ public class LeetCode93 {
         }
         if (str.length() <= (4 - stack.size()) * 3 && str.length() > 0) {
             // 每层循环中，该层字符个数不能超过3
-            for (int i = 0; i < 3; i++) {
-                String currentStr = str.substring(0, i);
+            for (int i = 0; i < Math.min(3, str.length()); i++) {
+                String currentStr = str.substring(0, i + 1);
                 // 当层循环中：
                 // （1）数值大于255，则已经不符合IP规则，停止循环
                 // （2）该数值的首位是0(0可以，但是01，012这种就不行)，则已经不符合IP规则，停止循环
@@ -75,14 +76,15 @@ public class LeetCode93 {
                 }
                 joint.append(currentStr).append(".");
                 stack.push(currentStr);
-                String remainStr = str.substring(i);
+                String remainStr = str.substring(i + 1);
                 findValidIpStr(result, joint, remainStr, stack);
                 // 底层递归完成，将底层字符串在堆栈中的内容清除
                 stack.pop();
                 // 完成一次调用后，将刚加入的字符串从joint中删除
                 joint.delete(joint.length() - remainStr.length(), joint.length());
             }
+        }else{
+            joint.delete(joint.lastIndexOf("."),joint.length());
         }
-
     }
 }
