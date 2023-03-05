@@ -34,7 +34,12 @@ public class LeetCode93 {
 
     }
 
-    private static List<String> individualExecute() {
+    /**
+     * 个人思路：
+     * @param s 给定的IP字符串
+     * @return 结果
+     */
+    private static List<String> individualExecute(String s) {
         List<String> result = Lists.newArrayList();
 
 
