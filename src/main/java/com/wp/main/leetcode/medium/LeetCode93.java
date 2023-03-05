@@ -33,15 +33,31 @@ import java.util.List;
 public class LeetCode93 {
     public static void main(String[] args) {
 //        System.out.println(individualExecute("0000"));
-        System.out.println(individualExecute("25525511135"));
+//        System.out.println(individualExecute("25525511135"));
+        System.out.println(standardExecute("25525511135"));
+        System.out.println(standardExecute("0000"));
     }
 
     /**
-     * 个人思路：递归，当前
+     * 官方解答：
+     *
+     * @param s 给定字符串
+     * @return 结果集
+     */
+    private static List<String> standardExecute(String s) {
+        List<String> result = Lists.newArrayList();
+
+        return result;
+    }
+
+
+    /**
+     * 个人思路：递归
      *
      * @param s 给定的IP字符串
      * @return 结果
      */
+    @Deprecated
     private static List<String> individualExecute(String s) {
         List<String> result = Lists.newArrayList();
         StringBuilder joint = new StringBuilder();
@@ -51,6 +67,7 @@ public class LeetCode93 {
         return result;
     }
 
+    @Deprecated
     private static void findValidIpStr(List<String> result, StringBuilder joint, String str, Deque<String> stack) {
         // 递归边界：字符串拆解3次即完成一个ip的查询
         if (stack.size() == 3) {
@@ -83,8 +100,8 @@ public class LeetCode93 {
                 // 完成一次调用后，将刚加入的字符串从joint中删除
                 joint.delete(joint.length() - remainStr.length(), joint.length());
             }
-        }else{
-            joint.delete(joint.lastIndexOf("."),joint.length());
+        } else {
+            joint.delete(joint.lastIndexOf("."), joint.length());
         }
     }
 }
