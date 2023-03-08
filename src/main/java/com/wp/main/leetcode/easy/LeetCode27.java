@@ -70,10 +70,6 @@ public class LeetCode27 {
                 // 1、如果当前位置的元素和给定元素相同
                 // 1.1、清除当前位置的元素
                 nums[i] = -1;
-                /*// 1.2、如果当前空白元素指针未指向空白元素位置，则移动到刚清理的位置上
-                if(nums[current]!=-1){
-                    current = i;
-                }*/
                 // 1.2、空格数加1
                 spaceNums++;
             }else{
