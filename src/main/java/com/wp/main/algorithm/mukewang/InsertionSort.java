@@ -14,7 +14,7 @@ import com.wp.main.algorithm.mukewang.util.SortedUtil;
 public class InsertionSort {
     public static void main(String[] args) {
         int[] nums = {2, 4, 1, 3, 9, 7, 8, 6, 5};
-        InsertionSort(nums);
+        insertionSort(nums);
         System.out.println(SortedUtil.arraySorted(nums));
         System.out.println("排序后：");
         for (int num : nums) {
@@ -23,9 +23,9 @@ public class InsertionSort {
     }
 
     /**
-     * @param nums
+     * @param nums 目标数组
      */
-    private static void InsertionSort(int[] nums) {
+    private static void insertionSort(int[] nums) {
         // 当前未排序元素的位置
         for (int i = 1; i < nums.length; i++) {
             // 下一个元素和之前的元素比较，找到合适的位置
