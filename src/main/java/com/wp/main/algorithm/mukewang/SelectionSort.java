@@ -1,5 +1,7 @@
 package com.wp.main.algorithm.mukewang;
 
+import com.wp.main.algorithm.mukewang.util.SortedUtil;
+
 /**
  * @Description 选择排序：升序
  * 思想：
@@ -12,6 +14,7 @@ public class SelectionSort {
     public static void main(String[] args) {
         int[] nums = {2, 4, 1, 3, 9, 7, 8, 6, 5};
         selectionSort(nums);
+        System.out.println(SortedUtil.arraySorted(nums));
         System.out.println("排序后：");
         for (int num : nums) {
             System.out.print(num + " ");
