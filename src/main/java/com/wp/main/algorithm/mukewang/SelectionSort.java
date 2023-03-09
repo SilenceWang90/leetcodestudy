@@ -18,10 +18,10 @@ public class SelectionSort {
     }
 
     private static void selectionSort(int[] nums) {
-        int minNumsJ;
         // 左指针从第一个元素遍历到最后一个元素
         for (int i = 0; i < nums.length; i++) {
-            minNumsJ = i;
+            // 当前循环中的最小值对应的索引位置
+            int minNumsJ = i;
             // 右指针从左指针的第二个位置开始遍历全部元素，找到最小的那个值对应的索引位置
             for (int j = i + 1; j < nums.length; j++) {
                 // 不断循环找最小那个值对应的索引
