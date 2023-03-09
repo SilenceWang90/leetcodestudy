@@ -9,7 +9,8 @@ import com.wp.main.algorithm.mukewang.util.SortedUtil;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] nums = {2, 4, 1, 3, 9, 7, 8, 6, 5};
+//        int[] nums = {2, 4, 1, 3, 9, 7, 8, 6, 5};
+        int[] nums = {2, 4, 20, 102, 7, 34, 56, 23, 68, 17, 29, 39, 405, 698, 47, 58, 68};
         bubbleSort(nums);
         System.out.println(SortedUtil.arraySorted(nums));
         System.out.print("排序后：");
@@ -22,6 +23,7 @@ public class BubbleSort {
      * 思路：
      * 不断地从数组首位开始比较相邻两个数字的大小，把大的值放在右边，直到没有相邻元素需要交换位置即可。
      * 由思路可知，每次都是比较相邻两个元素的最大值，因此每一轮都能找到当前未排序数组中的最大值；下一轮就是找次大值，依此类推。所以n个元素需要比较的次数是n-1次
+     *
      * @param nums 给定数组
      */
     private static void bubbleSort(int[] nums) {
