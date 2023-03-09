@@ -12,8 +12,9 @@ public class SelectionSort {
     public static void main(String[] args) {
         int[] nums = {2, 4, 1, 3, 9, 7, 8, 6, 5};
         selectionSort(nums);
+        System.out.println("排序后：");
         for (int num : nums) {
-            System.out.println("排序后：" + num);
+            System.out.print(num + " ");
         }
     }
 
