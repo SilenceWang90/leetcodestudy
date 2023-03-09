@@ -34,6 +34,9 @@ public class InsertionSort {
                     int temp = nums[j];
                     nums[j] = nums[j-1];
                     nums[j-1] = temp;
+                }else{
+                    // 当前元素比有序数组中的最大值还大，则当前元素不需要再逐个比较了
+                    break;
                 }
             }
         }
