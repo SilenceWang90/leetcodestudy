@@ -36,7 +36,7 @@ public class MergeSort {
      */
     private static void mergeSort(int[] nums, int left, int right) {
         /**
-         * 1、递归终止条件：left>=r。即拆分到当前，只剩下一个元素，不需要再拆分了
+         * 1、递归终止条件：left>=r。即数组通过2分拆分到当前，每组只剩下一个元素，不需要再拆分了
          */
         if (left >= right) {
             return;
@@ -47,6 +47,7 @@ public class MergeSort {
          */
         // 2.1、定义中间元素的位置。如果是奇数个则向下取整。此处可能出现溢出问题，暂不考虑。
         int middle = (left + right) / 2;
-        mergeSort(nums, middle, right);
+        // 2.2、找到中间位置后，则下一次拆分就是从left到middle(下一次的right)的拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
+        mergeSort(nums, left, middle);
     }
 }
