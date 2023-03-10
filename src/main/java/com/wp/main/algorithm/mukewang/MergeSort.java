@@ -72,7 +72,7 @@ public class MergeSort {
     private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
         int[] sorted = new int[right - left + 1];
         // sorted数组当前要放置元素的索引值
-        int k = left;
+        int k = 0;
         // 左侧数组起始位置为声明为i，值为left；右侧数组的起始位置声明为j，值为middle+1
         // 注：刚开始想当然以为直接用left和middle作为左右指针进入while即可，但是middle指针变化的时候，2个数组的区间也被改变了~~~~所以得单独再声明一个同值的变量才可以
         int i = left;
@@ -82,19 +82,19 @@ public class MergeSort {
             if (i <= middle && j <= right) {
                 // 2个数组都没遍历结束，谁的值小就把谁的值放入sorted数组中
                 if (nums[i] <= nums[j]) {
-                    sorted[k - left] = nums[i];
+                    sorted[k] = nums[i];
                     i++;
                 } else {
-                    sorted[k - left] = nums[j];
+                    sorted[k] = nums[j];
                     j++;
                 }
             } else if (i <= middle) {
                 // 左侧数组未遍历结束，右侧数组已经完成遍历
-                sorted[k - left] = nums[i];
+                sorted[k] = nums[i];
                 i++;
             } else {
                 // 左侧数组已经完成遍历，右侧数组未遍历结束
-                sorted[k - left] = nums[j];
+                sorted[k] = nums[j];
                 j++;
             }
             // k进入下一个要放置索引值的位置
