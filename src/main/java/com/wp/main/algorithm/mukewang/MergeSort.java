@@ -28,7 +28,10 @@ public class MergeSort {
      * @param nums
      */
     private static void startMergeSort(int[] nums) {
-        mergeSort(nums, 0, nums.length - 1);
+        // 放置排序后元素的数组
+        int[] sorted = new int[nums.length];
+        mergeSort(nums, 0, nums.length - 1, sorted);
+        nums = sorted;
     }
 
     /**
@@ -36,9 +39,9 @@ public class MergeSort {
      * @param left  当前数组要处理的最左侧元素位置
      * @param right 当前数组要处理的最右侧元素位置
      */
-    private static void mergeSort(int[] nums, int left, int right) {
+    private static void mergeSort(int[] nums, int left, int right, int[] sorted) {
         /**
-         * 1、递归终止条件：left>=r。即数组通过2分拆分到当前，每组只剩下一个元素，不需要再拆分了
+         * 1、递归终止条件：left>=r。即数组通过二分拆分到当前，每组只剩下一个元素，不需要再拆分了
          */
         if (left >= right) {
             return;
@@ -53,11 +56,11 @@ public class MergeSort {
         int middle = (left + right) / 2;
         // 2.2、找到中间位置后，则下一次拆分就是2组：
         // （1）从left到middle(下一次的right)继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
-        mergeSort(nums, left, middle);
+        mergeSort(nums, left, middle, sorted);
         // （2）从middle+1(下一次的left)到right继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
-        mergeSort(nums, middle + 1, right);
+        mergeSort(nums, middle + 1, right, sorted);
         // 2.3、当前拆分结束后，进行2个有序数组的merge操作
-
+        mergeAscSortedArray(nums, left, middle, right, sorted);
     }
 
     /**
@@ -68,7 +71,35 @@ public class MergeSort {
      * @param middle 当前数组的中间元素的索引
      * @param right  当前数组的最右侧元素索引
      */
-    private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
-
+    private static void mergeAscSortedArray(int[] nums, int left, int middle, int right, int[] sorted) {
+        // sorted数组当前要放置元素的索引值
+        int k = left;
+        // 左侧数组起始位置为声明为i，值为left；右侧数组的起始位置声明为j，值为middle+1
+        // 注：刚开始想当然以为直接用left和middle作为左右指针进入while即可，但是middle指针变化的时候，2个数组的区间也被改变了~~~~所以得单独再声明一个同值的变量才可以
+        int i = left;
+        int j = middle + 1;
+        // 合并2个升序数组，从2个数组的起始位置进行比较，将小的值放入sorted数组中
+        while (i <= middle || j <= right) {
+            if (i <= middle && j <= right) {
+                // 2个数组都没遍历结束，谁的值小就把谁的值放入sorted数组中
+                if (nums[i] <= nums[j]) {
+                    sorted[k] = nums[i];
+                    i++;
+                } else {
+                    sorted[k] = nums[j];
+                    j++;
+                }
+            } else if (i <= middle) {
+                // 左侧数组未遍历结束，右侧数组已经完成遍历
+                sorted[k] = nums[i];
+                i++;
+            } else {
+                // 左侧数组已经完成遍历，右侧数组未遍历结束
+                sorted[k] = nums[j];
+                j++;
+            }
+            // k进入下一个要放置索引值的位置
+            k++;
+        }
     }
 }
