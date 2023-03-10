@@ -70,7 +70,7 @@ public class MergeSort {
      * @param right  当前数组的最右侧元素索引
      */
     private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
-        int[] sorted = new int[nums.length];
+        int[] sorted = new int[right - left + 1];
         // sorted数组当前要放置元素的索引值
         int k = left;
         // 左侧数组起始位置为声明为i，值为left；右侧数组的起始位置声明为j，值为middle+1
@@ -82,19 +82,19 @@ public class MergeSort {
             if (i <= middle && j <= right) {
                 // 2个数组都没遍历结束，谁的值小就把谁的值放入sorted数组中
                 if (nums[i] <= nums[j]) {
-                    sorted[k] = nums[i];
+                    sorted[k - left] = nums[i];
                     i++;
                 } else {
-                    sorted[k] = nums[j];
+                    sorted[k - left] = nums[j];
                     j++;
                 }
             } else if (i <= middle) {
                 // 左侧数组未遍历结束，右侧数组已经完成遍历
-                sorted[k] = nums[i];
+                sorted[k - left] = nums[i];
                 i++;
             } else {
                 // 左侧数组已经完成遍历，右侧数组未遍历结束
-                sorted[k] = nums[j];
+                sorted[k - left] = nums[j];
                 j++;
             }
             // k进入下一个要放置索引值的位置
@@ -103,8 +103,8 @@ public class MergeSort {
         // 将排序后的值给目标数组nums。因为当前是针对sorted数组[left,right]区间进行的排序，因此赋值的时候也只需要对nums数组[left,right]区间进行赋值。
         // 不能直接nums=sorted，且不说本身逻辑就有问题，这种语法本身就是错的：数组虽然是引用类型，可以在方法间传递引用
         // 但是传递给方法后，在该方法中直接修改引用是无效的，只能引用对应的值。直接用引用修改的方式只能在引用声明的同方法中才可以。
-        for (int m = left; m <= right; m++) {
-            nums[m] = sorted[m];
+        for (int x = 0; x < sorted.length; x++) {
+            nums[x + left] = sorted[x];
         }
     }
 }
