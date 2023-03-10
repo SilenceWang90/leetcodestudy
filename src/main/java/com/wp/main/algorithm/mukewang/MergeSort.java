@@ -70,6 +70,7 @@ public class MergeSort {
      * @param right  当前数组的最右侧元素索引
      */
     private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
+        // sorted[]的大小只需要是当前nums[]要排序的区间的大小，即[left.right]的大小
         int[] sorted = new int[right - left + 1];
         // sorted数组当前要放置元素的索引值
         int k = 0;
