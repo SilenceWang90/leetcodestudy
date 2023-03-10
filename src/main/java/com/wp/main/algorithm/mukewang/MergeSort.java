@@ -100,6 +100,7 @@ public class MergeSort {
             // k进入下一个要放置索引值的位置
             k++;
         }
+        // 将排序后的值给目标数组nums。不能直接nums=sorted，且不说本身逻辑就有问题，这种语法本身就是错的：数组是引用类型，可以传递引用，但是在方法中修改引用是无效的，只能修改引用中的值
         for (int m = left; m <= right; m++) {
             nums[m] = sorted[m];
         }
