@@ -12,6 +12,7 @@ import com.wp.main.algorithm.mukewang.util.SortedUtil;
 public class MergeSort {
     public static void main(String[] args) {
         int[] nums = {2, 4, 20, 102, 7, 34, 56, 23, 68, 17, 29, 39, 405, 698, 47, 58, 68};
+//        int[] nums = {3, 4, 2, 1};
         startMergeSort(nums);
         System.out.println(SortedUtil.arraySorted(nums));
         System.out.print("排序后：");
@@ -69,7 +70,6 @@ public class MergeSort {
      * @param right  当前数组的最右侧元素索引
      */
     private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
-        // 放置排序后元素的数组
         int[] sorted = new int[nums.length];
         // sorted数组当前要放置元素的索引值
         int k = left;
@@ -99,6 +99,9 @@ public class MergeSort {
             }
             // k进入下一个要放置索引值的位置
             k++;
+        }
+        for (int m = left; m <= right; m++) {
+            nums[m] = sorted[m];
         }
     }
 }
