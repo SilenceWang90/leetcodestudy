@@ -28,10 +28,7 @@ public class MergeSort {
      * @param nums
      */
     private static void startMergeSort(int[] nums) {
-        // 放置排序后元素的数组
-        int[] sorted = new int[nums.length];
-        mergeSort(nums, 0, nums.length - 1, sorted);
-        nums = sorted;
+        mergeSort(nums, 0, nums.length - 1);
     }
 
     /**
@@ -39,7 +36,7 @@ public class MergeSort {
      * @param left  当前数组要处理的最左侧元素位置
      * @param right 当前数组要处理的最右侧元素位置
      */
-    private static void mergeSort(int[] nums, int left, int right, int[] sorted) {
+    private static void mergeSort(int[] nums, int left, int right) {
         /**
          * 1、递归终止条件：left>=r。即数组通过二分拆分到当前，每组只剩下一个元素，不需要再拆分了
          */
@@ -56,11 +53,11 @@ public class MergeSort {
         int middle = (left + right) / 2;
         // 2.2、找到中间位置后，则下一次拆分就是2组：
         // （1）从left到middle(下一次的right)继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
-        mergeSort(nums, left, middle, sorted);
+        mergeSort(nums, left, middle);
         // （2）从middle+1(下一次的left)到right继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
-        mergeSort(nums, middle + 1, right, sorted);
-        // 2.3、当前拆分结束后，进行2个有序数组的merge操作
-        mergeAscSortedArray(nums, left, middle, right, sorted);
+        mergeSort(nums, middle + 1, right);
+        // 2.3、当前拆分结束后，进行2个有序数组的merge操作。即针对[left,middle]和[middle,right]进行归并
+        mergeAscSortedArray(nums, left, middle, right);
     }
 
     /**
@@ -71,7 +68,9 @@ public class MergeSort {
      * @param middle 当前数组的中间元素的索引
      * @param right  当前数组的最右侧元素索引
      */
-    private static void mergeAscSortedArray(int[] nums, int left, int middle, int right, int[] sorted) {
+    private static void mergeAscSortedArray(int[] nums, int left, int middle, int right) {
+        // 放置排序后元素的数组
+        int[] sorted = new int[nums.length];
         // sorted数组当前要放置元素的索引值
         int k = left;
         // 左侧数组起始位置为声明为i，值为left；右侧数组的起始位置声明为j，值为middle+1
