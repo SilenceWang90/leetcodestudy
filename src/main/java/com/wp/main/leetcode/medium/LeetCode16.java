@@ -29,8 +29,11 @@ public class LeetCode16 {
         int target = 1;*/
         /*int[] nums = {0,0,0};
         int target = 1;*/
-        int[] nums = {0,1,2};
-        int target = 3;
+        /*int[] nums = {0,1,2};
+        int target = 3;*/
+
+        int[] nums = {1, 1, 1, 0};
+        int target = -100;
         System.out.println(individualCalculate(nums, target));
     }
 
@@ -68,17 +71,19 @@ public class LeetCode16 {
             // a指针已经确认，那么b和c指针对应值的目标值就变成了target-nums[a]
             while (b < c) {
                 if (nums[b] + nums[c] < target - nums[a] || (b > a + 1 && nums[b] == nums[b - 1])) {
-                    // 如果当前差值比记录的还小，则记录下来
+                    // 如果当前差值比记录的还小，则记录下来。并更新记录
                     if (Math.abs(target - (nums[a] + nums[b] + nums[c])) < record) {
                         sumResult = nums[a] + nums[b] + nums[c];
+                        record = Math.abs(target - (nums[a] + nums[b] + nums[c]));
                     }
                     // 和小，则左指针移动，因为移动右指针加和只会越来越小，离目标越来越远
                     // 另外，如果b当前位置的值和前一个位置的值相同，那么b继续移动即可，因为已经比较过了
                     b++;
                 } else if (nums[b] + nums[c] > target - nums[a] || (c < nums.length - 1 && nums[c] == nums[c + 1])) {
-                    // 如果当前差值比记录的还小，则记录下来
+                    // 如果当前差值比记录的还小，则记录下来。并更新记录
                     if (Math.abs(target - (nums[a] + nums[b] + nums[c])) < record) {
                         sumResult = nums[a] + nums[b] + nums[c];
+                        record = Math.abs(target - (nums[a] + nums[b] + nums[c]));
                     }
                     // 和大，则右指针移动，因为移动左指针加和只会越来越大，离目标越来越远
                     // 另外，如果c当前位置的值和前一个位置的值相同，那么c继续移动即可，因为已经比较过了
