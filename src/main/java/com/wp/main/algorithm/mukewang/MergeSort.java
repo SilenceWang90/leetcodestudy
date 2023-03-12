@@ -3,7 +3,7 @@ package com.wp.main.algorithm.mukewang;
 import com.wp.main.algorithm.mukewang.util.SortedUtil;
 
 /**
- * @Description 归并排序
+ * @Description 归并排序：2种实现，自顶向下(递归方式)和自底向上(迭代循环)
  * 思想：将数组不断平均分为2部分，等分到只剩一个元素时，再向回进行归并(递归逻辑)，归并过程中不断对合并的部分进行排序，最后即可完成对整体的排序。
  * 每组排序好的内容在归并过程中需要借助额外的数组空间进行有序数组的合并，因此空间复杂度上归并排序需要额外等长的数组。
  * @Author admin
@@ -116,6 +116,27 @@ public class MergeSort {
         // 但是传递给方法后，在该方法中直接修改引用是无效的，只能引用对应的值。直接用引用修改的方式只能在引用声明的同方法中才可以。
         for (int x = 0; x < sorted.length; x++) {
             nums[x + left] = sorted[x];
+        }
+    }
+
+    /**
+     * 自底向上排序实现思路
+     */
+    public static void mergeSortFromBottomToTop(int[] nums) {
+        // 每次划分nums后，第一个子数组的middle索引值
+        int n = 1;
+        // 每次划分nums后，第一个子数组的middle索引值如果到达nums数组长度的一半，那么就是最后一次划分
+        while (n <= nums.length / 2) {
+            // 遍历当前划分出来的数组，按次序排序。
+            // left表示每组数组最左侧元素的索引，每次要移动到下一个数组左侧位置就是left + n * 2。
+            // 因为n表示本层第一个数组的中间索引，由于第一个数组第一个元素的索引是0，所以middle也就代表了这一层每个子数组长度的一半
+            // 所以下一个数组的left索引就是：当前的left + n * 2
+            for (int left = 0; left < nums.length; left = left + n * 2) {
+                // 排序
+                mergeAscSortedArray(nums, left, left + n, left + n * 2 - 1);
+            }
+            // 下一层第一个middle的初始位置。也是当前子数组长度的一半
+            n = 1 + n * 2;
         }
     }
 }
