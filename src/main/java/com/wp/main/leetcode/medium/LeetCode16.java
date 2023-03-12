@@ -25,11 +25,12 @@ import java.util.Arrays;
  */
 public class LeetCode16 {
     public static void main(String[] args) {
-        int[] nums = {-1, 2, 1, -4};
-        int target = 1;
-
+        /*int[] nums = {-1, 2, 1, -4};
+        int target = 1;*/
         /*int[] nums = {0,0,0};
         int target = 1;*/
+        int[] nums = {0,1,2};
+        int target = 3;
         System.out.println(individualCalculate(nums, target));
     }
 
@@ -50,7 +51,13 @@ public class LeetCode16 {
     private static int individualCalculate(int[] nums, int target) {
         // 1、数组升序排序
         Arrays.sort(nums);
-        int result = 0;
+        // 三数之和与目标值之间的记录，起始值要比题干要求的极限值还要大才行。因为如果数组中任意3个数之和与目标值的差距比我们设定的还大，
+        // 那我们就找不到结果为我们设定记录的三数之和了。
+        // 题干说明数组中数值的取值范围是-1000至1000，-104 <= target <= 104，我们比较的逻辑是当Math.abs(target - (nums[a] + nums[b] + nums[c]))时，我们记录该结果
+        // 所以极限值就是abs(104-(-1000-1000-1000))或abs(-104-(1000+1000+1000))即3104。所以我们设定的record只需要比3104大即可。
+        int record = 100000;
+        // 三数之和
+        int sumResult = 0;
         // 2、第一层循环。至倒数第三个数就可以了，因为一共要找3个数。在往后的话不够凑齐3个数字
         for (int a = 0; a <= nums.length - 3; a++) {
             // 左指针
@@ -58,24 +65,31 @@ public class LeetCode16 {
             // 右指针
             int c = nums.length - 1;
             // 左右指针不重合就继续找
+            // a指针已经确认，那么b和c指针对应值的目标值就变成了target-nums[a]
             while (b < c) {
                 if (nums[b] + nums[c] < target - nums[a] || (b > a + 1 && nums[b] == nums[b - 1])) {
+                    // 如果当前差值比记录的还小，则记录下来
+                    if (Math.abs(target - (nums[a] + nums[b] + nums[c])) < record) {
+                        sumResult = nums[a] + nums[b] + nums[c];
+                    }
                     // 和小，则左指针移动，因为移动右指针加和只会越来越小，离目标越来越远
                     // 另外，如果b当前位置的值和前一个位置的值相同，那么b继续移动即可，因为已经比较过了
                     b++;
-                    result = Math.min(result, nums[a] + nums[b] + nums[c]);
                 } else if (nums[b] + nums[c] > target - nums[a] || (c < nums.length - 1 && nums[c] == nums[c + 1])) {
+                    // 如果当前差值比记录的还小，则记录下来
+                    if (Math.abs(target - (nums[a] + nums[b] + nums[c])) < record) {
+                        sumResult = nums[a] + nums[b] + nums[c];
+                    }
                     // 和大，则右指针移动，因为移动左指针加和只会越来越大，离目标越来越远
                     // 另外，如果c当前位置的值和前一个位置的值相同，那么c继续移动即可，因为已经比较过了
                     c--;
-                    result = Math.min(result, nums[a] + nums[b] + nums[c]);
                 } else {
                     // nums[b]+nums[c] = target - nums[a]，不可能有比这个结果还接近的值，直接返回
-                    result = 0;
-                    return result;
+                    sumResult = nums[a] + nums[b] + nums[c];
+                    return sumResult;
                 }
             }
         }
-        return result;
+        return sumResult;
     }
 }
