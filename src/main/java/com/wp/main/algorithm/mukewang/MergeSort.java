@@ -57,8 +57,11 @@ public class MergeSort {
         mergeSort(nums, left, middle);
         // （2）从middle+1(下一次的left)到right继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
         mergeSort(nums, middle + 1, right);
-        // 2.3、当前拆分结束后，进行2个有序数组的merge操作。即针对[left,middle]和[middle,right]进行归并
-        mergeAscSortedArray(nums, left, middle, right);
+        // 2.3、当前拆分结束后，进行2个有序数组的merge操作。即针对[left,middle]和[middle,right]进行归并排序
+        // 如果左侧有序数组的最大值比右侧有序数组的最小值还要小
+        if (nums[middle] > nums[middle + 1]) {
+            mergeAscSortedArray(nums, left, middle, right);
+        }
     }
 
     /**
