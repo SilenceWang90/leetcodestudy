@@ -45,6 +45,12 @@ public class MergeSort {
         if (left >= right) {
             return;
         }
+        // 可优化点：当数组元素拆分到一定小的时候，可以使用插入排序提高效率
+        // 因为元素越少，有序性就越高。有序性越高，插入排序的效果就越好
+        /*if(right-left<=15){
+            // 使用插入排序。增加一个方法，针对数组nums，对[left,right]这个索引区间的元素进行插入排序
+            insertionSort(nums,left,right);
+        }*/
 
         /**
          * 2、每一层递归要操作的步骤
@@ -59,7 +65,7 @@ public class MergeSort {
         // （2）从middle+1(下一次的left)到right继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
         mergeSort(nums, middle + 1, right);
         // 2.3、当前拆分结束后，进行2个有序数组的merge操作。即针对[left,middle]和[middle,right]进行归并排序
-        // 如果左侧有序数组的最大值比右侧有序数组的最小值还要小
+        // 如果左侧有序数组的最大值比右侧有序数组的最小值还要小，那么就不需要排序了~我们只需要针对左数组最大值比有数字最小值还大的情况进行排序即可
         if (nums[middle] > nums[middle + 1]) {
             mergeAscSortedArray(nums, left, middle, right);
         }
