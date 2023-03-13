@@ -125,10 +125,16 @@ public class MergeSort {
     public static void mergeSortFromBottomToTop(int[] nums) {
         // 1、size为每轮要调整几个元素，第一次看1个，然后每次自身加倍。循环次数相当于上面递归方法中的递归次数。
         for (int size = 1; size <= nums.length; size += size) {
-            // 每一轮中，每个数组的左指针位置，只要不越界即可继续寻找下一个数组
-            for (int left = 0; left < nums.length; left = left + size * 2) {
-                // 对当前[left,left + size - 1]和[left + size,left + size * 2 - 1]进行归并
-                mergeAscSortedArray(nums, left, left + size - 1, left + size * 2 - 1);
+            // 每一轮中，每个数组的左指针位置，只要不越界即可继续寻找下一个数组。下一个left指针的位置是当前left指针的位置右移2个size
+            // 数组越界处理：左指针移动时，不能超过数组长度
+            for (int left = 0; left + size < nums.length; left = left + size * 2) {
+                // 中间指针的位置：左指针+1个数组的长度-1
+                int middle = left + size - 1;
+                // 右指针的位置：左指针+2个要合并的数组的长度-1
+                int right = left + size * 2 - 1;
+                // 对当前[left,middle]和[middle+1,right]进行归并
+                // 数组越界处理：右指针移动时，可能size不足，那么右指针只能指向数组的最后一个元素。因此右指针的位置取期望右移的位置与数组最大值所在位置的最小值即可
+                mergeAscSortedArray(nums, left, middle, Math.min(right, nums.length - 1));
             }
         }
     }
