@@ -123,20 +123,13 @@ public class MergeSort {
      * 自底向上排序实现思路
      */
     public static void mergeSortFromBottomToTop(int[] nums) {
-        // 每次划分nums后，第一个子数组的middle索引值
-        int n = 1;
-        // 每次划分nums后，第一个子数组的middle索引值如果到达nums数组长度的一半，那么就是最后一次划分
-        while (n <= nums.length / 2) {
-            // 遍历当前划分出来的数组，按次序排序。
-            // left表示每组数组最左侧元素的索引，每次要移动到下一个数组左侧位置就是left + n * 2。
-            // 因为n表示本层第一个数组的中间索引，由于第一个数组第一个元素的索引是0，所以middle也就代表了这一层每个子数组长度的一半
-            // 所以下一个数组的left索引就是：当前的left + n * 2
-            for (int left = 0; left < nums.length; left = left + n * 2) {
-                // 排序
-                mergeAscSortedArray(nums, left, left + n, left + n * 2 - 1);
+        // 1、size为每轮要调整几个元素，第一次看1个，然后每次自身加倍。循环次数相当于上面递归方法中的递归次数。
+        for (int size = 1; size <= nums.length; size += size) {
+            // 每一轮中，每个数组的左指针位置，只要不越界即可继续寻找下一个数组
+            for (int left = 0; left < nums.length; left = left + size * 2) {
+                // 对当前[left,left + size - 1]和[left + size,left + size * 2 - 1]进行归并
+                mergeAscSortedArray(nums, left, left + size - 1, left + size * 2 - 1);
             }
-            // 下一层第一个middle的初始位置。也是当前子数组长度的一半
-            n = 1 + n * 2;
         }
     }
 }
