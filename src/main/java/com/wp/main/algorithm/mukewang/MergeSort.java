@@ -127,7 +127,7 @@ public class MergeSort {
      * 自底向上排序实现思路
      */
     public static void mergeSortFromBottomToTop(int[] nums) {
-        // 1、size为每轮要调整几个元素，第一次看1个，然后每次自身加倍。循环次数相当于上面递归方法中的递归次数。
+        // 1、size为每轮中，每个数组有几个元素，第一次每个数组是1个，然后每次自身加倍。循环次数相当于上面递归方法中的递归次数。
         for (int size = 1; size <= nums.length; size += size) {
             // 每一轮中，每个数组的左指针位置，只要不越界即可继续寻找下一个数组。下一个left指针的位置是当前left指针的位置右移2个size
             // 数组越界处理：左指针移动时，不能超过数组长度
