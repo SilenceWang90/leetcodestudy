@@ -9,7 +9,9 @@ import com.wp.main.algorithm.mukewang.util.SortedUtil;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] nums = {};
+                int[] nums = {2, 4, 20, 102, 7, 34, 56, 23, 68, 17, 29, 39, 405, 698, 47, 58, 68};
+//        int[] nums = {1,2,3,4,5,10,6,7,8};
+//        int[] nums = {3, 4, 2, 1};
         startQuickSort(nums);
         System.out.println(SortedUtil.arraySorted(nums));
         System.out.print("排序后：");
