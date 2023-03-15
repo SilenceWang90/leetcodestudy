@@ -9,7 +9,7 @@ import com.wp.main.algorithm.mukewang.util.SortedUtil;
  */
 public class QuickSort {
     public static void main(String[] args) {
-                int[] nums = {2, 4, 20, 102, 7, 34, 56, 23, 68, 17, 29, 39, 405, 698, 47, 58, 68};
+        int[] nums = {2, 4, 20, 102, 7, 34, 56, 23, 68, 17, 29, 39, 405, 698, 47, 58, 68};
 //        int[] nums = {1,2,3,4,5,10,6,7,8};
 //        int[] nums = {3, 4, 2, 1};
         startQuickSort(nums);
@@ -47,7 +47,7 @@ public class QuickSort {
         // 返回partition排序中，指定元素经排序后的位置索引
         int p = partition(nums, l, r);
         // 递归：以p为分界，继续进行快速排序的逻辑
-        quickSort(nums, l, p);
+        quickSort(nums, l, p - 1);
         quickSort(nums, p + 1, r);
     }
 
