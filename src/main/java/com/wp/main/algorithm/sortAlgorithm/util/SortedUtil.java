@@ -1,4 +1,4 @@
-package com.wp.main.algorithm.mukewang.util;
+package com.wp.main.algorithm.sortAlgorithm.util;
 
 /**
  * @Description 排序工具类

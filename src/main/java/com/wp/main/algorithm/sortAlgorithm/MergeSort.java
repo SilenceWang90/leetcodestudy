@@ -1,6 +1,6 @@
-package com.wp.main.algorithm.mukewang;
+package com.wp.main.algorithm.sortAlgorithm;
 
-import com.wp.main.algorithm.mukewang.util.SortedUtil;
+import com.wp.main.algorithm.sortAlgorithm.util.SortedUtil;
 
 /**
  * @Description 归并排序：2种实现，自顶向下(递归方式)和自底向上(迭代循环)

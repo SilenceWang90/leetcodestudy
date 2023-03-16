@@ -1,6 +1,6 @@
-package com.wp.main.algorithm.mukewang;
+package com.wp.main.algorithm.sortAlgorithm;
 
-import com.wp.main.algorithm.mukewang.util.SortedUtil;
+import com.wp.main.algorithm.sortAlgorithm.util.SortedUtil;
 
 /**
  * @Description 选择排序：升序，时间复杂度为n的平方
