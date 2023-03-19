@@ -125,12 +125,4 @@ public class LeetCode18Mark {
         }
         return result;
     }
-
-    private static boolean outOfIntegerBounds(int num1, int num2) {
-        int result = num1 + num2;
-        if (((num1 ^ result) & (num2 ^ result)) < 0) {
-
-        }
-        return false;
-    }
 }
