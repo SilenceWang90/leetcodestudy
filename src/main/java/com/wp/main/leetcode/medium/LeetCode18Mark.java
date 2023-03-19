@@ -8,14 +8,16 @@ import java.util.List;
 /**
  * 1、解题思路同LeetCode15，使用双指针
  * 2、显式声明，隐式转换：int和long类型相加，int类型会隐式变为long，然后long和long相加。
- * 2.1、因此如果2个int相加，如果考虑可能越界，那就将其中一个声明为long，这样加和就不会产生越界问题，然后对long的结果在进行判断是否越界即可
+ * 2.1、因此如果2个int相加，如果考虑可能越界，那就将其中一个声明为long，这样加和就不会产生越界问题
  * 2.2、如果是多个int相加，java的处理顺序是从前往后依次加和。因此多个int相加如果考虑越界，那么就在第一个或者第二个int上显示声明为long，这样后面
  * 不断相加的int都会被隐式升为long然后再进行加和。
  * 2.3、(long)(int a+ int b+ int c)：这种写法没用，依然会发生越界问题。因为该写法中(long)显式声明的是(int a+ int b+ int c)的结果，此时加和结果已经越界了再转为long
  * 就已经晚了。按照2.1和2.2说明的改成(long) int a+ int b+ int c或者int a+ (long)int b+ int c均可。
  * 切记改成int a+ int b+ (long)int c不行，因为int a+int b可能就已经越界了~~~
  * 3、int加法越界处理：
- *
+ * 3.1、java对int越界的处理方式为，
+ * （1）如果2个int加和超过Integer.MAX_VALUE，会从另一端(Integer.MIN_VALUE)开始往回推。即越界数能显示的结果 = Integer.MIN_VALUE + (越界数 – Integer.MAX_VALUE) – 1
+ * （2）反之亦然，如果2个int加和超过Integer.MIN_VALUE。则越界数能显示的结果 = Integer.MAX_VALUE - (Integer.MIN_VALUE – 越界数) + 1
  */
 
 /**
