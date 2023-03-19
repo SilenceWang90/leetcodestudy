@@ -6,6 +6,19 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 1、解题思路同LeetCode15，使用双指针
+ * 2、显式声明，隐式转换：int和long类型相加，int类型会隐式变为long，然后long和long相加。
+ * 2.1、因此如果2个int相加，如果考虑可能越界，那就将其中一个声明为long，这样加和就不会产生越界问题，然后对long的结果在进行判断是否越界即可
+ * 2.2、如果是多个int相加，java的处理顺序是从前往后依次加和。因此多个int相加如果考虑越界，那么就在第一个或者第二个int上显示声明为long，这样后面
+ * 不断相加的int都会被隐式升为long然后再进行加和。
+ * 2.3、(long)(int a+ int b+ int c)：这种写法没用，依然会发生越界问题。因为该写法中(long)显式声明的是(int a+ int b+ int c)的结果，此时加和结果已经越界了再转为long
+ * 就已经晚了。按照2.1和2.2说明的改成(long) int a+ int b+ int c或者int a+ (long)int b+ int c均可。
+ * 切记改成int a+ int b+ (long)int c不行，因为int a+int b可能就已经越界了~~~
+ * 3、int加法越界处理：
+ *
+ */
+
+/**
  * @Description 四数之和
  * 给你一个由n个整数组成的数组nums，和一个目标值target请你找出并返回满足下述全部条件且不重复的四元组[nums[a], nums[b], nums[c], nums[d]]（若两个四元组元素一一对应，则认为两个四元组重复）：
  * 0 <= a, b, c, d< n
@@ -28,7 +41,7 @@ import java.util.List;
  * @Author admin
  * @Date 2023/3/19 12:59
  */
-public class LeetCode18 {
+public class LeetCode18Mark {
     public static void main(String[] args) {
         /*int[] nums = {1, 0, -1, 0, -2, 2};
         int target = 0;*/
