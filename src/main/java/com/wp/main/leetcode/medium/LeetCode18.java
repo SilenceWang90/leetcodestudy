@@ -59,6 +59,10 @@ public class LeetCode18 {
             }*/
             // 选择第二个数，从第一个数的下一位选择。一共需要4个数，因此组合中第二个数的索引值最大只能是数组长度的倒数第三个
             for (int y = x + 1; y <= nums.length - 3; y++) {
+                // 如果第二个数和之前选择过得一样，那么直接跳过，因为接下来选择结果肯定与之前一样。
+                if (y > x + 1 && nums[y] == nums[y - 1]) {
+                    continue;
+                }
                 // 启用双指针，分别从剩余元素的两侧进行枚举，选择合适的元素放入即可
                 int left = y + 1;
                 int right = nums.length - 1;
