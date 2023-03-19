@@ -62,9 +62,12 @@ public class LeetCode18 {
                 continue;
             }
             // 极限情况无法达成target，则当前循环可以提前结束
-            // 第一个数确定后，连续四个最小的数都比target大。或者，选择最大的三个数与当前值加和都比target小。
-            // 那么当前值可以结束循环
-            if ((long) nums[x] + nums[x + 1] + nums[x + 2] + nums[x + 3] > target || (long) (nums[x] + nums[nums.length - 3] + nums[nums.length - 2] + nums[nums.length - 1]) < target) {
+            // 1、第一个数确定后，连续四个最小的数都比target大，那么可以直接结束循环，因为x只会越变越大，当前x和其能选择的三个最小值之和都大于target，就没必要再进行选择
+            if ((long) nums[x] + nums[x + 1] + nums[x + 2] + nums[x + 3] > target) {
+                break;
+            }
+            // 2、选择最大的三个数与当前值加和都比target小，那么基于当前值的循环可以结束
+            if ((long) nums[x] + nums[nums.length - 3] + nums[nums.length - 2] + nums[nums.length - 1] < target) {
                 continue;
             }
             // 选择第二个数，从第一个数的下一位选择。一共需要4个数，因此组合中第二个数的索引值最大只能是数组长度的倒数第三个
