@@ -18,6 +18,7 @@ import java.util.List;
  * 3.1、java对int越界的处理方式为，
  * （1）如果2个int加和超过Integer.MAX_VALUE，会从另一端(Integer.MIN_VALUE)开始往回推。即越界数能显示的结果 = Integer.MIN_VALUE + (越界数 – Integer.MAX_VALUE) – 1
  * （2）反之亦然，如果2个int加和超过Integer.MIN_VALUE。则越界数能显示的结果 = Integer.MAX_VALUE - (Integer.MIN_VALUE – 越界数) + 1
+ * 3.2、计算过程中判断越界：转为long判断是否超过Integer的最值即可
  */
 
 /**
