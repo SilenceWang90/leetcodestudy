@@ -36,7 +36,7 @@ public class LeetCode18 {
         int target = 8;*/
         /*int[] nums = {-1,-5,-5,-3,2,5,0,4};
         int target = -7;*/
-        int[] nums = {1000000000,1000000000,1000000000,1000000000};
+        int[] nums = {1000000000, 1000000000, 1000000000, 1000000000};
         int target = -294967296;
         List<List<Integer>> result = individualExecute(nums, target);
         System.out.println(result);
@@ -61,6 +61,12 @@ public class LeetCode18 {
             if (x > 0 && nums[x] == nums[x - 1]) {
                 continue;
             }
+            // 极限情况无法达成target，则当前循环可以提前结束
+            // 第一个数确定后，连续四个最小的数都比target大。或者，选择最大的三个数与当前值加和都比target小。
+            // 那么当前值可以结束循环
+            if ((long) nums[x] + nums[x + 1] + nums[x + 2] + nums[x + 3] > target || (long) (nums[x] + nums[nums.length - 3] + nums[nums.length - 2] + nums[nums.length - 1]) < target) {
+                continue;
+            }
             // 选择第二个数，从第一个数的下一位选择。一共需要4个数，因此组合中第二个数的索引值最大只能是数组长度的倒数第三个
             for (int y = x + 1; y <= nums.length - 3; y++) {
                 // 如果第二个数和之前选择过得一样，那么直接跳过，因为接下来选择结果肯定与之前一样。
@@ -82,7 +88,7 @@ public class LeetCode18 {
                         // 两数之和大于等于当前目标值；或者当前的元素与之前选择的元素相同时，要忽略
                         // 则右指针向左侧移动，减少和的大小
                         right--;
-                    } else if(nums[left] + nums[right] == current){
+                    } else if (nums[left] + nums[right] == current) {
                         // 结果符合，加入到结果集中，否则忽略，执行下一次循环
                         List<Integer> fit = Lists.newArrayList();
                         fit.add(nums[x]);
@@ -100,5 +106,13 @@ public class LeetCode18 {
             }
         }
         return result;
+    }
+
+    private static boolean outOfIntegerBounds(int num1, int num2) {
+        int result = num1 + num2;
+        if (((num1 ^ result) & (num2 ^ result)) < 0) {
+
+        }
+        return false;
     }
 }
