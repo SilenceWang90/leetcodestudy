@@ -61,7 +61,7 @@ public class MergeSort {
          */
         // 2.1、对当前数组进行拆分：定义中间元素middle的位置，如果是奇数个则向下取整。因为每一个数组都要从middle切分被拆分成2组，这2组数组的索引区间分别是[left,middle]和[middle+1,right]
         // 所以即使是奇数个，也不会因为无法整除而出现数据丢失的问题。
-        // 此处加法可能出现溢出问题，暂不考虑。
+        // 此处加法可能出现溢出问题，可以使用小技巧，如下代码改成：int middle = left + (right - left) / 2;
         int middle = (left + right) / 2;
         // 2.2、找到中间位置后，则下一次拆分就是2组：
         // （1）从left到middle(下一次的right)继续拆分，不断地缩小left和right的间隔，直到left>=right，拆分结束
