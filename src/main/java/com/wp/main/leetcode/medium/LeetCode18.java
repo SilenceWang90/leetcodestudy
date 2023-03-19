@@ -32,8 +32,12 @@ public class LeetCode18 {
     public static void main(String[] args) {
         /*int[] nums = {1, 0, -1, 0, -2, 2};
         int target = 0;*/
-        int[] nums = {2, 2, 2, 2, 2};
-        int target = 8;
+        /*int[] nums = {2, 2, 2, 2, 2};
+        int target = 8;*/
+        /*int[] nums = {-1,-5,-5,-3,2,5,0,4};
+        int target = -7;*/
+        int[] nums = {1000000000,1000000000,1000000000,1000000000};
+        int target = -294967296;
         List<List<Integer>> result = individualExecute(nums, target);
         System.out.println(result);
     }
@@ -78,8 +82,8 @@ public class LeetCode18 {
                         // 两数之和大于等于当前目标值；或者当前的元素与之前选择的元素相同时，要忽略
                         // 则右指针向左侧移动，减少和的大小
                         right--;
-                    } else {
-                        // 结果符合，加入到结果集中
+                    } else if(nums[left] + nums[right] == current){
+                        // 结果符合，加入到结果集中，否则忽略，执行下一次循环
                         List<Integer> fit = Lists.newArrayList();
                         fit.add(nums[x]);
                         fit.add(nums[y]);
@@ -97,5 +101,4 @@ public class LeetCode18 {
         }
         return result;
     }
-
 }
