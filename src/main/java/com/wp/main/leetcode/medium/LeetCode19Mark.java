@@ -3,6 +3,13 @@ package com.wp.main.leetcode.medium;
 import com.wp.main.common.ListNode;
 
 /**
+ * Mark：
+ * 1、个人思路中：如果增加一个pre节点指向head。那么head节点的特殊处理就相当于被消灭了，只需要对pre节点开始做通用处理即可
+ * 2、堆栈：遍历链表时将信息放入堆栈，然后从堆栈开始弹出节点，第n个就是需要的节点
+ * 3、双指针：一个指针先行n个位置，然后第二个指针和第一个指针一起移动，当第一个指针移动到末尾后即可获得倒数第n个节点
+ */
+
+/**
  * @Description 删除链表的倒数第N个节点
  * 示例 1：
  * 输入：head = [1,2,3,4,5], n = 2
@@ -24,7 +31,7 @@ import com.wp.main.common.ListNode;
  * @Author admin
  * @Date 2023/3/20 17:04
  */
-public class LeetCode19 {
+public class LeetCode19Mark {
     public static void main(String[] args) {
         // 1、多个节点
         ListNode head = new ListNode(1);
