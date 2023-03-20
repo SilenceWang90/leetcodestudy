@@ -44,7 +44,7 @@ public class LeetCode19Mark {
         ListNode node5 = new ListNode(5);
         node4.setNext(node5);
         int n = 2;
-        ListNode result = individualExecute(head, n);
+        head = individualExecute(head, n);
 
         // 2、只有1个节点
         /*ListNode head = new ListNode(1);
@@ -59,9 +59,9 @@ public class LeetCode19Mark {
         }*/
 
         // 打印结果
-        while (result != null) {
-            System.out.println(result.getValue());
-            result = result.getNext();
+        while (head != null) {
+            System.out.println(head.getValue());
+            head = head.getNext();
         }
     }
 
@@ -100,7 +100,10 @@ public class LeetCode19Mark {
      * @return
      */
     private static ListNode individualExecute(ListNode head, int n) {
-        // 链表长度
+        ListNode newHead = new ListNode(-1);
+        head = newHead;
+        return head;
+        /*// 链表长度
         int length = 0;
         ListNode current = head;
         // 1、记录链表的长度
@@ -125,6 +128,6 @@ public class LeetCode19Mark {
         // 下一个节点(要清除的节点)不为空的情况，即current.getNext()!=null在第82行已经处理了，只要要清理的节点不是头部节点就不会出现current.getNext()==null
         ListNode joint = current.getNext().getNext();
         current.setNext(joint);
-        return head;
+        return head;*/
     }
 }
