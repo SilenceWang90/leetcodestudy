@@ -61,7 +61,6 @@ public class LeetCode19 {
     /**
      * 官方思路：双指针
      * 一个指针first先移动n位，然后second和first一起移动，当first移动到最后时，就找到了倒数第n个节点
-     * 一次遍历即可
      * @param head
      * @param n
      * @return
