@@ -26,7 +26,8 @@ import com.wp.main.common.ListNode;
  */
 public class LeetCode19 {
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
+        // 1、多个节点
+        /*ListNode head = new ListNode(1);
         ListNode node2 = new ListNode(2);
         head.setNext(node2);
         ListNode node3 = new ListNode(3);
@@ -35,14 +36,22 @@ public class LeetCode19 {
         node3.setNext(node4);
         ListNode node5 = new ListNode(5);
         node4.setNext(node5);
+        int n = 2;
+        ListNode result = individualExecute(head, n);*/
+
+        // 2、只有1个节点
+        ListNode head = new ListNode(1);
+        int n = 1;
+        ListNode result = individualExecute(head, n);
+        // 显示链表是否按预期拼接
         /*ListNode tail = new ListNode(-1);
         tail = head;
         while (tail != null) {
             System.out.println(tail.getValue());
             tail = tail.getNext();
         }*/
-        int n = 2;
-        ListNode result = individualExecute(head, n);
+
+        // 打印结果
         while (result != null) {
             System.out.println(result.getValue());
             result = result.getNext();
@@ -77,9 +86,14 @@ public class LeetCode19 {
             m++;
         }
         // 2.2、找到要清除节点的下一个节点
-        ListNode joint = current.getNext().getNext();
-        // 2.3、节点拼接，链表重组完成
-        current.setNext(joint);
+        if (current.getNext() != null) {
+            // 下一个节点(要清除的节点)不为空，将当前节点和要清除节点的下一个节点进行拼接
+            ListNode joint = current.getNext().getNext();
+            current.setNext(joint);
+        } else {
+            // 下一个节点为空，意味着要清除的是当前的节点
+            head = null;
+        }
         return head;
     }
 }
