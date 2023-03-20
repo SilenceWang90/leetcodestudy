@@ -27,7 +27,7 @@ import com.wp.main.common.ListNode;
 public class LeetCode19 {
     public static void main(String[] args) {
         // 1、多个节点
-        /*ListNode head = new ListNode(1);
+        ListNode head = new ListNode(1);
         ListNode node2 = new ListNode(2);
         head.setNext(node2);
         ListNode node3 = new ListNode(3);
@@ -37,12 +37,12 @@ public class LeetCode19 {
         ListNode node5 = new ListNode(5);
         node4.setNext(node5);
         int n = 2;
-        ListNode result = individualExecute(head, n);*/
+        ListNode result = individualExecute(head, n);
 
         // 2、只有1个节点
-        ListNode head = new ListNode(1);
+        /*ListNode head = new ListNode(1);
         int n = 1;
-        ListNode result = individualExecute(head, n);
+        ListNode result = individualExecute(head, n);*/
         // 显示链表是否按预期拼接
         /*ListNode tail = new ListNode(-1);
         tail = head;
