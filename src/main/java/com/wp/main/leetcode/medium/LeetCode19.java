@@ -78,6 +78,10 @@ public class LeetCode19 {
             current = current.getNext();
         }
         // 2、再次遍历链表，找到要清理的节点
+        // 2.1、如果要清理的元素和链表长度相同，意味着清除链表头结点，返回链表的下一个节点即可
+        if (n == length) {
+            return head.getNext();
+        }
         current = head;
         int m = 1;
         // 2.1、需要找到要清除节点的前一个节点
@@ -86,14 +90,10 @@ public class LeetCode19 {
             m++;
         }
         // 2.2、找到要清除节点的下一个节点
-        if (current.getNext() != null) {
-            // 下一个节点(要清除的节点)不为空，将当前节点和要清除节点的下一个节点进行拼接
-            ListNode joint = current.getNext().getNext();
-            current.setNext(joint);
-        } else {
-            // 下一个节点为空，意味着要清除的是当前的节点
-            head = null;
-        }
+        // 下一个节点(要清除的节点)不为空，将当前节点和要清除节点的下一个节点进行拼接
+        // 下一个节点(要清除的节点)不为空的情况，即current.getNext()!=null在第82行已经处理了，只要要清理的节点不是头部节点就不会出现current.getNext()==null
+        ListNode joint = current.getNext().getNext();
+        current.setNext(joint);
         return head;
     }
 }
