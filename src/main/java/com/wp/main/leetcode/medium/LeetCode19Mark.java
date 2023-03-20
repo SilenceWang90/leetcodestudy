@@ -100,10 +100,7 @@ public class LeetCode19Mark {
      * @return
      */
     private static ListNode individualExecute(ListNode head, int n) {
-        ListNode newHead = new ListNode(-1);
-        head = newHead;
-        return head;
-        /*// 链表长度
+        // 链表长度
         int length = 0;
         ListNode current = head;
         // 1、记录链表的长度
@@ -128,6 +125,6 @@ public class LeetCode19Mark {
         // 下一个节点(要清除的节点)不为空的情况，即current.getNext()!=null在第82行已经处理了，只要要清理的节点不是头部节点就不会出现current.getNext()==null
         ListNode joint = current.getNext().getNext();
         current.setNext(joint);
-        return head;*/
+        return head;
     }
 }
