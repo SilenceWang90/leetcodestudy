@@ -59,6 +59,31 @@ public class LeetCode19 {
     }
 
     /**
+     * 官方思路：双指针
+     * 一个指针first先移动n位，然后second和first一起移动，当first移动到最后时，就找到了倒数第n个节点
+     * 一次遍历即可
+     * @param head
+     * @param n
+     * @return
+     */
+    private static ListNode standardExecute(ListNode head, int n) {
+        ListNode pre = new ListNode(0);
+        pre.setNext(head);
+        ListNode first = head;
+        ListNode second = pre;
+        for (int i = 0; i < n; i++) {
+            first = first.getNext();
+        }
+        while (first != null) {
+            first = first.getNext();
+            second = second.getNext();
+        }
+        second.setNext(second.getNext().getNext());
+        ListNode ans = pre.getNext();
+        return ans;
+    }
+
+    /**
      * 思路：
      * 1、遍历链表，获得链表长度
      * 2、从头部开始遍历链表，第length-n+1个节点是要清理的节点，由于是单向链表，因此要找到该节点的前一个节点，并记录要清理节点的
