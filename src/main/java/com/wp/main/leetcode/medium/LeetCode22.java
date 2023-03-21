@@ -87,7 +87,6 @@ public class LeetCode22 {
         if (left.size() > right.size()) {
             return;
         }
-
         /**
          * 3、递归括号组合拼接
          */
@@ -115,7 +114,6 @@ public class LeetCode22 {
                 // 匹配完成后将匹配的括号放回入对应的栈中
                 right.push(")");
             }
-
         }
     }
 }
