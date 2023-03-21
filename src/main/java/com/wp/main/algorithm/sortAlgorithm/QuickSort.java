@@ -103,8 +103,37 @@ public class QuickSort {
      * @param r    数组右指针
      * @return 索引p
      */
-    private static int partition2(int[] nums, int l, int r){
-
+    private static int partition2(int[] nums, int l, int r) {
+        // 选择当前给定数组的第一个元素为标准元素。
+        // 此处可优化为选择[l,r]的随机数
+        int partition = nums[l];
+        // i从左向右遍历，j从右向左遍历
+        // nums[l+1...i)<=partition；nums(j...r]>=partition
+        int i = l + 1, j = r;
+        while (true) {
+            // i遍历查找比标准元素partition大的元素
+            while (i <= r && nums[i] <= partition) {
+                i++;
+            }
+            // j遍历查找比标准元素partition小的元素
+            while (j >= l + 1 && nums[j] >= partition) {
+                j--;
+            }
+            // i与j重合或者超过j，所有元素遍历完成，当前数组的针对partition的元素分组已经结束
+            // 也有可能由于参数设置错误l初始就大于r，变相的实现了防御型编程
+            if (i >= j) {
+                break;
+            }
+            // 交换nums[i]和nums[j]的位置，将各元素放入指定的位置
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+        // 排序完成，将partition元素放入指定位置(由于上面的排序把i移动到了大于partition的位置，因此partition实际要和第i-1个元素交换位置，才能保证partition左侧都是小于等于他，右边是大于等于它)
+        nums[l] = nums[i - 1];
+        nums[i - 1] = partition;
+        return i - 1;
     }
-
 }
