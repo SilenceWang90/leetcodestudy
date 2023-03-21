@@ -100,17 +100,22 @@ public class LeetCode22 {
         } else {
             // 左括号和右括号均可选择
             // 1、选择左括号
-            stringBuilder.append(left.pop());
-            recursionExecute(left, right, result, stringBuilder);
-            stringBuilder.substring(0, stringBuilder.length() - 1);
-            // 匹配完成后将匹配的括号放回入对应的栈中
-            left.push("(");
-            // 2、选择右括号
-            stringBuilder.append(right.pop());
-            recursionExecute(left, right, result, stringBuilder);
-            stringBuilder.substring(0, stringBuilder.length() - 1);
-            // 匹配完成后将匹配的括号放回入对应的栈中
-            right.push(")");
+            if (left.size() > 0) {
+                stringBuilder.append(left.pop());
+                recursionExecute(left, right, result, stringBuilder);
+                stringBuilder.substring(0, stringBuilder.length() - 1);
+                // 匹配完成后将匹配的括号放回入对应的栈中
+                left.push("(");
+            }
+            if (right.size() > 0) {
+                // 2、选择右括号
+                stringBuilder.append(right.pop());
+                recursionExecute(left, right, result, stringBuilder);
+                stringBuilder.substring(0, stringBuilder.length() - 1);
+                // 匹配完成后将匹配的括号放回入对应的栈中
+                right.push(")");
+            }
+
         }
 
 
