@@ -23,8 +23,8 @@ import java.util.List;
  */
 public class LeetCode22 {
     public static void main(String[] args) {
-        int n = 1;
-//        int n = 3;
+//        int n = 1;
+        int n = 3;
         List<String> result = individualExecute(n);
         for (String subject : result) {
             System.out.println(subject);
@@ -55,7 +55,7 @@ public class LeetCode22 {
         // 左括号和右括号栈中加入括号数量
         while (n > 0) {
             left.push("(");
-            right.push("(");
+            right.push(")");
             n--;
         }
         // 括号拼接
@@ -95,7 +95,7 @@ public class LeetCode22 {
             // 左括号的数量和右括号的数量相同，则此时只能选择左括号进行递归
             stringBuilder.append(left.pop());
             recursionExecute(left, right, result, stringBuilder);
-            stringBuilder.substring(0, stringBuilder.length() - 1);
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             left.push("(");
         } else {
             // 左括号和右括号均可选择
@@ -103,7 +103,7 @@ public class LeetCode22 {
             if (left.size() > 0) {
                 stringBuilder.append(left.pop());
                 recursionExecute(left, right, result, stringBuilder);
-                stringBuilder.substring(0, stringBuilder.length() - 1);
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
                 // 匹配完成后将匹配的括号放回入对应的栈中
                 left.push("(");
             }
@@ -111,7 +111,7 @@ public class LeetCode22 {
                 // 2、选择右括号
                 stringBuilder.append(right.pop());
                 recursionExecute(left, right, result, stringBuilder);
-                stringBuilder.substring(0, stringBuilder.length() - 1);
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
                 // 匹配完成后将匹配的括号放回入对应的栈中
                 right.push(")");
             }
