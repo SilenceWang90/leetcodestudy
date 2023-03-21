@@ -45,7 +45,20 @@ public class QuickSort {
         }
         // 针对每个[l,r]区间进行partition排序，即将比指定元素大的元素放在左侧，比指定元素小的元素放在右侧。
         // 返回partition排序中，指定元素经排序后的位置索引
-        int p = partition(nums, l, r);
+
+
+        // 多种快速排序的思路
+        /**
+         * 单指针，从第一个元素的后面元素开始遍历，对数组进行二分
+         * int p = partition(nums, l, r);
+         * */
+
+        /**
+         * 双指针：针对数组中大量重复数据排序时可能时间复杂度退化至O(n²)的问题优化
+         */
+        int p = partition2(nums, l, r);
+
+
         // 递归：以p为分界，继续进行快速排序的逻辑
         quickSort(nums, l, p - 1);
         quickSort(nums, p + 1, r);
@@ -80,6 +93,18 @@ public class QuickSort {
         nums[p] = nums[l];
         nums[l] = temp;
         return p;
+    }
+
+    /**
+     * 双路排序：对当前数组进行排序，优化数组中可能出现大量重复元素的情况
+     *
+     * @param nums 给定数组
+     * @param l    数组左指针
+     * @param r    数组右指针
+     * @return 索引p
+     */
+    private static int partition2(int[] nums, int l, int r){
+
     }
 
 }
