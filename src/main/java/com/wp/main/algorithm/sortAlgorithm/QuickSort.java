@@ -51,17 +51,27 @@ public class QuickSort {
         /**
          * 单指针，从第一个元素的后面元素开始遍历，对数组进行二分
          * int p = partition(nums, l, r);
-         * */
+         * // 递归：以p为分界，继续进行快速排序的逻辑
+         * quickSort(nums, l, p - 1);
+         * quickSort(nums, p + 1, r);
+         */
 
         /**
-         * 双指针：针对数组中大量重复数据排序时可能时间复杂度退化至O(n²)的问题优化
+         * 双指针：双路排序，针对数组中大量重复数据排序时可能时间复杂度退化至O(n²)的问题优化
+         * int p = partition2(nums, l, r);
+         * // 递归：以p为分界，继续进行快速排序的逻辑
+         * quickSort(nums, l, p - 1);
+         * quickSort(nums, p + 1, r);
          */
-        int p = partition2(nums, l, r);
 
 
-        // 递归：以p为分界，继续进行快速排序的逻辑
-        quickSort(nums, l, p - 1);
-        quickSort(nums, p + 1, r);
+        /**
+         * 三路排序：对和当前partition元素相等的元素一同处理，防止数组拆分不均造成算法时间复杂度回退，也减少了递归次数
+         */
+        int[] pArray = partition3(nums, l, r);
+        quickSort(nums, l, pArray[0]);
+        quickSort(nums, pArray[1], r);
+
     }
 
     /**
@@ -135,5 +145,55 @@ public class QuickSort {
         nums[l] = nums[i - 1];
         nums[i - 1] = partition;
         return i - 1;
+    }
+
+    /**
+     * 三路排序：对当前数组进行排序，优化数组中可能出现大量重复元素的情况，比双路排序优化在对选定的partition元素重复的元素的处理
+     *
+     * @param nums 给定数组
+     * @param l    数组左指针
+     * @param r    数组右指针
+     * @return 返回数组第一个值是左数组的最后一个索引位置；第二个值是右数组的第一个位置
+     */
+    private static int[] partition3(int[] nums, int l, int r) {
+        // 选择当前给定数组的第一个元素为标准元素。
+        // 此处可优化为选择[l,r]的随机数
+        int partition = nums[l];
+        // lt为小于partition元素的最后一个位置索引；gt为大于partition元素的第一个位置索引
+        // nums[l+1...lt]<partition；nums[lt+1,gt-1]=partition；nums[gt...r]>partition
+        // lt和gt的初始值判定：极限判断，如果遍历的第一个值就比partition小或者大，那么按照下面的换位逻辑将出现问题，因为我们要将lt+1和gt-1的位置和
+        // nums[i]互换，但是nums[lt]和nums[gt]的位置还没处理就被漏掉了，因此要把lt和gt的初始位置向两侧挪动一下，可以保证换位逻辑不会因为极限值(初始就换位置)受到影响
+        int lt = l, gt = r + 1;
+        // 遍历指针i，从l+1(partition元素的下一个元素)的位置开始遍历
+        int i = l + 1;
+        // i和gt未重合，即有未遍历的元素需要处理
+        while (i < gt) {
+            // 当前元素小于partition
+            if (nums[i] < partition) {
+                // 将当前元素和lt+1的元素互换位置，lt自增一位，i自增即可。
+                // 此操作是增加了nums[l+1...lt]的大小，小于partition的区域增加
+                int temp = nums[i];
+                nums[i] = nums[lt + 1];
+                nums[lt + 1] = temp;
+                lt++;
+                i++;
+            } else if (nums[i] > partition) {
+                // 当前元素大于partition，当前元素和gt的前一位元素互换位置，gt左移一位，i不动。i不动是因为又换过去一个未遍历过得元素，继续遍历
+                // 此操作是增加了nums[gt...r]的大小，大于partition的区域增加
+                int temp = nums[i];
+                nums[i] = nums[gt - 1];
+                nums[gt - 1] = temp;
+                gt--;
+            } else {
+                // 当前元素等于partition
+                // 遍历指针继续移动即可，不需要做元素调整，相当于增加了nums[lt+1...i]的大小，等于partition的区域增加
+                i++;
+            }
+        }
+        // 遍历完成，将标准元素p放入指定位置：和lt的位置交换一下即可
+        nums[l] = nums[lt];
+        nums[lt] = partition;
+        // 返回当前数组中partion元素的前后位置索引，即是下一个递归过程中数组的左右边界
+        return new int[]{lt - 1, gt};
     }
 }
