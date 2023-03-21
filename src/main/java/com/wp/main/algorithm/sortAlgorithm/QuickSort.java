@@ -111,11 +111,11 @@ public class QuickSort {
         // nums[l+1...i)<=partition；nums(j...r]>=partition
         int i = l + 1, j = r;
         while (true) {
-            // i遍历查找比标准元素partition大的元素
+            // i遍历查找比标准元素partition大的元素，防止素组越界i <= r
             while (i <= r && nums[i] <= partition) {
                 i++;
             }
-            // j遍历查找比标准元素partition小的元素
+            // j遍历查找比标准元素partition小的元素，防止素组越界j >= l + 1
             while (j >= l + 1 && nums[j] >= partition) {
                 j--;
             }
