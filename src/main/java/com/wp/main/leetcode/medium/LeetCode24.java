@@ -93,4 +93,27 @@ public class LeetCode24 {
         return top.getNext();
     }
 
+    /**
+     * 官方解答
+     *
+     * @param head
+     * @return
+     */
+    private static ListNode standardExecute(ListNode head) {
+        ListNode prev = new ListNode(0);
+        prev.setNext(head);
+        // 用于交换节点的临时节点
+        ListNode temp = prev;
+        // 要交换的节点有一个是空的就停止循环
+        while (temp.getNext() != null && temp.getNext().getNext() != null) {
+            ListNode node1 = temp.getNext();
+            ListNode node2 = temp.getNext().getNext();
+            temp.setNext(node2);
+            node1.setNext(node2.getNext());
+            node2.setNext(node1);
+            temp = node1;
+        }
+        return prev.getNext();
+    }
+
 }
