@@ -33,8 +33,7 @@ public class LeetCode24 {
         node2.setNext(node3);
         ListNode node4 = new ListNode(4);
         node3.setNext(node4);
-
-
+        head = individualExecute(head);
         ListNode current = head;
         while (current != null) {
             System.out.println(current.getValue());
@@ -42,8 +41,44 @@ public class LeetCode24 {
         }
     }
 
-    private ListNode individualExecute(ListNode head) {
-
+    /**
+     * 个人思路：
+     * 设定一个辅助节点moveNode，用于2个节点的交换
+     * (1)first.next = secode.next
+     * (2)secode.next = first
+     *
+     * @param head
+     * @return
+     */
+    private static ListNode individualExecute(ListNode head) {
+        // 辅助节点，用于节点的两两交换
+        ListNode firstNode = null;
+        ListNode secondNode = null;
+        // 遍历链表过程中的当前节点
+        ListNode currentNode = head;
+        while (true) {
+            // 如果有1个为空节点则不用交换
+            if (currentNode == null || currentNode.getNext() == null) {
+                break;
+            }
+            if (firstNode == null) {
+                firstNode = currentNode;
+                currentNode = currentNode.getNext();
+                continue;
+            }
+            if (secondNode == null) {
+                secondNode = currentNode;
+                currentNode = currentNode.getNext();
+                continue;
+            }
+            // 位置交换：主要就是交换节点的下一个位置
+            firstNode.setNext(secondNode.getNext());
+            secondNode.setNext(firstNode);
+            // 一组交换后清空辅助节点，用于下一次交换
+            firstNode = head;
+            secondNode = null;
+        }
+        return head;
     }
 
 }
