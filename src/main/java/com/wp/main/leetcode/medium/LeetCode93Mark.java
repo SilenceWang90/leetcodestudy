@@ -45,7 +45,7 @@ public class LeetCode93Mark {
     }
 
     /**
-     * 个人思路：递归
+     * 个人思路：递归回溯：第一版
      *
      * @param s 给定的IP字符串
      * @return 结果
