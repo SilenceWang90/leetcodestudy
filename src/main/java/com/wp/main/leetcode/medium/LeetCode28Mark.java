@@ -4,8 +4,6 @@ package com.wp.main.leetcode.medium;
  * Mark：KMP算法
  * KMP算法针对的问题：如何快速在「原字符串」中找到「匹配字符串，时间复杂度为O(m+n)，常规逻辑(下面个人思路的解法)的时间复杂度为O(m*n)。
  * KMP 之所以能够在O(m+n)复杂度内完成查找，是因为其能在「非完全匹配」的过程中提取到有效信息进行复用，以减少「重复匹配」的消耗。
- *
- *
  */
 
 /**
@@ -38,8 +36,15 @@ public class LeetCode28Mark {
         System.out.println(individualExecute("mississippi", "issi"));
     }
 
-    private static int standardExecute(String haystack, String needle){
-
+    /**
+     * KMP算法：定义参考：https://www.zhihu.com/question/21923021/answer/281346746
+     *
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    private static int standardExecute(String haystack, String needle) {
+        return 0;
     }
 
 
