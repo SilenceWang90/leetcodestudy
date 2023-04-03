@@ -33,7 +33,7 @@ public class LeetCode29 {
      * 根据大神的逻辑写的代码：
      * 1、对特殊情况的判断，如被除数为0、除数为0、越界处理等
      * 2、符号处理：把符号摘出来，相当于对正整数做除法处理
-     * 3、a / b = c，相当于a = b*c，也就是在找除数翻多少倍能得到a，根据此逻辑进行递归计算
+     * 3、a / b = c，相当于a = b*c，也就是在找除数翻多少倍能得到a，而翻倍计算又可以使用加法来实现，因此根据此逻辑进行递归计算
      *
      * @param dividend
      * @param divisor
@@ -59,17 +59,54 @@ public class LeetCode29 {
                 return Integer.MAX_VALUE;
             }
         }
-
+        /** int转long，这样即使商有溢出我们也可以通过用商去比较int的最值判断出来然后返回题干要求的结果 **/
+        long a = dividend;
+        long b = divisor;
         /**
-         * 2、符号处理
+         * 2、符号处理：记录符号，并将除数和被除数都转为正数
          */
-
-
+        int sign = 1;
+        if (a > 0 && b < 0 || a < 0 && b > 0) {
+            sign = -1;
+        }
+        a = a < 0 ? -a : a;
+        b = b < 0 ? -b : b;
         /**
-         *
+         * 3、通过递归计算商
          */
-
+        long result = recursion(a, b);
+        /** 4、结果返回 **/
+        if (sign > 0) {
+            // 正数：越界处理
+//            result = result > Integer.MAX_VALUE ? Integer.MAX_VALUE : result;
+            return (int) result;
+        } else {
+            // 负数：不可能越界~，直接返回相反数即可
+            return (int) -result;
+        }
 
     }
 
+    /**
+     * 递归求解
+     *
+     * @param a 被除数
+     * @param b 除数
+     * @return 商
+     */
+    private static long recursion(long a, long b) {
+        // 递归终止条件，被除数小于除数，则商为0
+        // 递归过程不断减小a的值，当a小到比b还小递归就可以结束了~
+        if (a < b) {
+            return 0;
+        }
+        // 翻倍的个数，对该结果进行累计，当递归结束时，该结果就是a/b的商
+        long result = 1;
+        long multiple = b;
+        while ((multiple + multiple) <= a) {
+            result = result + result;
+            multiple = multiple + multiple;
+        }
+        return result + recursion(a - multiple, b);
+    }
 }
