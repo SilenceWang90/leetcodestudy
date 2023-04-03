@@ -26,7 +26,10 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode29 {
     public static void main(String[] args) {
-
+        System.out.println(individualExecute(10, 3));
+        System.out.println(individualExecute(7, -3));
+        System.out.println(individualExecute(10, 8));
+        System.out.println(individualExecute(8, 10));
     }
 
     /**
