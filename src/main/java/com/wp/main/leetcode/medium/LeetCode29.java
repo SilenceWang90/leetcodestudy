@@ -107,9 +107,10 @@ public class LeetCode29 {
         // 翻倍的个数，对该结果进行累计，当递归结束时，该结果就是a/b的商
         long result = 1;
         long multiple = b;
-        while ((multiple + multiple) <= a) {
-            result = result + result;
-            multiple = multiple + multiple;
+        // multiple << 1相当于multiple + multiple；result一样。向左移位相当于倍数增加，空位补0。
+        while ((multiple << 1) <= a) {
+            result = result << 1;
+            multiple = multiple << 1;
         }
         return result + recursion(a - multiple, b);
     }
