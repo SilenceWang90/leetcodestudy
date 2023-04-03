@@ -30,13 +30,14 @@ public class LeetCode29 {
         System.out.println(individualExecute(7, -3));
         System.out.println(individualExecute(10, 8));
         System.out.println(individualExecute(8, 10));
+        System.out.println(individualExecute(Integer.MIN_VALUE, -1));
     }
 
     /**
      * 根据大神的逻辑写的代码：
      * 1、对特殊情况的判断，如被除数为0、除数为0、越界处理等
      * 2、符号处理：把符号摘出来，相当于对正整数做除法处理
-     * 3、a / b = c，相当于a = b*c，也就是在找除数翻多少倍能得到a，而翻倍计算又可以使用加法来实现，因此根据此逻辑进行递归计算
+     * 3、a / b = c，相当于a = b*c，也就是在找除数翻多少倍能得到a，而翻倍计算又可以使用加法来实现，因此根据此逻辑进行循环和递归进行计算
      *
      * @param dividend
      * @param divisor
@@ -75,12 +76,12 @@ public class LeetCode29 {
         a = a < 0 ? -a : a;
         b = b < 0 ? -b : b;
         /**
-         * 3、通过递归计算商
+         * 3、通过循环和递归计算商
          */
         long result = recursion(a, b);
         /** 4、结果返回 **/
         if (sign > 0) {
-            // 正数：越界处理
+            // 正数：越界处理(不需要了，因为特殊处理中第三部分处理就直接将该情况解决了~)
 //            result = result > Integer.MAX_VALUE ? Integer.MAX_VALUE : result;
             return (int) result;
         } else {
