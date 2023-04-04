@@ -28,9 +28,9 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode31 {
     public static void main(String[] args) {
-        int[] nums = {1,2,3};
+//        int[] nums = {1, 2, 3};
 //        int[] nums = {3,2,1};
-//        int[] nums = {1,1,5};
+        int[] nums = {1,1,5};
         individualExecute(nums);
         for (int num : nums) {
             System.out.print(num + " ");
@@ -50,25 +50,33 @@ public class LeetCode31 {
         Integer b = null;
         for (int i = nums.length - 1; i > 0; i--) {
             if (nums[i] > nums[i - 1]) {
+                if(i == 1) {
+                    int temp = nums[i];
+                    nums[i] = nums[i - 1];
+                    nums[i - 1] = temp;
+                    return;
+                }
                 a = i - 1;
                 b = i;
                 continue;
             }
-            if ((nums[i] < nums[i - 1] && a != null && b != null)
-                    || i == 2) {
-                int temp = nums[i];
-                nums[i] = nums[i - 1];
-                nums[i - 1] = temp;
+            if (nums[i] <= nums[i - 1] && a != null && b != null) {
+                int temp = nums[b];
+                nums[b] = nums[a];
+                nums[a] = temp;
                 return;
             }
+
         }
-        // 插入排序
+        // 数组是倒序排列，使用插入排序
         for (int i = 1; i < nums.length; i++) {
             for (int j = i; j > 0; j--) {
                 if (nums[j] < nums[j - 1]) {
                     int temp = nums[j];
                     nums[j] = nums[j - 1];
                     nums[j - 1] = temp;
+                } else {
+                    break;
                 }
             }
         }
