@@ -28,9 +28,9 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode31 {
     public static void main(String[] args) {
-//        int[] nums = {1, 2, 3};
+        int[] nums = {1, 2, 3};
 //        int[] nums = {3,2,1};
-        int[] nums = {1,1,5};
+//        int[] nums = {1, 1, 5};
         individualExecute(nums);
         for (int num : nums) {
             System.out.print(num + " ");
@@ -42,7 +42,7 @@ public class LeetCode31 {
      * 1、从右侧遍历数组，判断相邻2个数字的大小：
      * 1.1、如果后面的数字b比前面的数字a大：记录这两个数字
      * （1）继续遍历数组，如果存在后面的数字小于等于前面的数字或数组已遍历完成，则终止循环，交换第一次记录的两个数字的位置
-     * （2）继续遍历数组，如果均是后面的数字比前面的数字大，则交换前两个数字的位置
+     * （2）继续遍历数组，如果均是后面的数字比前面的数字大，则交换最后两个数字的位置
      * 1.2、如果后面的数字都比前一个数字小，则交换第一和第二个数字的位置，用插入排序实现
      */
     private static void individualExecute(int[] nums) {
@@ -50,10 +50,10 @@ public class LeetCode31 {
         Integer b = null;
         for (int i = nums.length - 1; i > 0; i--) {
             if (nums[i] > nums[i - 1]) {
-                if(i == 1) {
-                    int temp = nums[i];
-                    nums[i] = nums[i - 1];
-                    nums[i - 1] = temp;
+                if (i == 1) {
+                    int temp = nums[nums.length - 1];
+                    nums[nums.length - 1] = nums[nums.length - 2];
+                    nums[nums.length - 2] = temp;
                     return;
                 }
                 a = i - 1;
