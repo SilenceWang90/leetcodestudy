@@ -11,28 +11,66 @@ package com.wp.main.leetcode.medium;
  * 示例 1：
  * 输入：nums = [1,2,3]
  * 输出：[1,3,2]
- *
+ * <p>
  * 示例 2：
  * 输入：nums = [3,2,1]
  * 输出：[1,2,3]
- *
+ * <p>
  * 示例 3：
  * 输入：nums = [1,1,5]
  * 输出：[1,5,1]
- *
+ * <p>
  * 提示：
  * 1 <= nums.length <= 100
  * 0 <= nums[i] <= 100
- *
  * @Author admin
  * @Date 2023/4/4 13:55
  */
 public class LeetCode31 {
     public static void main(String[] args) {
-
+        int[] nums = {1,2,3};
+//        int[] nums = {3,2,1};
+//        int[] nums = {1,1,5};
+        individualExecute(nums);
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
     }
 
-    private static void individualExecute(){
-
+    /**
+     * 个人思路：
+     * 1、从右侧遍历数组，判断相邻2个数字的大小：
+     * 1.1、如果后面的数字b比前面的数字a大：记录这两个数字
+     * （1）继续遍历数组，如果存在后面的数字比前面的数字小或数组已遍历完成，则终止循环，交换第一次记录的两个数字的位置
+     * （2）继续遍历数组，如果均是后面的数字比前面的数字大，则交换前两个数字的位置
+     * 1.2、如果后面的数字都比前一个数字小，则交换第一和第二个数字的位置
+     */
+    private static void individualExecute(int[] nums) {
+        Integer a = null;
+        Integer b = null;
+        for (int i = nums.length - 1; i > 0; i--) {
+            if (nums[i] > nums[i - 1]) {
+                a = i - 1;
+                b = i;
+                continue;
+            }
+            if ((nums[i] < nums[i - 1] && a != null && b != null)
+                    || i == 2) {
+                int temp = nums[i];
+                nums[i] = nums[i - 1];
+                nums[i - 1] = temp;
+                return;
+            }
+        }
+        // 插入排序
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (nums[j] < nums[j - 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j - 1];
+                    nums[j - 1] = temp;
+                }
+            }
+        }
     }
 }
