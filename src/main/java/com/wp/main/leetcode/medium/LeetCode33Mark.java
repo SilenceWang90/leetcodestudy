@@ -1,8 +1,16 @@
 package com.wp.main.leetcode.medium;
 
 /**
- * @Description 整数数组 nums 按升序排列，数组中的值 互不相同 。
- * <p>
+ * Mark：二分查找。虽然整个数组被旋转过一次，但是可以确认的是，通过二分的方式，一定有一个数组是有序的，我们只需要判断target是否在有序的数组中即可
+ * （1）如果在：那就继续在此有序数组进行二分查找。
+ * （2）如果不在：那就在另一个数组进行二分查找。
+ * 每次判断都会缩小left或right的范围，直至left超过right。
+ * 缩小范围到最终数组只有1个元素的时候，就判断当前的数据是否是期望的，如果是则返回坐标，如果不是则返回-1。
+ * **/
+
+/**
+ * @Description
+ * 整数数组nums按升序排列，数组中的值互不相同。
  * 在传递给函数之前，nums在预先未知的某个下标 k（0 <= k < nums.length）上进行了旋转，使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标从0开始计数）。
  * 例如，[0,1,2,4,5,6,7]在下标3处经旋转后可能变为[4,5,6,7,0,1,2] 。
  * 给你旋转后的数组nums和一个整数target，如果nums中存在这个目标值target，则返回它的下标，否则返回-1。
@@ -10,7 +18,7 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/4/9 14:48
  */
-public class LeetCode33 {
+public class LeetCode33Mark {
     public static void main(String[] args) {
         int[] nums = {4, 5, 6, 7, 0, 1, 2};
         int target = 0;
