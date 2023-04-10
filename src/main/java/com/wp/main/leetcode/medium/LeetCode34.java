@@ -33,8 +33,10 @@ public class LeetCode34 {
         int target = 8;*/
         /*int[] nums = {5, 7, 7, 8, 8, 10};
         int target = 6;*/
-        int[] nums = {};
-        int target = 0;
+        /*int[] nums = {};
+        int target = 0;*/
+        int[] nums = {2, 2};
+        int target = 2;
         System.out.println(individualExecute(nums, target)[0] + "," + individualExecute(nums, target)[1]);
     }
 
@@ -82,11 +84,12 @@ public class LeetCode34 {
         // 意味着找到了target值
         if (current != -1) {
             int start = current, end = current;
-            while (nums[start - 1] == target || nums[end + 1] == target) {
-                if (nums[start - 1] == target) {
+            while ((start - 1 >= 0 && nums[start - 1] == target)
+                    || (end + 1 < nums.length && nums[end + 1] == target)) {
+                if ((start - 1 >= 0 && nums[start - 1] == target)) {
                     start--;
                 }
-                if (nums[end + 1] == target) {
+                if ((end + 1 < nums.length && nums[end + 1] == target)) {
                     end++;
                 }
             }
