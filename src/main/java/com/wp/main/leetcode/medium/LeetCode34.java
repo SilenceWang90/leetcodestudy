@@ -29,8 +29,12 @@ package com.wp.main.leetcode.medium;
 public class LeetCode34 {
 
     public static void main(String[] args) {
-        int[] nums = {5, 7, 7, 8, 8, 10};
-        int target = 8;
+        /*int[] nums = {5, 7, 7, 8, 8, 10};
+        int target = 8;*/
+        /*int[] nums = {5, 7, 7, 8, 8, 10};
+        int target = 6;*/
+        int[] nums = {};
+        int target = 0;
         System.out.println(individualExecute(nums, target)[0] + "," + individualExecute(nums, target)[1]);
     }
 
