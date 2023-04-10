@@ -59,7 +59,7 @@ public class LeetCode34 {
         }
         // 数组的左右两侧指针
         int left = 0, right = nums.length - 1;
-        int current = 0;
+        int current = -1;
         /**2、只要左指针未超过右指针，即可进行遍历查找**/
         while (left <= right) {
             int middle = (left + right) / 2;
@@ -74,6 +74,20 @@ public class LeetCode34 {
                 current = middle;
                 break;
             }
+        }
+        // 意味着找到了target值
+        if (current != -1) {
+            int start = current, end = current;
+            while (nums[start - 1] == target || nums[end + 1] == target) {
+                if (nums[start - 1] == target) {
+                    start--;
+                }
+                if (nums[end + 1] == target) {
+                    end++;
+                }
+            }
+            result[0] = start;
+            result[1] = end;
         }
         /**3、**/
         return result;
