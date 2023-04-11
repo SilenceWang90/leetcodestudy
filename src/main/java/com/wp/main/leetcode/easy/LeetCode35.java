@@ -64,7 +64,7 @@ public class LeetCode35 {
             } else if (nums[mid] < target) {
                 l = mid + 1;
             } else {
-                l = mid - 1;
+                r = mid - 1;
             }
         }
         return l;
