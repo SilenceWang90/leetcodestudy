@@ -27,8 +27,12 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode35 {
     public static void main(String[] args) {
+        /*int[] nums = {1, 3, 5, 6};
+        int target = 5;*/
+        /*int[] nums = {1, 3, 5, 6};
+        int target = 2;*/
         int[] nums = {1, 3, 5, 6};
-        int target = 5;
+        int target = 7;
         System.out.println(individualExecute(nums, target));
     }
 
@@ -49,7 +53,7 @@ public class LeetCode35 {
         }
         // 比最小值还小
         if (nums[0] > target) {
-            return -1;
+            return 0;
         }
         // 比最大值还大
         if (nums[nums.length - 1] < target) {
