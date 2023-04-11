@@ -41,6 +41,28 @@ public class LeetCode35 {
     }
 
     /**
+     * 官方解答：思路大致相同，但是更简洁
+     * 求平均值的方式可以注意下，因为要防止int溢出
+     * @param nums
+     * @param target
+     * @return
+     */
+    private static int standardExecute(int[] nums, int target){
+        int n = nums.length;
+        int left = 0, right = n - 1, ans = n;
+        while (left <= right) {
+            int mid = ((right - left) >> 1) + left;
+            if (target <= nums[mid]) {
+                ans = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    /**
      * 个人思路：二分法
      *
      * @param nums   给定数组
