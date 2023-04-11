@@ -43,6 +43,12 @@ public class LeetCode35 {
     /**
      * 官方解答：思路大致相同，但是更简洁
      * 求平均值的方式可以注意下，因为要防止int溢出
+     * 思路：求目标值的位置其实就是求第一个大于等于target值的位置
+     * 那么一共有3种情况：
+     * 1、left=right重合，且当前位置的值是target：此时left所在的位置就是答案。如{1,3,5}，target=3
+     * 2、left=right重合，且当前位置的值不是target：此时left所在的位置就是答案。如{1,3,5}，target=2
+     * 3、left>right，那么就意味着不存在target值：此时left所在的位置就是答案。如{1,3,5,7,9}，target=6
+     * 所以最终就是找到left指针的位置就是答案。
      *
      * @param nums
      * @param target
@@ -53,10 +59,12 @@ public class LeetCode35 {
         int l = 0, r = n - 1;
         while (l <= r) {
             int mid = l + (r - l) / 2;
-            if (nums[mid] < target) {
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
                 l = mid + 1;
             } else {
-                r = mid - 1;
+                l = mid - 1;
             }
         }
         return l;
