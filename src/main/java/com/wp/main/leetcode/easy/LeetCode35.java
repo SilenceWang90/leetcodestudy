@@ -31,8 +31,12 @@ public class LeetCode35 {
         int target = 5;*/
         /*int[] nums = {1, 3, 5, 6};
         int target = 2;*/
-        int[] nums = {1, 3, 5, 6};
-        int target = 7;
+        /*int[] nums = {1, 3, 5, 6};
+        int target = 7;*/
+        /*int[] nums = {1, 3, 5};
+        int target = 4;*/
+        int[] nums = {3, 5, 7, 9, 10};
+        int target = 8;
         System.out.println(individualExecute(nums, target));
     }
 
@@ -62,9 +66,9 @@ public class LeetCode35 {
         /**
          * 2、二分法逻辑
          */
-        int left = 0, right = nums.length, middle = -1;
+        int left = 0, right = nums.length - 1;
         while (left <= right) {
-            middle = (left + right) / 2;
+            int middle = (left + right) / 2;
             if (nums[middle] == target) {
                 return middle;
             }
@@ -81,6 +85,9 @@ public class LeetCode35 {
             } else if (target > nums[middle]) {
                 left = middle + 1;
             }
+        }
+        if (left > right) {
+            return left;
         }
         return -1;
     }
