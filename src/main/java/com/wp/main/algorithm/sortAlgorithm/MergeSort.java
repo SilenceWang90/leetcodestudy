@@ -44,7 +44,7 @@ public class MergeSort {
      */
     private static void mergeSort(int[] nums, int left, int right) {
         /**
-         * 1、递归终止条件：left>=r。即数组通过二分拆分到当前，每组只剩下一个元素，不需要再拆分了
+         * 1、递归终止条件：left>=r。即数组通过二分拆分到当前，每组只剩下一个元素，不需要再拆分了，1个元素不需要排序
          */
         if (left >= right) {
             return;
