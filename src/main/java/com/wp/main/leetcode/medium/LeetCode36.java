@@ -50,20 +50,21 @@ public class LeetCode36 {
      */
     private static boolean individualExecute(char[][] board) {
         /**1、定义记录每行、每列、每个小九宫格出现数字的次数，以下二维数组中第一个维度就是记录行、列、小九宫格的索引，列就是对应要记录的数字，值就是出现的次数**/
-        // 按行记录
+        // 按行记录，因为数字范围是0-9，所以第二个维度的最大索引要声明到10
         int[][] xAxis = new int[9][10];
-        // 按列记录
+        // 按列记录，因为数字范围是0-9，所以第二个维度的最大索引要声明到10
         int[][] yAxis = new int[9][10];
-        // 按小九宫格记录
+        // 按小九宫格记录，因为数字范围是0-9，所以第二个维度的最大索引要声明到10
         int[][] block = new int[9][10];
         /**2、遍历所有的数值，记录数值的个数，并判断该数值出现的次数**/
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (Character.isDigit(board[i][j])) {
-                    xAxis[i][board[i][j] - '0']++;
-                    yAxis[j][board[i][j] - '0']++;
-                    block[j / 3 + (i / 3) * 3][board[i][j] - '0']++;
-                    if (xAxis[i][board[i][j]-'0'] > 1 || yAxis[j][board[i][j]-'0'] > 1 || block[j / 3 + (i / 3) * 3][board[i][j]-'0'] > 1) {
+                    int num = board[i][j] - '0';
+                    xAxis[i][num]++;
+                    yAxis[j][num]++;
+                    block[j / 3 + (i / 3) * 3][num]++;
+                    if (xAxis[i][num] > 1 || yAxis[j][num] > 1 || block[j / 3 + (i / 3) * 3][num] > 1) {
                         return false;
                     }
                 }
