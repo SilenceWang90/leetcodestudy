@@ -7,7 +7,6 @@ import lombok.Data;
  * @Author admin
  * @Date 2023/4/14 15:42
  */
-@Data
 public class MaxHeap {
     private int[] data;
 
