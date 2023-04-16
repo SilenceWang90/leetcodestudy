@@ -38,18 +38,24 @@ import java.util.List;
  */
 public class LeetCode39 {
     public static void main(String[] args) {
-        /*int[] candidates = {2, 3, 6, 7};
-        int target = 7;*/
+        int[] candidates = {2, 3, 6, 7};
+        int target = 7;
         /*int[] candidates = {2, 3, 5};
         int target = 8;*/
-        int[] candidates = {2};
-        int target = 1;
+        /*int[] candidates = {2};
+        int target = 1;*/
         List<List<Integer>> list = individualExecute(candidates, target);
         System.out.println(list);
     }
 
     /**
      * 个人思路：递归回溯
+     * 重点：如何解决可以重复选自己但是组合不能重复
+     * 将当前所选的索引作为递归参数进行传递，这样，每次都从同一个数字进行选择就不会出现组合重复的问题.
+     * 不能每层递归都从初始(索引为0)的位置开始，这样必然会造成组合的重复。可以设想如果每个数字只能选一次，那我们每一层递归的遍历肯定是从上一层递归遍历位置的下一个位置开始遍历。
+     * 但是如果要求每个数字可以重复使用的话，其实就是每一层遍历都跟上一层的遍历位置相同即可，不能每一层都从起始开始，这样必然重复(比如
+     * 第一层选了2，第二层选3，第三层选了2，和为7；然后第一层选了3，第二层和第三层都从起始位置开始所以都可以选择到2，这样的话{2,3,2}和{3,2,2}这两种组合就是重复的)
+     * 所以造成重复的原因就是每次都从起始位置开始，导致已经遍历过得情况在后续的递归中又被遍历了一遍，只是顺序不同了而已。
      *
      * @param candidates：给定数组
      * @param target：目标值
@@ -63,7 +69,7 @@ public class LeetCode39 {
         List<List<Integer>> result = Lists.newArrayList();
         List<Integer> combinations = Lists.newArrayList();
         // 递归回溯
-        recursiveExecute(candidates, target, combinations, result);
+        recursiveExecute(candidates, target, combinations, result, 0);
         return result;
     }
 
@@ -75,9 +81,9 @@ public class LeetCode39 {
      * @param combinations 符合条件的组合
      * @param result       结果集
      */
-    private static void recursiveExecute(int[] candidates, int target, List<Integer> combinations, List<List<Integer>> result) {
+    private static void recursiveExecute(int[] candidates, int target, List<Integer> combinations, List<List<Integer>> result, int start) {
         /**1、递归回溯结束条件**/
-        // target<0意味着当前组合不是解
+        // target<0意味着当前组合不是解，在循环中判断，可以进行分支裁剪，提升效率
         /*if (target < 0) {
             return;
         }*/
@@ -89,9 +95,9 @@ public class LeetCode39 {
             result.add(combination);
         }
         /**2、递归回溯逻辑**/
-        for (int i = 0; i < candidates.length; i++) {
+        for (start = 0; start < candidates.length; start++) {
             // 获取当前的元素
-            int current = candidates[i];
+            int current = candidates[start];
             // 选定一个元素后，目标和更新
             target = target - current;
             // 优化：当当前选的值使得和大于target，则不需要再遍历其余数字(升序数组，数字只会越选越大)
@@ -101,7 +107,7 @@ public class LeetCode39 {
             // 将选定的元素放入组合中
             combinations.add(current);
             // 递归回溯
-            recursiveExecute(candidates, target, combinations, result);
+            recursiveExecute(candidates, target, combinations, result, start);
             /**3、递归回溯结束操作**/
             // 3.1、还原target，并将元素从已选中集合中清除，即清除当前集合中的最后一个元素
             target = target + current;
