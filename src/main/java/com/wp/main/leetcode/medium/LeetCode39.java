@@ -1,5 +1,7 @@
 package com.wp.main.leetcode.medium;
 
+import com.google.common.collect.Lists;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,15 +50,59 @@ public class LeetCode39 {
     }
 
     /**
-     * 个人思路
+     * 个人思路：递归回溯
      *
      * @param candidates：给定数组
      * @param target：目标值
      * @return 返回组合数
      */
     private static List<List<Integer>> individualExecute(int[] candidates, int target) {
-        /**1、 数组有序排列**/
+        /**1、数组有序排列**/
+        // 使数组升序，形成有规律的队列，这样在遍历的时候可以减少遍历次数
         Arrays.sort(candidates);
+        /**2、组合查找**/
+        List<List<Integer>> result = Lists.newArrayList();
+        List<Integer> combinations = Lists.newArrayList();
+        // 递归回溯
+        recursiveExecute(candidates, target, combinations, result);
+        return result;
+    }
+
+    /**
+     * 每次递归查找一个元素，每次都是从第一个位置开始，因为允许重复，只要和小于目标值即可
+     *
+     * @param candidates   待定数组
+     * @param target       目标和
+     * @param combinations 符合条件的组合
+     * @param result       结果集
+     */
+    private static void recursiveExecute(int[] candidates, int target, List<Integer> combinations, List<List<Integer>> result) {
+        /**1、递归回溯结束条件**/
+        // target<0意味着当前解不存在
+        if (target < 0) {
+            return;
+        }
+        // target==0意味着当前解符合条件，放入结果集中
+        if (target == 0) {
+            result.add(combinations);
+        }
+
+        /**2、递归回溯逻辑**/
+        for (int i = 0; i < candidates.length; i++) {
+            // 获取当前的元素
+            int current = candidates[i];
+            // 选定一个元素后，目标和更新
+            target = target - current;
+            // 将选定的元素放入组合中
+            combinations.add(target);
+            // 递归回溯
+            recursiveExecute(candidates, target, combinations, result);
+        }
+
+        /**3、递归回溯结束操作**/
+        // 3.1、将元素从已选中集合中清除，即清除当前集合中的最后一个元素
+
+
     }
 
 }
