@@ -38,10 +38,10 @@ import java.util.List;
  */
 public class LeetCode39 {
     public static void main(String[] args) {
-        int[] candidates = {2, 3, 6, 7};
-        int target = 7;
-        /*int[] candidates = {2, 3, 5};
-        int target = 8;*/
+        /*int[] candidates = {2, 3, 6, 7};
+        int target = 7;*/
+        int[] candidates = {2, 3, 5};
+        int target = 8;
         /*int[] candidates = {2};
         int target = 1;*/
         List<List<Integer>> list = individualExecute(candidates, target);
