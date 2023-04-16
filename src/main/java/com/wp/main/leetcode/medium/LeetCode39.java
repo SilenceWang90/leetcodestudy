@@ -74,9 +74,9 @@ public class LeetCode39 {
     private static void recursiveExecute(int[] candidates, int target, List<Integer> combinations, List<List<Integer>> result) {
         /**1、递归回溯结束条件**/
         // target<0意味着当前组合不是解
-        if (target < 0) {
+        /*if (target < 0) {
             return;
-        }
+        }*/
         // target==0意味着当前解符合条件，放入结果集中
         // 因为combinations参数会不断变化不能直接放入结果集，需要放入新的集合中
         if (target == 0) {
@@ -90,10 +90,10 @@ public class LeetCode39 {
             int current = candidates[i];
             // 选定一个元素后，目标和更新
             target = target - current;
-            /*// 优化：当当前选的值使得和大于target，则不需要再遍历其余数字(升序数组，数字只会越选越大)
+            // 优化：当当前选的值使得和大于target，则不需要再遍历其余数字(升序数组，数字只会越选越大)
             if (target < 0) {
                 return;
-            }*/
+            }
             // 将选定的元素放入组合中
             combinations.add(current);
             // 递归回溯
