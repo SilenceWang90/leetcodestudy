@@ -41,12 +41,7 @@ public class LeetCode39 {
         int[] candidates = {2, 3, 6, 7};
         int target = 7;
         List<List<Integer>> list = individualExecute(candidates, target);
-        for (List<Integer> listObj : list) {
-            System.out.println("分割线");
-            for (Integer obj : listObj) {
-                System.out.print(obj + ",");
-            }
-        }
+        System.out.println(list);
     }
 
     /**
@@ -89,7 +84,6 @@ public class LeetCode39 {
             combination.addAll(combinations);
             result.add(combination);
         }
-
         /**2、递归回溯逻辑**/
         for (int i = 0; i < candidates.length; i++) {
             // 获取当前的元素
@@ -101,13 +95,13 @@ public class LeetCode39 {
                 return;
             }*/
             // 将选定的元素放入组合中
-            combinations.add(target);
+            combinations.add(current);
             // 递归回溯
             recursiveExecute(candidates, target, combinations, result);
+            /**3、递归回溯结束操作**/
+            // 3.1、还原target，并将元素从已选中集合中清除，即清除当前集合中的最后一个元素
+            target = target + current;
+            combinations.remove(combinations.size() - 1);
         }
-
-        /**3、递归回溯结束操作**/
-        // 3.1、将元素从已选中集合中清除，即清除当前集合中的最后一个元素
-        combinations.remove(combinations.size() - 1);
     }
 }
