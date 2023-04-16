@@ -95,9 +95,9 @@ public class LeetCode39 {
             result.add(combination);
         }
         /**2、递归回溯逻辑**/
-        for (start = 0; start < candidates.length; start++) {
+        for (int i = start; i < candidates.length; i++) {
             // 获取当前的元素
-            int current = candidates[start];
+            int current = candidates[i];
             // 选定一个元素后，目标和更新
             target = target - current;
             // 优化：当当前选的值使得和大于target，则不需要再遍历其余数字(升序数组，数字只会越选越大)
@@ -107,7 +107,7 @@ public class LeetCode39 {
             // 将选定的元素放入组合中
             combinations.add(current);
             // 递归回溯
-            recursiveExecute(candidates, target, combinations, result, start);
+            recursiveExecute(candidates, target, combinations, result, i);
             /**3、递归回溯结束操作**/
             // 3.1、还原target，并将元素从已选中集合中清除，即清除当前集合中的最后一个元素
             target = target + current;
