@@ -78,15 +78,20 @@ public class LeetCode40 {
             result.add(combination);
         }
         /**
-         * 递归逻辑：不断选择数字，每次选择从上一层的下一个并且和前一个数字不相等的位置开始选择
+         * 递归逻辑：不断选择数字，每次选择从上一层的下一个位置开始
          */
-        for (int i = start; i < candidates.length && (i > 0 && candidates[i] != candidates[i - 1]); i++) {
+        for (int i = start; i < candidates.length; i++) {
+            // 如果数字重复，则跳过
+            if (i > 0 && candidates[i] != candidates[i - 1]) {
+                continue;
+            }
             int current = candidates[i];
             target = target - current;
             // 分支剪裁：如果当前选择的数字使得target小于0，则当前递归终止
             if (target < 0) {
                 return;
             }
+            combinations.add(current);
             // 递归：从下一个位置开始
             recursive(candidates, target, combinations, result, i + 1);
             /**
