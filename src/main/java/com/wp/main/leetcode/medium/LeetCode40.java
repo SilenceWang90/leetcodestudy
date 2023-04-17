@@ -43,6 +43,8 @@ public class LeetCode40 {
     public static void main(String[] args) {
         int[] candidates = {10, 1, 2, 7, 6, 1, 5};
         int target = 8;
+        /*int[] candidates = {2, 5, 2, 1, 2};
+        int target = 5;*/
         System.out.println(individualExecute(candidates, target));
     }
 
@@ -52,7 +54,7 @@ public class LeetCode40 {
      * @return
      */
     private static List<List<Integer>> individualExecute(int[] candidates, int target) {
-        // 排序，解决数字不能重复选择的问题
+        // 排序，为了递归时可以方便地解决数字不能重复选择的问题(相同的放在一起，可以方便判断该数字是否选择过)
         Arrays.sort(candidates);
         List<List<Integer>> result = Lists.newArrayList();
         List<Integer> combinations = Lists.newArrayList();
@@ -78,11 +80,14 @@ public class LeetCode40 {
             result.add(combination);
         }
         /**
-         * 递归逻辑：不断选择数字，每次选择从上一层的下一个位置开始
+         * 递归逻辑：不断选择数字，每次递归的选择从上一层的下一个位置开始(题干要求数字不能重复使用)
+         * 注：当层需判断该数字是否被选择过，选择过则跳过；下一层不需要判断该层的数字和上一层是否一致
          */
         for (int i = start; i < candidates.length; i++) {
-            // 如果数字重复，则跳过
-            if (i > 0 && candidates[i] == candidates[i - 1]) {
+            /** 巧妙解决：因为每一次都是从start开始，因此每一层数字是否选择过得判断条件都是当i>start时，判断当前的数字和前一个数字是否相同，相同则跳过
+             * 最开始个人思路是：i > 0 && candidates[i] == candidates[i - 1]，这就错了，因为这导致了递归过程中，下一层的i已经发生了偏移，相当于逻辑上是判断第二次递归选择的数字和第一层递归
+             * 选择的数字是否相同了。而我们如果改成从start开始，巧妙地设计了我们每一层的判断位置，防止不同递归层数之间逻辑混乱，每层递归只跟本层选择的数字是否相同做判断即可**/
+            if (i > start && candidates[i] == candidates[i - 1]) {
                 continue;
             }
             int current = candidates[i];
@@ -101,6 +106,4 @@ public class LeetCode40 {
             combinations.remove(combinations.size() - 1);
         }
     }
-
-
 }
