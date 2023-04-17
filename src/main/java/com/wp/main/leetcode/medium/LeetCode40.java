@@ -82,7 +82,7 @@ public class LeetCode40 {
          */
         for (int i = start; i < candidates.length; i++) {
             // 如果数字重复，则跳过
-            if (i > 0 && candidates[i] != candidates[i - 1]) {
+            if (i > 0 && candidates[i] == candidates[i - 1]) {
                 continue;
             }
             int current = candidates[i];
