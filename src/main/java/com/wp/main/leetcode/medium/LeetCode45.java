@@ -16,6 +16,21 @@ public class LeetCode45 {
         System.out.println(individualExecute(nums));
     }
 
+    private static int standardExecute(int[] nums){
+        int length = nums.length;
+        int end = 0;
+        int maxPosition = 0;
+        int steps = 0;
+        for (int i = 0; i < length - 1; i++) {
+            maxPosition = Math.max(maxPosition, i + nums[i]);
+            if (i == end) {
+                end = maxPosition;
+                steps++;
+            }
+        }
+        return steps;
+    }
+
     /**
      * 思路：动态规划
      * 1、遍历每个节点，确认该节点可达的每个节点，该节点的最小跳跃次数+1
