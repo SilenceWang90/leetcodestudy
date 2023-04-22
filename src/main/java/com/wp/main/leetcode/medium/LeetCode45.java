@@ -12,7 +12,7 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode45 {
     public static void main(String[] args) {
-        int[] nums = {};
+        int[] nums = {2,3,0,1,4};
         System.out.println(individualExecute(nums));
     }
 
