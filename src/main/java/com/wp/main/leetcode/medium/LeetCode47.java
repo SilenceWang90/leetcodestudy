@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class LeetCode47 {
     public static void main(String[] args) {
-        int[] nums = {1, 1, 2};
-//        int[] nums = {1, 2, 3};
+//        int[] nums = {1, 1, 2};
+        int[] nums = {1, 2, 3};
         System.out.println(individualExecute(nums));
     }
 
@@ -53,7 +53,9 @@ public class LeetCode47 {
     private static void recursion(List<Integer> numsList, List<List<Integer>> result, List<Integer> combinations) {
         // 1、递归终止条件：选择完成，放入到最终集合中
         if (numsList.size() == 0) {
-            result.add(numsList);
+            List<Integer> list = Lists.newArrayList();
+            list.addAll(combinations);
+            result.add(list);
         }
 
         // 2、递归逻辑
