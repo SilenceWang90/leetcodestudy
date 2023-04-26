@@ -34,15 +34,44 @@ public class LeetCode47 {
     }
 
     private static List<List<Integer>> individualExecute(int[] nums) {
+        // 数组排序，便于解决重复的问题
         Arrays.sort(nums);
+        // 结果集
         List<List<Integer>> result = Lists.newArrayList();
-
-
+        // 将目标数组转为集合，便于元素的加入和删除
+        List<Integer> numsList = Lists.newLinkedList();
+        for (int num : nums) {
+            numsList.add(num);
+        }
+        // 暂存当前已选数字的集合
+        List<Integer> combinations = Lists.newArrayList();
+        recursion(numsList, result, combinations);
         return result;
     }
 
-    private static void cursive() {
 
+    private static void recursion(List<Integer> numsList, List<List<Integer>> result, List<Integer> combinations) {
+        // 1、递归终止条件：选择完成，放入到最终集合中
+        if (numsList.size() == 0) {
+            result.add(numsList);
+        }
+
+        // 2、递归逻辑
+        for (int i = 0; i < numsList.size(); i++) {
+            // 当前数字重复，意味着已经被选择过，直接跳过
+            if (i > 0 && numsList.get(i) == numsList.get(i - 1)) {
+                continue;
+            }
+            int current = numsList.get(i);
+            combinations.add(current);
+            numsList.remove(i);
+            recursion(numsList, result, combinations);
+            // 3、递归结束后
+            // 删除已选集合中的最后一个元素，即当前选择的元素
+            combinations.remove(combinations.size() - 1);
+            // 将该元素填回到目标集合中
+            numsList.add(i, current);
+        }
     }
 
 
