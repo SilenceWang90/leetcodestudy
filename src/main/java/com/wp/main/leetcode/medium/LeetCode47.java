@@ -75,6 +75,4 @@ public class LeetCode47 {
             numsList.add(i, current);
         }
     }
-
-
 }
