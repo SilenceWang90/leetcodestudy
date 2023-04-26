@@ -2,11 +2,12 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Lists;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @Description 全排列 II
- * 给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
+ * 给定一个可包含重复数字的序列nums，按任意顺序返回所有不重复的全排列。
  * <p>
  * 示例 1：
  * 输入：nums = [1,1,2]
@@ -33,10 +34,15 @@ public class LeetCode47 {
     }
 
     private static List<List<Integer>> individualExecute(int[] nums) {
+        Arrays.sort(nums);
         List<List<Integer>> result = Lists.newArrayList();
 
 
         return result;
+    }
+
+    private static void cursive() {
+
     }
 
 
