@@ -52,12 +52,21 @@ public class LeetCode48 {
                 matrixNew[y][n - x - 1] = current;
             }
         }
+        /*// leetcode上的校验代码
+        for (int x = 0; x < matrixNew.length; x++) {
+            int temp[] = matrixNew[x];
+            for (int y = 0; y < temp.length; y++) {
+                int current = matrixNew[x][y];
+                matrix[x][y] = current;
+            }
+        }*/
+        /*// 验证数组内容输出
         for (int x = 0; x < matrixNew.length; x++) {
             int temp[] = matrixNew[x];
             for (int y = 0; y < temp.length; y++) {
                 System.out.print(temp[y] + " ");
             }
             System.out.println("");
-        }
+        }*/
     }
 }
