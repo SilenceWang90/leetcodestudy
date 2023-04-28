@@ -5,7 +5,9 @@ import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map; /**
+import java.util.Map;
+
+/**
  * MARK：Hash表
  * char[] chars = String.toCharArray();
  * 随后可以针对不同字符串进行排序，Arrays.sort(chars);我们将排好序的字符数组转成字符串，作为哈希表的key
@@ -42,8 +44,6 @@ public class LeetCode49Mark {
 //        String[] strs = {""};
 //        String[] strs = {"a"};
         System.out.println(individualExecute(strs));
-
-
         // 验证map.getOrDefault();
         /*Map<String, String> map1 = Maps.newHashMap();
         map1.put("2", "0000");
@@ -53,7 +53,6 @@ public class LeetCode49Mark {
         map2.put("2",Lists.newArrayList("3"));
         System.out.println(map2.getOrDefault("1", Lists.newArrayList("1","2")));
         System.out.println(map2.getOrDefault("2", Lists.newArrayList("555")));*/
-
     }
 
     private static List<List<String>> individualExecute(String[] strs) {
