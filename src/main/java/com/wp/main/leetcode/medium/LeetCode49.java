@@ -31,6 +31,7 @@ import java.util.List;
 public class LeetCode49 {
     public static void main(String[] args) {
 
+
     }
 
     private static List<List<String>> individualExecute(String[] strs) {
