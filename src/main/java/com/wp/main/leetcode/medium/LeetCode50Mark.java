@@ -1,6 +1,10 @@
 package com.wp.main.leetcode.medium;
 
 /**
+ * 递归、分治法
+ */
+
+/**
  * @Description Pow(x, n)
  * <p>
  * 实现pow(x, n)，即计算x的整数n次幂函数（即，x的n次幂）。
@@ -27,7 +31,7 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/4/29 9:27
  */
-public class LeetCode50 {
+public class LeetCode50Mark {
     public static void main(String[] args) {
         /*double x = 2.00000;
         int n = 10;*/
@@ -42,6 +46,27 @@ public class LeetCode50 {
         double x = -1.00000;
         int n = -2147483648;
         System.out.println(individualExecute(x, n));
+    }
+
+    /**
+     * 官方解法：分治法
+     * x的n次方等于x的n/2次方的平方，x的n/2次方等于x的n/4次方，如此递推。可在logn时间复杂度内解决此问题
+     *
+     * @param x
+     * @param n
+     * @return
+     */
+    public double standardExecute(double x, int n) {
+        long N = n;
+        return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
+    }
+
+    public double quickMul(double x, long N) {
+        if (N == 0) {
+            return 1.0;
+        }
+        double y = quickMul(x, N / 2);
+        return N % 2 == 0 ? y * y : y * y * x;
     }
 
 
