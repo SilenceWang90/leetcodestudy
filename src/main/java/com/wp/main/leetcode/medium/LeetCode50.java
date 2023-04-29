@@ -33,7 +33,11 @@ public class LeetCode50 {
         int n = 10;*/
         /*double x = 2.10000;
         int n = 3;*/
-        double x = 2.00000;
+        /*double x = 2.00000;
+        int n = -2;*/
+//        double x = -2.00000;
+//        int n = 2;
+        double x = -2.00000;
         int n = -2;
         System.out.println(individualExecute(x, n));
     }
@@ -47,11 +51,6 @@ public class LeetCode50 {
      */
     private static double individualExecute(double x, int n) {
         int mark = 1;
-        // x的正负值
-        if (x < 0) {
-            mark = -1;
-            x = -x;
-        }
         double result;
         // 1、符号判断，用于判断用乘法还是除法
         int sign;
@@ -61,6 +60,11 @@ public class LeetCode50 {
         } else if (n < 0) {
             sign = -1;
             n = -n;
+            // 幂指数为负数时，如果底数也为负，则数字先转为正，符号特殊处理
+            if (x < 0) {
+                mark = -1;
+                x = -x;
+            }
             result = 1 / x;
         } else {
             // 任何数的0次幂结果都为1
