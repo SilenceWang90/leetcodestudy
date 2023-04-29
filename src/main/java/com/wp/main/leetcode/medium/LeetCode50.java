@@ -35,26 +35,34 @@ public class LeetCode50 {
         int n = 3;*/
         /*double x = 2.00000;
         int n = -2;*/
-//        double x = -2.00000;
-//        int n = 2;
-        double x = -2.00000;
-        int n = -2;
+        /*double x = -2.00000;
+        int n = 2;*/
+        /*double x = -2.00000;
+        int n = -2;*/
+        double x = -1.00000;
+        int n = -2147483648;
         System.out.println(individualExecute(x, n));
     }
 
+
     /**
-     * 个人思路
+     * 个人思路：正常求解
      *
      * @param x 目标数
      * @param n 指数
      * @return 结果
      */
+    @Deprecated
     private static double individualExecute(double x, int n) {
         int mark = 1;
         double result;
         // 特殊处理：如果底数为1，则直接返回即可
-        if (x == 1.0||x == -1.0) {
+        if (x == 1.0 || x == -1.0) {
             return x;
+        }
+        // 如果幂指数为极值的情况下，返回0
+        if (n == Integer.MIN_VALUE) {
+            return 0.0;
         }
         // 1、符号判断，用于判断用乘法还是除法
         int sign;
