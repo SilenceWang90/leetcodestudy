@@ -1,6 +1,10 @@
 package com.wp.main.leetcode.medium;
 
 /**
+ * 哈希表：用hash表存储已遍历过得内容，当hash的key值范围有限且确定时，hash表经常也可以由数组代替
+ */
+
+/**
  * @Description 有效的数独
  * 请你判断一个9 x 9的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
  * 数字1-9在每一行只能出现一次。
@@ -14,7 +18,7 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/4/13 11:41
  */
-public class LeetCode36 {
+public class LeetCode36Mark {
     public static void main(String[] args) {
         /*char[][] board = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}
                 , {'6', '.', '.', '1', '9', '5', '.', '.', '.'}
