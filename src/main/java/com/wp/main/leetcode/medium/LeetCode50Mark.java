@@ -41,11 +41,12 @@ public class LeetCode50Mark {
         int n = -2;*/
         /*double x = -2.00000;
         int n = 2;*/
-        /*double x = -2.00000;
-        int n = -2;*/
-        double x = -1.00000;
-        int n = -2147483648;
-        System.out.println(individualExecute(x, n));
+        double x = -2.00000;
+        int n = -2;
+        /*double x = -1.00000;
+        int n = -2147483648;*/
+        System.out.println(standardExecute(x, n));
+//        System.out.println(individualExecute(x, n));
     }
 
     /**
@@ -59,7 +60,7 @@ public class LeetCode50Mark {
      * @param n
      * @return
      */
-    public double standardExecute(double x, int n) {
+    public static double standardExecute(double x, int n) {
         long N = n;
         if (N >= 0) {
             return quickMul(x, N);
@@ -69,7 +70,7 @@ public class LeetCode50Mark {
         }
     }
 
-    public double quickMul(double x, long N) {
+    public static double quickMul(double x, long N) {
         // 递归终止条件：当指数N为0时返回1，任何数的0次幂都是1。
         if (N == 0) {
             return 1.0;
