@@ -49,23 +49,34 @@ public class LeetCode50Mark {
     }
 
     /**
-     * 官方解法：分治法
-     * x的n次方等于x的n/2次方的平方，x的n/2次方等于x的n/4次方，如此递推。可在logn时间复杂度内解决此问题
-     *
+     * 官方解法：分治法。x的n次方 = x的n/2次方 * x的n/2次方，因此我们在递归中不断找到“x的n/2次方(设为y)”的结果，然后将其平方计算即可，即y*y。
+     * 但要注意n可能为奇数无法整除，如5/2=2，那么y*y只是x的4次方，因此在求得y的时候，y*y之后还得乘以一下x。
+     * 1、x的n次方等于x的n/2次方的平方，x的n/2次方等于x的n/4次方，如此递推。可在logn时间复杂度内解决此问题
+     * 2、x的4次方等于x的2次方的2次方；x的5次方等于x的2次方的2次方再乘以x。根据此规律发现对指数n进行折半计算后，由于n的奇偶性影响当前递归的结果。
+     * 即如果n为偶数则当前递归的结果就是
      * @param x
      * @param n
      * @return
      */
     public double standardExecute(double x, int n) {
         long N = n;
-        return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
+        if (N >= 0) {
+            return quickMul(x, N);
+        } else {
+            // n为负时，相当于1/x的n次幂。因此处理方式就是将n转为正数即-N，然后等到结果后用1除一下即可
+            return 1.0 / quickMul(x, -N);
+        }
     }
 
     public double quickMul(double x, long N) {
+        // 递归终止条件：当指数N为0时返回1，任何数的0次幂都是1。
         if (N == 0) {
             return 1.0;
         }
+        // 递归逻辑：即分治逻辑，当前数为其根号下结果的平方。
+        // 通过递归不断查找其根号下的值
         double y = quickMul(x, N / 2);
+        // 找到根号下的值后根据幂指数的奇偶性判断是否需要额外乘一下底数
         return N % 2 == 0 ? y * y : y * y * x;
     }
 
