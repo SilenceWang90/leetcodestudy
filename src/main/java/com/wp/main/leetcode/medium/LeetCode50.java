@@ -52,6 +52,10 @@ public class LeetCode50 {
     private static double individualExecute(double x, int n) {
         int mark = 1;
         double result;
+        // 特殊处理：如果底数为1，则直接返回即可
+        if (x == 1.0||x == -1.0) {
+            return x;
+        }
         // 1、符号判断，用于判断用乘法还是除法
         int sign;
         if (n > 0) {
@@ -81,6 +85,4 @@ public class LeetCode50 {
         }
         return result * mark;
     }
-
-
 }
