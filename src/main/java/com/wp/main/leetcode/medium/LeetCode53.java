@@ -33,33 +33,24 @@ public class LeetCode53 {
     }
 
     /**
-     * 个人思路：
+     * 个人思路：动态规划
+     * 以当前数字为结尾的连续最大和，取决于以前一个元素为结尾的连续最大和。
+     * 然后判断当前元素是加入到前面的连续子数组中还是独立
      *
      * @param nums 给定数组
      * @return 最大和
      */
     private static int individualExecute(int[] nums) {
-        // 对结果和累和参数的默认值为数组第一个元素，这样可以保持遍历逻辑一致
-        // 最大子数组和
+        // 累计和和最大值设置为数组第一个元素，保证遍历逻辑一致
         int result = nums[0];
-        // 累计和
-        int accumulattion = nums[0];
+        int accumulation = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            // 1、正数处理逻辑
-            if (nums[i] >= 0) {
-                if (accumulattion < 0) {
-                    accumulattion = nums[i];
-                } else {
-                    accumulattion = accumulattion + nums[i];
-                }
-            } else {
-                // 2、负数处理逻辑
-                // 如果当前值是负的，那么再累加只会更小，因此需要在此时记录最大值
-                result = Math.max(result, accumulattion);
-                accumulattion = nums[i];
-            }
+            // 计算当前值作为连续数组最后一个元素的最大累计和
+            accumulation = Math.max(nums[i], accumulation + nums[i]);
+            // 判断是否是最大值，是的话就更细
+            result = Math.max(result, accumulation);
         }
-        return Math.max(result, accumulattion);
+        return result;
     }
 
 
