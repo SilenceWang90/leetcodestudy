@@ -33,9 +33,7 @@ public class LeetCode53 {
     }
 
     /**
-     * 个人思路：动态规划
-     * 每个当前数字可组成的最大和取决于他前面的数字的最大和，然后和自己进行加法判断哪个更大
-     * 当出现某个值使得和减小，则跳过该值，且累加和置为0从下一位开始重新累计
+     * 个人思路：
      *
      * @param nums 给定数组
      * @return 最大和
@@ -61,13 +59,38 @@ public class LeetCode53 {
 
     /**
      * 官方思路：分治法
+     *
      * @param nums 给定数组
      * @return 最大和
      */
-    private static int standardExecute(int[] nums){
+    /*private static int standardExecute(int[] nums) {
         // 最大子数组和
         int result = 0;
-
+        int left = 0, right = nums.length - 1;
+        int middle = (left + right) / 2;
+        // 分治，将数组拆分，最后合并每个子数组的和，寻求最大的和
+        recursion(left, middle, nums);
+        recursion(middle, right, nums);
         return result;
-    }
+    }*/
+
+    /**
+     * 递归逻辑
+     *
+     * @param left  左指针
+     * @param right 右指针
+     * @param nums  给定数组
+     * @return 当前递归所能产生的最大和
+     */
+    /*private static int recursion(int left, int right, int[] nums) {
+        // 递归终止条件
+        if (left >= right) {
+            return nums[right];
+        }
+
+        int middle = (left + right) / 2;
+        int a = recursion(left, middle, nums);
+        int b = recursion(middle, right, nums);
+        // 递归后进行组合，找到区间最大值
+    }*/
 }
