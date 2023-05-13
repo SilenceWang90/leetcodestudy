@@ -32,10 +32,29 @@ public class LeetCode53 {
         System.out.println(individualExecute(nums));
     }
 
-
+    /**
+     * 个人思路：动态规划
+     * 每个当前数字可组成的最大和取决于他前面的数字的最大和，然后和自己进行加法判断哪个更大
+     * 当出现某个值使得和减小，则跳过该值，且累加和置为0从下一位开始重新累计
+     *
+     * @param nums
+     * @return
+     */
     private static int individualExecute(int[] nums) {
+        // 最大子数组和
         int result = 0;
-
+        // 累计和，为了让循环逻辑一致，默认值赋值为数组的第一个元素
+        int accumulattion = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            int current = nums[i];
+            //
+            if (accumulattion < accumulattion + current) {
+                result = Math.max(result, accumulattion);
+                accumulattion = 0;
+            } else {
+                accumulattion = accumulattion + current;
+            }
+        }
         return result;
     }
 }
