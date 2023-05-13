@@ -54,7 +54,7 @@ public class LeetCode53 {
                 }
             } else {
                 // 2、负数处理逻辑
-                // 如果累计和是负的，那么再累加只会更小，因此需要在此时记录最大值
+                // 如果当前值是负的，那么再累加只会更小，因此需要在此时记录最大值
                 result = Math.max(result, accumulattion);
                 accumulattion = nums[i];
             }
