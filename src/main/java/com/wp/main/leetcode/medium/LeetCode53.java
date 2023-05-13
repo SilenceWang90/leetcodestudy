@@ -39,19 +39,25 @@ public class LeetCode53 {
      * @return 最大和
      */
     private static int individualExecute(int[] nums) {
+        // 对结果和累和参数的默认值为数组第一个元素，这样可以保持遍历逻辑一致
         // 最大子数组和
-        int result = 0;
+        int result = nums[0];
         // 累计和
         int accumulattion = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            // 正数处理逻辑
+            // 1、正数处理逻辑
             if (nums[i] >= 0) {
-
+                if (accumulattion < 0) {
+                    accumulattion = nums[i];
+                } else {
+                    accumulattion = accumulattion + nums[i];
+                }
             } else {
-                // 负数处理逻辑
-
+                // 2、负数处理逻辑
+                // 如果累计和是负的，那么再累加只会更小，因此需要在此时记录最大值
+                result = Math.max(result, accumulattion);
+                accumulattion = nums[i];
             }
-
         }
         return result;
     }
