@@ -37,24 +37,37 @@ public class LeetCode53 {
      * 每个当前数字可组成的最大和取决于他前面的数字的最大和，然后和自己进行加法判断哪个更大
      * 当出现某个值使得和减小，则跳过该值，且累加和置为0从下一位开始重新累计
      *
-     * @param nums
-     * @return
+     * @param nums 给定数组
+     * @return 最大和
      */
     private static int individualExecute(int[] nums) {
         // 最大子数组和
         int result = 0;
-        // 累计和，为了让循环逻辑一致，默认值赋值为数组的第一个元素
+        // 累计和
         int accumulattion = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            int current = nums[i];
-            //
-            if (accumulattion < accumulattion + current) {
-                result = Math.max(result, accumulattion);
-                accumulattion = 0;
+            // 正数处理逻辑
+            if (nums[i] >= 0) {
+
             } else {
-                accumulattion = accumulattion + current;
+                // 负数处理逻辑
+
             }
+
         }
+        return result;
+    }
+
+
+    /**
+     * 官方思路：分治法
+     * @param nums 给定数组
+     * @return 最大和
+     */
+    private static int standardExecute(int[] nums){
+        // 最大子数组和
+        int result = 0;
+
         return result;
     }
 }
