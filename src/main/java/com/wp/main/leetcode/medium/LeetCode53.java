@@ -28,7 +28,7 @@ public class LeetCode53 {
     public static void main(String[] args) {
 //        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
 //        int[] nums = {1};
-        int[] nums = {5,4,-1,7,8};
+        int[] nums = {5, 4, -1, 7, 8};
         System.out.println(individualExecute(nums));
     }
 
@@ -60,16 +60,16 @@ public class LeetCode53 {
      * @param nums 给定数组
      * @return 最大和
      */
-    /*private static int standardExecute(int[] nums) {
+    private static int standardExecute(int[] nums) {
         // 最大子数组和
         int result = 0;
         int left = 0, right = nums.length - 1;
         int middle = (left + right) / 2;
         // 分治，将数组拆分，最后合并每个子数组的和，寻求最大的和
         recursion(left, middle, nums);
-        recursion(middle, right, nums);
+        recursion(middle + 1, right, nums);
         return result;
-    }*/
+    }
 
     /**
      * 递归逻辑
@@ -79,7 +79,7 @@ public class LeetCode53 {
      * @param nums  给定数组
      * @return 当前递归所能产生的最大和
      */
-    /*private static int recursion(int left, int right, int[] nums) {
+    private static int recursion(int left, int right, int[] nums) {
         // 递归终止条件
         if (left >= right) {
             return nums[right];
@@ -87,7 +87,9 @@ public class LeetCode53 {
 
         int middle = (left + right) / 2;
         int a = recursion(left, middle, nums);
-        int b = recursion(middle, right, nums);
+        int b = recursion(middle + 1, right, nums);
         // 递归后进行组合，找到区间最大值
-    }*/
+        // todo：比较麻烦~~~~~~
+        return 0;
+    }
 }
