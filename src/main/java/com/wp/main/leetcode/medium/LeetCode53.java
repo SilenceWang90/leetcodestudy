@@ -59,7 +59,7 @@ public class LeetCode53 {
                 accumulattion = nums[i];
             }
         }
-        return result;
+        return Math.max(result, accumulattion);
     }
 
 
