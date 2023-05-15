@@ -30,10 +30,12 @@ import java.util.Arrays;
  */
 public class LeetCode31 {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
+//        int[] nums = {1, 2, 3};
 //        int[] nums = {3,2,1};
 //        int[] nums = {1, 1, 5};
 //        individualExecute(nums);
+        int[] nums = {1, 2, 3, 4, 6, 5};
+        standardExecute(nums);
         for (int num : nums) {
             System.out.print(num + " ");
         }
