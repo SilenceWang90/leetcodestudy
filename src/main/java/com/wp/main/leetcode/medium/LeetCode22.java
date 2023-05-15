@@ -98,7 +98,7 @@ public class LeetCode22 {
             left.push("(");
         } else {
             // 左括号和右括号均可选择
-            // 1、选择左括号
+            // 1、选择左括号并进行递归回溯
             if (left.size() > 0) {
                 stringBuilder.append(left.pop());
                 recursionExecute(left, right, result, stringBuilder);
@@ -107,7 +107,7 @@ public class LeetCode22 {
                 left.push("(");
             }
             if (right.size() > 0) {
-                // 2、选择右括号
+                // 2、选择右括号并进行递归回溯
                 stringBuilder.append(right.pop());
                 recursionExecute(left, right, result, stringBuilder);
                 stringBuilder.deleteCharAt(stringBuilder.length() - 1);
