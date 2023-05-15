@@ -68,6 +68,7 @@ public class LeetCode31 {
                 }
             }
         }
+        // 出现了倒序排列的数字，不存在更大的元素，则根据题意要将该数字升序排列
         Arrays.sort(nums);
         return;
     }
