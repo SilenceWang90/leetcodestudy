@@ -91,7 +91,7 @@ public class LeetCode22 {
          * 3、递归括号组合拼接
          */
         if (left.size() == right.size()) {
-            // 左括号的数量和右括号的数量相同，则此时只能选择左括号进行递归
+            // 左括号的数量和右括号的数量相同，则此时只能选择左括号进行递归。正好满足第一层只能选择左括号的规则。
             stringBuilder.append(left.pop());
             recursionExecute(left, right, result, stringBuilder);
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
