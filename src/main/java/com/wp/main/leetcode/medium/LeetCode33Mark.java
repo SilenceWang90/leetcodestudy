@@ -47,9 +47,9 @@ public class LeetCode33Mark {
                 return middle;
             }
             // 1、左侧是有序数组
-            if (nums[0] <= nums[middle]) {
+            if (nums[left] <= nums[middle]) {
                 // 1.1、如果目标值在有序数组中，则锁定下一次查询从[0,middle-1]范围开始
-                if (nums[0] <= target && target < nums[middle]) {
+                if (nums[left] <= target && target < nums[middle]) {
                     right = middle - 1;
                 } else {
                     // 1.2、如果目标值在无序数组中，则锁定下一次查询从[middle+1,right]范围开始
