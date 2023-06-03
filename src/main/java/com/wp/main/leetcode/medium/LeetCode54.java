@@ -42,7 +42,7 @@ public class LeetCode54 {
         // 定义x轴和y轴坐标信息
         int x = 0, y = 0;
         // 只要集合中数量没达标，则循环逻辑继续
-        while (result.size() <= xLength * yLength) {
+        while (result.size() < xLength * yLength) {
             // 取值，并将该位置的值标记为已取走
             if (matrix[x][y] != -111) {
                 result.add(matrix[x][y]);
