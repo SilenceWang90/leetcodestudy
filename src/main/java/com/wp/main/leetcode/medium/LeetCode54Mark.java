@@ -5,6 +5,11 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
+ * Mark：模拟法，模拟顺时针的运行方式。
+ * 使用了do while~~~
+ */
+
+/**
  * @Description 螺旋矩阵
  * 给你一个m行n列的矩阵matrix，请按照顺时针螺旋顺序，返回矩阵中的所有元素。
  * <p>
@@ -17,7 +22,7 @@ import java.util.List;
  * @Author admin
  * @Date 2023/06/03 8:14
  */
-public class LeetCode54 {
+public class LeetCode54Mark {
     public static void main(String[] args) {
 //        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 //        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
