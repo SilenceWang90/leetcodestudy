@@ -20,7 +20,8 @@ import java.util.List;
 public class LeetCode54 {
     public static void main(String[] args) {
 //        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+//        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12},{13,14,15,16}};
         System.out.println(individualExecute(matrix));
     }
 
@@ -43,28 +44,51 @@ public class LeetCode54 {
         int x = 0, y = 0;
         // 只要集合中数量没达标，则循环逻辑继续
         while (result.size() < xLength * yLength) {
-            // 取值，并将该位置的值标记为已取走
-            if (matrix[x][y] != -111) {
-                result.add(matrix[x][y]);
-                matrix[x][y] = -111;
-            }
             // 顺时针指定移动逻辑
             // 右移
-            if (y + 1 < yLength && matrix[x][y + 1] != -111) {
+            do {
+                // 取值，并将该位置的值标记为已取走
+                if (matrix[x][y] != -111) {
+                    result.add(matrix[x][y]);
+                    matrix[x][y] = -111;
+                }
                 y++;
             }
+            while (y < yLength && matrix[x][y] != -111);
+            y--;
             // 下移
-            else if (x + 1 < xLength && matrix[x + 1][y] != -111) {
+            do {
+                // 取值，并将该位置的值标记为已取走
+                if (matrix[x][y] != -111) {
+                    result.add(matrix[x][y]);
+                    matrix[x][y] = -111;
+                }
                 x++;
             }
+            while (x < xLength && matrix[x][y] != -111);
+            x--;
             // 左移
-            else if (y - 1 >= 0 && matrix[x][y - 1] != -111) {
+            do {
+                // 取值，并将该位置的值标记为已取走
+                if (matrix[x][y] != -111) {
+                    result.add(matrix[x][y]);
+                    matrix[x][y] = -111;
+                }
                 y--;
             }
+            while (y >= 0 && matrix[x][y] != -111);
+            y++;
             // 上移
-            else if (x - 1 >= 0 && matrix[x - 1][y] != -111) {
+            do {
+                // 取值，并将该位置的值标记为已取走
+                if (matrix[x][y] != -111) {
+                    result.add(matrix[x][y]);
+                    matrix[x][y] = -111;
+                }
                 x--;
             }
+            while (x >= 0 && matrix[x][y] != -111);
+            x++;
         }
         return result;
     }
