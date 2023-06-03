@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class LeetCode54 {
     public static void main(String[] args) {
-//        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int[][] matrix = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
         System.out.println(individualExecute(matrix));
     }
 
@@ -58,11 +58,11 @@ public class LeetCode54 {
                 x++;
             }
             // 左移
-            else if (y > 0 && matrix[x][y - 1] != -111) {
+            else if (y - 1 >= 0 && matrix[x][y - 1] != -111) {
                 y--;
             }
             // 上移
-            else if (x > 0 && matrix[x - 1][y] != -111) {
+            else if (x - 1 >= 0 && matrix[x - 1][y] != -111) {
                 x--;
             }
         }
