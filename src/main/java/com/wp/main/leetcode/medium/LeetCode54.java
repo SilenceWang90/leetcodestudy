@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class LeetCode54 {
     public static void main(String[] args) {
-        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-//        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+//        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
         System.out.println(individualExecute(matrix));
     }
 
@@ -37,8 +37,8 @@ public class LeetCode54 {
      */
     private static List<Integer> individualExecute(int[][] matrix) {
         List<Integer> result = Lists.newArrayList();
-        // x指针能移动的最大长度为一维数组中元素的数量，y指针能移动的最大长度为一维数组的个数。
-        int xLength = matrix[0].length, yLength = matrix.length;
+        // x指针能移动的最大长度为一维数组的个数，y指针能移动的最大长度为一维数组中元素的数量。
+        int xLength = matrix.length, yLength = matrix[0].length;
         // 定义x轴和y轴坐标信息
         int x = 0, y = 0;
         // 只要集合中数量没达标，则循环逻辑继续
