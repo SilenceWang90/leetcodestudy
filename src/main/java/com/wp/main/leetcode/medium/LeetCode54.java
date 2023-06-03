@@ -24,10 +24,10 @@ public class LeetCode54 {
 
     /**
      * 个人思路：记录遍历指针特征，x轴指针，y轴指针
-     * （1）x向右移动到边界则下移，即移动y指针++
-     * （2）x向左移动到边界则上移，即y指针--
-     * （3）y向下移动到边界则静止不动
-     * （4）y向上移动到边界则静止不动
+     * （1）右移，y++;
+     * （2）左移，y--;
+     * （3）下移，x++;
+     * （4）上移，x--;
      * 取走的值赋值-111，因为题中定义-100 <= matrix[i][j] <= 100，只要前方要取的值是-111即视为被取走了，那么就可以进行转向操作
      *
      * @param matrix
@@ -48,20 +48,20 @@ public class LeetCode54 {
             }
             // 顺时针指定移动逻辑
             // 右移
-            if (matrix[x + 1][y] != -111 && x + 1 < xLength) {
-                x++;
-            }
-            // 下移
-            else if (matrix[x][y + 1] != -111 && y + 1 < yLength) {
+            if (y + 1 < yLength && matrix[x][y + 1] != -111) {
                 y++;
             }
+            // 下移
+            else if (x + 1 < xLength && matrix[x + 1][y] != -111) {
+                x++;
+            }
             // 左移
-            else if (matrix[x - 1][y] != -111 && x > 0) {
-                x--;
+            else if (y > 0 && matrix[x][y - 1] != -111) {
+                y--;
             }
             // 上移
-            else if (matrix[x][y - 1] != -111 && y > 0) {
-                y--;
+            else if (x > 0 && matrix[x - 1][y] != -111) {
+                x--;
             }
         }
 
