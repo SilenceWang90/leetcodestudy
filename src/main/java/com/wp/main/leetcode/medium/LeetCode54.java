@@ -55,6 +55,7 @@ public class LeetCode54 {
                 y++;
             }
             while (y < yLength && matrix[x][y] != -111);
+            // 跳出循环后归位，否则接下来的数组取值就会索引溢出
             y--;
             // 下移
             do {
@@ -66,6 +67,7 @@ public class LeetCode54 {
                 x++;
             }
             while (x < xLength && matrix[x][y] != -111);
+            // 跳出循环后归位，否则接下来的数组取值就会索引溢出
             x--;
             // 左移
             do {
@@ -77,6 +79,7 @@ public class LeetCode54 {
                 y--;
             }
             while (y >= 0 && matrix[x][y] != -111);
+            // 跳出循环后归位，否则接下来的数组取值就会索引溢出
             y++;
             // 上移
             do {
@@ -88,6 +91,7 @@ public class LeetCode54 {
                 x--;
             }
             while (x >= 0 && matrix[x][y] != -111);
+            // 跳出循环后归位，否则接下来的数组取值就会索引溢出
             x++;
         }
         return result;
