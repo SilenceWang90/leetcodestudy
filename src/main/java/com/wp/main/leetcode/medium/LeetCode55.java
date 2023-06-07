@@ -45,7 +45,8 @@ public class LeetCode55 {
         if (n == 0) {
             return false;
         }
-        /**2、递归逻辑：从前往后找，每个节点可达路径再进行递归查找可达路径**/
+        /**2、递归逻辑：从前往后找，每个节点可达路径再进行递归查找可达路径。
+         * 且如果当前节点能到达多个节点，从最远那个开始向后查找，这样效率能快一些**/
         // 从后往前那就得把当前元素前面的所有元素都遍历一遍，因为不知道前面哪个节点可能到达当前节点，所以从后往前的效率不如从前往后
         for (int i = currentIndex + 1; i <= currentIndex + n && i < nums.length; i++) {
             boolean result = recursion(nums, i);
