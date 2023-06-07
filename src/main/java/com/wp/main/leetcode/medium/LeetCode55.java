@@ -28,7 +28,7 @@ public class LeetCode55 {
 
     public static void main(String[] args) {
 //        int[] nums = {2,3,1,1,4};
-        int[] nums = {3,2,1,0,4};
+        int[] nums = {3, 2, 1, 0, 4};
         System.out.println(individualExecution(nums));
     }
 
@@ -38,7 +38,7 @@ public class LeetCode55 {
 
     private static boolean recursion(int[] nums, int currentIndex) {
         /**1、递归终止条件**/
-        if (currentIndex >= nums.length - 1) {
+        if ((currentIndex >= nums.length - 1) || (nums[currentIndex] + currentIndex >= nums.length - 1)) {
             return true;
         }
         int n = nums[currentIndex];
