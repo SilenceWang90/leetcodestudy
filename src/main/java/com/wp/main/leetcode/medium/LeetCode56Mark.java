@@ -6,6 +6,15 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * Mark:对二维数组排序，重写Comparator的int compare(T o1, T o2)方法
+ * compare(Object o1,Object o2)方法中，默认采用的是o1-o2，若o1<o2，返回值为-1；若o1==o2，返回值为0；若o1>o2,返回值为1；
+ * 而其排序结果是按-1来排序的，即默认为从小到大排序，其实也就是o1.compareto(o2)。 所以如果返回值为-1，两值位置不变，若返回值为1，两值位置调换。
+ * 总结：升序和降序的选择基于参数表达式的写法
+ * 从小到大（o1-o2)，默认方式
+ * 从大到小（o2-o1)
+ */
+
+/**
  * @Description 合并区间
  * 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
  * <p>
