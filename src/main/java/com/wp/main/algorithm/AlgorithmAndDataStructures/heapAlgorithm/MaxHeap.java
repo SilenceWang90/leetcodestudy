@@ -1,4 +1,4 @@
-package com.wp.main.algorithm.heapAlgorithm;
+package com.wp.main.algorithm.AlgorithmAndDataStructures.heapAlgorithm;
 
 /**
  * @Description 堆（最大堆）

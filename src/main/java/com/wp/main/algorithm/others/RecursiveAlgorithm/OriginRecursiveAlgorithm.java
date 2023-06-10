@@ -1,4 +1,4 @@
-package com.wp.main.algorithm.RecursiveAlgorithm;
+package com.wp.main.algorithm.others.RecursiveAlgorithm;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

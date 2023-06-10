@@ -1,6 +1,6 @@
-package com.wp.main.algorithm.sortAlgorithm;
+package com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.advancedSort;
 
-import com.wp.main.algorithm.sortAlgorithm.util.SortedUtil;
+import com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.util.SortedUtil;
 
 /**
  * @Description 归并排序：2种实现，自顶向下(递归方式)和自底向上(迭代循环)

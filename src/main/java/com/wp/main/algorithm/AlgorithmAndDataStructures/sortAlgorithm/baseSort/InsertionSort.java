@@ -1,6 +1,6 @@
-package com.wp.main.algorithm.sortAlgorithm;
+package com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.baseSort;
 
-import com.wp.main.algorithm.sortAlgorithm.util.SortedUtil;
+import com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.util.SortedUtil;
 
 /**
  * @Description 插入排序：升序，时间复杂度为n的平方

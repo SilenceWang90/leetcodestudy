@@ -1,6 +1,6 @@
-package com.wp.main.algorithm.sortAlgorithm;
+package com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.advancedSort;
 
-import com.wp.main.algorithm.sortAlgorithm.util.SortedUtil;
+import com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.util.SortedUtil;
 
 /**
  * @Description 快速排序

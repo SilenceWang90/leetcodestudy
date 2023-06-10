@@ -1,4 +1,4 @@
-package com.wp.main.algorithm.sortAlgorithm.util;
+package com.wp.main.algorithm.AlgorithmAndDataStructures.sortAlgorithm.util;
 
 /**
  * @Description 排序工具类

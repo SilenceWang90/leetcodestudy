@@ -1,4 +1,4 @@
-package com.wp.main.algorithm.LinearCodeAlgorithm;
+package com.wp.main.algorithm.others.LinearCodeAlgorithm;
 
 /**
  * @Classname LinearCodeAlgorithm
