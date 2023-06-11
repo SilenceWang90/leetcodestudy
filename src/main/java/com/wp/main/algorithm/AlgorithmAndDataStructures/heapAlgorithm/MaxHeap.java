@@ -10,6 +10,8 @@ public class MaxHeap {
     private int[] data;
     // 堆(数组)中元素个数
     private int count;
+    // 堆(数组)的容量
+    private int capacity;
 
     /**
      * 构造函数创建堆，传入数组大小，用于数组的初始化
@@ -20,6 +22,7 @@ public class MaxHeap {
         // +1是因为我们的堆从索引为1的位置开始存储数据，这样可以和节点的序号对应上~
         data = new int[capacity + 1];
         count = 0;
+        this.capacity = capacity;
     }
 
     /**
@@ -61,6 +64,8 @@ public class MaxHeap {
      * @param position 新增元素所在的位置
      */
     private void shiftUp(int position) {
+        // 防止超过容量
+        assert (capacity >= count + 1);
         // 如果当前位置的元素比父节点小，那么就交换当前节点和父节点的位置。 按照此逻辑不断的移动新增的元素直到合适的位置即可。
         // 防止数组越界等问题需要判断当前位置如果已经是数的根节点那么循环终止
         while (position > 1 && data[position / 2] < data[position]) {
