@@ -58,7 +58,7 @@ public class MaxHeap {
         data[count + 1] = item;
         // 容量+1
         count++;
-        // 2、移动新增的元素至合适的位置
+        // 2、移动新增的元素至合适的位置，保证最大完全堆的性质
         shiftUp(count);
     }
 
@@ -76,6 +76,55 @@ public class MaxHeap {
             data[position] = temp;
             // 移动过程中修改新增元素当前所在的最新位置
             position = position / 2;
+        }
+    }
+
+    /**
+     * 移出元素(根节点元素)
+     *
+     * @return 返回根节点元素
+     */
+    public int remove() {
+        // 数组不为空才可以移出
+        if (count > 0) {
+            int currentRoot = data[1];
+            // 将最后一个节点移动到根节点
+            data[1] = data[count];
+            count--;
+            // 移动新的根节点，将其放入到合适的位置保证最大完全堆的性质
+            shiftDown(1);
+            return currentRoot;
+        } else {
+            throw new RuntimeException("数组为空，无法取出元素");
+        }
+    }
+
+    /**
+     * 移动根节点元素到达合适的位置
+     *
+     * @param position
+     */
+    private void shiftDown(int position) {
+        // 只要当前索引位置拥有左节点，则意味着当前节点没有抵达叶子节点，就需要判断该元素是否需要继续下移。不需要判断右节点就是因为完全二叉树的性质都是左侧聚簇的，不可能存在只有右节点没有左节点
+        while (position * 2 <= count) {
+            // 当前position位置的元素与其左右节点更大的元素比较，小的话换位置；否则不需要处理，循环结束。
+            int left = position * 2;
+            int right = left + 1;
+            // 当前position位置的元素要和左右哪个节点进行位置交换，默认是左节点因为完全二叉树只要有子节点必然有左侧节点
+            int exchange = left;
+            // 如果存在右节点且右节点比左节点大
+            if (right <= count && data[right] > data[left]) {
+                exchange = right;
+            }
+            // 如果当前position节点位置的元素比最大的子节点还大，那么就不需要处理，否则的话交换2个元素的位置即可
+            if (data[position] >= data[exchange]) {
+                break;
+            } else {
+                int current = data[position];
+                data[position] = data[exchange];
+                data[exchange] = current;
+                position = exchange;
+            }
         }
     }
 
