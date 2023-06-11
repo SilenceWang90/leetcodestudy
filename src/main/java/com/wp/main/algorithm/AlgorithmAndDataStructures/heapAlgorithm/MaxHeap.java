@@ -50,6 +50,10 @@ public class MaxHeap {
      * @param item 待插入的元素
      */
     public void insert(int item) {
+        // 防止超过容量
+        if (capacity < count + 1) {
+            throw new RuntimeException("容量已达上限，无法继续插入数据");
+        }
         // 1、元素放入到数组中(最后一个元素的后面)
         data[count + 1] = item;
         // 容量+1
@@ -64,8 +68,6 @@ public class MaxHeap {
      * @param position 新增元素所在的位置
      */
     private void shiftUp(int position) {
-        // 防止超过容量
-        assert (capacity >= count + 1);
         // 如果当前位置的元素比父节点小，那么就交换当前节点和父节点的位置。 按照此逻辑不断的移动新增的元素直到合适的位置即可。
         // 防止数组越界等问题需要判断当前位置如果已经是数的根节点那么循环终止
         while (position > 1 && data[position / 2] < data[position]) {
