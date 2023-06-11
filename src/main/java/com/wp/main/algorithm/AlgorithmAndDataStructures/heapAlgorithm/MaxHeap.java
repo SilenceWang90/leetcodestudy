@@ -128,4 +128,26 @@ public class MaxHeap {
         }
     }
 
+    /**
+     * 基础堆排序
+     *
+     * @param arr 需要被排序的数组
+     * @param n   数组的大小
+     */
+    public static void heapSort1(int[] arr, int n) {
+        // 1、将要被排序的数组放入堆结构中
+        MaxHeap maxHeap = new MaxHeap(n);
+        for (int i = 0; i < n; i++) {
+            maxHeap.insert(arr[i]);
+        }
+        // 2、将堆中的元素按顺序取出。
+        // 因为创建的是最大堆，因此如果正常取出的话顺序是从高到低；如果想从低到高取出那就将取出的元素从后往前放入数组中即可
+        for (int i = n - 1; i >= 0; i--) {
+            arr[i] = maxHeap.remove();
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
 }
