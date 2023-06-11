@@ -107,7 +107,7 @@ public class MaxHeap {
     private void shiftDown(int position) {
         // 只要当前索引位置拥有左节点，则意味着当前节点没有抵达叶子节点，就需要判断该元素是否需要继续下移。不需要判断右节点就是因为完全二叉树的性质都是左侧聚簇的，不可能存在只有右节点没有左节点
         while (position * 2 <= count) {
-            // 当前position位置的元素与其左右节点更大的元素比较，小的话换位置；否则不需要处理，循环结束。
+            // 1、当前position位置的元素与其左右节点更大的元素比较，小的话换位置；否则不需要处理，循环结束。
             int left = position * 2;
             int right = left + 1;
             // 当前position位置的元素要和左右哪个节点进行位置交换，默认是左节点因为完全二叉树只要有子节点必然有左侧节点
@@ -116,7 +116,7 @@ public class MaxHeap {
             if (right <= count && data[right] > data[left]) {
                 exchange = right;
             }
-            // 如果当前position节点位置的元素比最大的子节点还大，那么就不需要处理，否则的话交换2个元素的位置即可
+            // 2、如果当前position节点位置的元素比最大的子节点还大，那么就不需要处理，否则的话交换2个元素的位置即可
             if (data[position] >= data[exchange]) {
                 break;
             } else {
