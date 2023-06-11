@@ -61,9 +61,9 @@ public class MaxHeap {
      * @param position 新增元素所在的位置
      */
     private void shiftUp(int position) {
-        // 如果当前位置的元素比父节点小，那么就交换当前节点和父节点的位置。
-        // 按照此逻辑不断的移动新增的元素直到合适的位置即可
-        while (data[position / 2] < data[position]) {
+        // 如果当前位置的元素比父节点小，那么就交换当前节点和父节点的位置。 按照此逻辑不断的移动新增的元素直到合适的位置即可。
+        // 防止数组越界等问题需要判断当前位置如果已经是数的根节点那么循环终止
+        while (position > 1 && data[position / 2] < data[position]) {
             int temp = data[position / 2];
             data[position / 2] = data[position];
             data[position] = temp;
