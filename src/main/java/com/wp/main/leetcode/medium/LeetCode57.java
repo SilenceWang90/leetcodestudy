@@ -57,7 +57,7 @@ public class LeetCode57 {
         // 数组中待插入元素的位置
         int k = 0;
         for (int i = 0; i < intervals.length; i++) {
-            int[] current = intervals[0];
+            int[] current = intervals[i];
             // 不能合并：待插入数组的最小值大于当前遍历数组的最大值 || 待插入数组的最大值小于当前遍历数组的最小值
             if (current[0] > newInterval[1] || current[1] < newInterval[0]) {
                 result[k] = current;
