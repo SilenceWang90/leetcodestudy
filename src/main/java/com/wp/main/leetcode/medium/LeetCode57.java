@@ -38,7 +38,9 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode57 {
     public static void main(String[] args) {
-
+        int[][] intervals = {{1, 3}, {6, 9}};
+        int[] newInterval = {2, 5};
+        System.out.println(individualExecution(intervals, newInterval));
     }
 
     /**
