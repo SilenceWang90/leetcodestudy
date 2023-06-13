@@ -1,5 +1,8 @@
 package com.wp.main.leetcode.medium;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Description 插入区间
  * 给你一个 无重叠的 ，按照区间起始端点排序的区间列表。
@@ -38,8 +41,8 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode57 {
     public static void main(String[] args) {
-        int[][] intervals = {{1, 3}, {6, 9}};
-        int[] newInterval = {2, 5};
+        int[][] intervals = {{1, 5}};
+        int[] newInterval = {6, 8};
         System.out.println(individualExecution(intervals, newInterval));
     }
 
@@ -53,24 +56,60 @@ public class LeetCode57 {
      * @param newInterval 要插入的数组
      * @return 返回合并的数组
      */
+    @Deprecated
     private static int[][] individualExecution(int[][] intervals, int[] newInterval) {
+        // 边界情况处理
+        if (newInterval.length == 0) {
+            return intervals;
+        } else if (intervals.length == 0) {
+            int[][] result = new int[1][2];
+            result[0] = newInterval;
+            return result;
+        }
         // 定义结果数组，数组中包含的一维数组个数设定比给定的intervals数组包含的一位数组个数多一个即可，因为插入数组最多只有1个。
-        int[][] result = new int[intervals.length + 1][2];
-        // 数组中待插入元素的位置
-        int k = 0;
+        List<int[]> tempStage = new ArrayList<>();
+        // 合并的元素是否已插入
+        boolean insertion = false;
         for (int i = 0; i < intervals.length; i++) {
             int[] current = intervals[i];
             // 不能合并：待插入数组的最小值大于当前遍历数组的最大值 || 待插入数组的最大值小于当前遍历数组的最小值
             if (current[0] > newInterval[1] || current[1] < newInterval[0]) {
-                result[k] = current;
+                // 判断待插入元素是否要插入到队列中
+                if (!insertion && current[1] < newInterval[0] && i + 1 < intervals.length && newInterval[1] < intervals[i + 1][0]) {
+                    tempStage.add(current);
+                    tempStage.add(newInterval);
+                    insertion = true;
+                } else {
+                    tempStage.add(current);
+                }
             } else {
                 // 可以合并
                 newInterval[0] = Math.min(current[0], newInterval[0]);
                 newInterval[1] = Math.max(current[1], newInterval[1]);
-                result[k] = newInterval;
+                if (insertion) {
+                    // 如果合并的数组已经插入到结果集中，那么将队列尾部的元素删除，然后再把合并后的数组加入队列。
+                    tempStage.remove(tempStage.size() - 1);
+                    tempStage.add(newInterval);
+                } else {
+                    // 如果合并的数组未插入到结果集中，那么再次合并的数组直接放入队列中
+                    tempStage.add(newInterval);
+                    insertion = true;
+                }
             }
-            // 记录下一个要插入元素的位置
-            k++;
+        }
+        // 边界值
+        if (!insertion) {
+            // 待插入元素比所有数组都大，则添加到队列尾部
+            if (newInterval[0] > tempStage.get(tempStage.size() - 1)[1]) {
+                tempStage.add(newInterval);
+            } else {
+                // 添加到队列头部
+                tempStage.add(0, newInterval);
+            }
+        }
+        int[][] result = new int[tempStage.size()][];
+        for (int i = 0; i < tempStage.size(); i++) {
+            result[i] = tempStage.get(i);
         }
         return result;
     }
