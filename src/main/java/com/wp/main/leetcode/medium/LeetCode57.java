@@ -75,6 +75,7 @@ public class LeetCode57 {
             // 不能合并：待插入数组的最小值大于当前遍历数组的最大值 || 待插入数组的最大值小于当前遍历数组的最小值
             if (current[0] > newInterval[1] || current[1] < newInterval[0]) {
                 // 判断待插入元素是否要插入到队列中
+                // 待插入的元素未插入队列 && 待插入元素在连续2个元素之间
                 if (!insertion && current[1] < newInterval[0] && i + 1 < intervals.length && newInterval[1] < intervals[i + 1][0]) {
                     tempStage.add(current);
                     tempStage.add(newInterval);
