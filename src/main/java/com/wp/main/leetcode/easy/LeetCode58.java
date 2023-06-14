@@ -35,6 +35,12 @@ public class LeetCode58 {
         System.out.println(individualExecution(s));
     }
 
+    /**
+     * 个人思路：从前往后遍历，记录每一个词的长度，直到最后一个词。设置空格出现时的状态值来确认是否是最后一个次
+     * 官方思路：既然是最后一个就从后往前遍历就好了
+     * @param s
+     * @return
+     */
     private static int individualExecution(String s) {
         int result = 0;
         // 出现空格时该字段设置为true，出现字符时该字段设置为false
