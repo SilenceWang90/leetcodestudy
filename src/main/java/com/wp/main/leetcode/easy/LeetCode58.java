@@ -29,9 +29,9 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode58 {
     public static void main(String[] args) {
-        String s = "Hello World";
+//        String s = "Hello World";
 //        String s = "   fly me   to   the moon  ";
-//        String s = "luffy is still joyboy";
+        String s = "luffy is still joyboy";
         System.out.println(individualExecution(s));
     }
 
