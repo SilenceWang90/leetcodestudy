@@ -50,34 +50,34 @@ public class LeetCode59 {
             for (int i = left; i <= right; i++) {
                 // 上边界赋值
                 result[top][i] = num;
-                // 上边界赋值完成进入下一层的上边界
-                top++;
                 num++;
             }
+            // 上边界赋值完成进入下一层的上边界
+            top++;
             // 2、从上向下移
             for (int i = top; i <= bottom; i++) {
                 // 右边界赋值
                 result[i][right] = num;
-                // 右边界赋值完成进入下一层的右边界
-                right--;
                 num++;
             }
+            // 右边界赋值完成进入下一层的右边界
+            right--;
             // 3、从右向左移
             for (int i = right; i >= left; i--) {
                 // 下边界赋值
                 result[bottom][i] = num;
-                // 下边界赋值完成进入下一层的下边界
-                bottom--;
                 num++;
             }
+            // 下边界赋值完成进入下一层的下边界
+            bottom--;
             // 4、从下向上移
             for (int i = bottom; i >= top; i--) {
                 // 左边界赋值
                 result[i][left] = num;
-                // 左边界赋值完成进入下一层的左边界
-                left++;
                 num++;
             }
+            // 左边界赋值完成进入下一层的左边界
+            left++;
         }
         return result;
     }
