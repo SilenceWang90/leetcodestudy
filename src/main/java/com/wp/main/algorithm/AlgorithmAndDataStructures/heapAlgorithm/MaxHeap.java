@@ -151,6 +151,7 @@ public class MaxHeap {
     }
 
     /**
+     * Heapify
      * 基于基础堆排序的优化：时间复杂度为O(n)
      * （1）前置条件：堆数组从索引1的位置开始存储元素。
      * （2）整个过程的逻辑是先将数据放入数组中构建最大堆，然后再逐个取出完成排序。取出的过程没有可以改造的，但是构建堆的过程其实可以优化
@@ -175,5 +176,57 @@ public class MaxHeap {
         }
     }
 
+    /**
+     * 原地堆排序，优化空间复杂度
+     *
+     * @param arr 给定数组
+     * @param n   数组中元素数量
+     */
+    void heapSort(int[] arr, int n) {
+        // 1、元素放入堆数组中，即一次heapify操作，将每一个具有子节点的节点进行shiftdown()操作，使得堆称为最大堆
+        for (int i = (n - 1) / 2; i >= 0; i--) {
+            shiftDown(i);
+        }
+        // 2、排序
+        for (int i = n - 1; i > 0; i--) {
+            // 将当前堆的最大值与当前i所在位置的元素互换，即相当于将当前堆的最大值放入到当前堆的最后一个位置
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            // 对当前0索引位置的元素进行shiftdown操作。注意因为当前数组中最后的元素已经是排序好的元素，所以此部分元素不需要进行shiftdown操作
+
+        }
+    }
+
+    /**
+     * 针对指定长度的数组，对其索引为k位置的元素进行shiftdown操作
+     *
+     * @param arr      给定数组（注意，数组从0开始存数据，与之前的从1开始存数据不同）
+     * @param count    给定数组的元素个数
+     * @param position 对索引位置的元素进行shiftdown操作
+     */
+    void shiftDown(int[] arr, int count, int position) {
+        // 只要当前索引位置拥有左节点，则意味着当前节点没有抵达叶子节点，就需要判断该元素是否需要继续下移。不需要判断右节点就是因为完全二叉树的性质都是左侧聚簇的，不可能存在只有右节点没有左节点
+        while (position * 2 + 1 < count) {
+            // 1、当前position位置的元素与其左右节点更大的元素比较，小的话换位置；否则不需要处理，循环结束。
+            int left = position * 2 + 1;
+            int right = left + 1;
+            // 当前position位置的元素要和左右哪个节点进行位置交换，默认是左节点因为完全二叉树只要有子节点必然有左侧节点
+            int exchange = left;
+            // 如果存在右节点且右节点比左节点大
+            if (right < count && arr[right] > arr[left]) {
+                exchange = right;
+            }
+            // 2、如果当前position节点位置的元素比最大的子节点还大，那么就不需要处理，否则的话交换2个元素的位置即可
+            if (arr[position] >= arr[exchange]) {
+                break;
+            } else {
+                int current = arr[position];
+                arr[position] = arr[exchange];
+                arr[exchange] = current;
+                position = exchange;
+            }
+        }
+    }
 
 }
