@@ -193,7 +193,7 @@ public class MaxHeap {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
-            // 对当前0索引位置的元素进行shiftdown操作。注意因为当前数组中最后的元素已经是排序好的元素，所以此部分元素不需要进行shiftdown操作
+            // 对当前0索引位置的元素进行shiftdown操作。注意因为当前数组中最后的元素已经是排序好的元素，所以此部分元素不需要进行shiftdown操作，每次就从剩余的i个元素中形成的堆进行shiftdown操作
             shiftDown(arr, i, 0);
         }
     }
@@ -207,6 +207,7 @@ public class MaxHeap {
      */
     void shiftDown(int[] arr, int count, int position) {
         // 只要当前索引位置拥有左节点，则意味着当前节点没有抵达叶子节点，就需要判断该元素是否需要继续下移。不需要判断右节点就是因为完全二叉树的性质都是左侧聚簇的，不可能存在只有右节点没有左节点
+        // 另外限制了在arr数组中只针对索引从0开始到第count-1个元素进行堆的shiftdown操作即可，count开始及其后面的元素已经按照升序排好，不能参与shiftdown操作了
         while (position * 2 + 1 < count) {
             // 1、当前position位置的元素与其左右节点更大的元素比较，小的话换位置；否则不需要处理，循环结束。
             int left = position * 2 + 1;
