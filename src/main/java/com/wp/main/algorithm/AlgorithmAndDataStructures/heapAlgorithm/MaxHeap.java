@@ -196,6 +196,9 @@ public class MaxHeap {
             // 对当前0索引位置的元素进行shiftdown操作。注意因为当前数组中最后的元素已经是排序好的元素，所以此部分元素不需要进行shiftdown操作，每次就从剩余的i个元素中形成的堆进行shiftdown操作
             shiftDown(arr, i, 0);
         }
+        /*for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }*/
     }
 
     /**
