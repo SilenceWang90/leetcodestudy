@@ -51,7 +51,7 @@ public class MaxHeap {
      */
     public void insert(int item) {
         // 防止超过容量
-        if (capacity < count + 1) {
+        if (capacity >= count + 1) {
             throw new RuntimeException("容量已达上限，无法继续插入数据");
         }
         // 1、元素放入到数组中(最后一个元素的后面)

@@ -88,21 +88,21 @@ public class IndexMaxHeap {
     }
 
     /**
-     * 移出元素(根节点元素)
+     * 移出元素(根节点元素)，返回元素的索引值
      *
      * @return 返回根节点元素
      */
-    public int remove() {
+    public int removeIndex() {
         // 数组不为空才可以移出
         if (count > 0) {
-            // 取出根元素记得要先从indexes的第一个位置找到data数组中根元素的索引，然后再从data数组中获取到该元素
-            int currentRoot = data[indexes[1]];
+            // 取出根元素索引并返回，由于堆从1开始存储数据，但返回时要按照标准数组存储逻辑进行处理，因此要进行-1操作
+            int currentRootIndex = indexes[1] - 1;
             // 将最后一个节点移动到根节点
             indexes[1] = indexes[count];
             count--;
             // 移动新的根节点，将其放入到合适的位置保证最大完全堆的性质
             shiftDown(1);
-            return currentRoot;
+            return currentRootIndex;
         } else {
             throw new RuntimeException("数组为空，无法取出元素");
         }
@@ -135,5 +135,37 @@ public class IndexMaxHeap {
                 position = exchange;
             }
         }
+    }
+
+    /**
+     * 获取任一索引位置的元素
+     *
+     * @param i 索引
+     * @return 该索引对应位置的元素
+     */
+    public int getData(int i) {
+        return data[i + 1];
+    }
+
+    /**
+     * 将指定索引i位置的元素替换成newData
+     *
+     * @param i       指定位置的元素
+     * @param newData 要替换的元素
+     */
+    public void change(int i, int newData) {
+        i++;
+        // 元素替换
+        data[i] = newData;
+        // 保证堆结构要进行shiftup和shiftdown操作
+        // 对data数组中的i操作其实就是找到indexes数组中i所在的位置，然后对其进行shiftup和shiftdown
+        for (int j = 1; j <= count; j++) {
+            if (indexes[j] == i) {
+                shiftUp(j);
+                shiftDown(j);
+                break;
+            }
+        }
+
     }
 }
