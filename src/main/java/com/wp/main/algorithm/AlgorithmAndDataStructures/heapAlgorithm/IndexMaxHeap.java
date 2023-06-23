@@ -154,6 +154,7 @@ public class IndexMaxHeap {
      * @param newData 要替换的元素
      */
     public void change(int i, int newData) {
+        // 堆从1开始存储，外部用户使用的时候还是默认从1开始，因此要做转换
         i++;
         // 元素替换
         data[i] = newData;
