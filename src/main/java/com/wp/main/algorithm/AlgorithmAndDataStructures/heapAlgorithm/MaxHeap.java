@@ -129,7 +129,7 @@ public class MaxHeap {
     }
 
     /**
-     * 基础堆排序
+     * 基础堆排序：时间复杂度为nlogn，因为无论是insert()还是remove()背后的逻辑复杂度都是logn，对n个元素的操作就是nlogn
      *
      * @param arr 需要被排序的数组
      * @param n   数组的大小
