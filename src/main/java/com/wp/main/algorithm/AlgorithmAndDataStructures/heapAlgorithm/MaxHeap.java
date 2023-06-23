@@ -185,7 +185,7 @@ public class MaxHeap {
     void heapSort(int[] arr, int n) {
         // 1、元素放入堆数组中，即一次heapify操作，将每一个具有子节点的节点进行shiftdown()操作，使得堆称为最大堆
         for (int i = (n - 1) / 2; i >= 0; i--) {
-            shiftDown(i);
+            shiftDown(arr, n, i);
         }
         // 2、排序
         for (int i = n - 1; i > 0; i--) {
@@ -194,7 +194,7 @@ public class MaxHeap {
             arr[0] = arr[i];
             arr[i] = temp;
             // 对当前0索引位置的元素进行shiftdown操作。注意因为当前数组中最后的元素已经是排序好的元素，所以此部分元素不需要进行shiftdown操作
-
+            shiftDown(arr, i, 0);
         }
     }
 
