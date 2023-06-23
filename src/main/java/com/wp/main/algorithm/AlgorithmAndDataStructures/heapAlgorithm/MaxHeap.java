@@ -184,7 +184,8 @@ public class MaxHeap {
      */
     public static void heapSort(int[] arr, int n) {
         // 1、元素放入堆数组中，即一次heapify操作，将每一个具有子节点的节点进行shiftdown()操作，使得堆称为最大堆
-        for (int i = (n - 1) / 2; i >= 0; i--) {
+        // (n-1-1) / 2是从0开始的数组中，最后一个拥有叶子节点的节点索引
+        for (int i = (n - 1 - 1) / 2; i >= 0; i--) {
             shiftDown(arr, n, i);
         }
         // 2、排序
