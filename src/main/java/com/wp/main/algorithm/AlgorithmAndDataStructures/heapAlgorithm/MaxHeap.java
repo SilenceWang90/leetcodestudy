@@ -182,7 +182,7 @@ public class MaxHeap {
      * @param arr 给定数组
      * @param n   数组中元素数量
      */
-    void heapSort(int[] arr, int n) {
+    public static void heapSort(int[] arr, int n) {
         // 1、元素放入堆数组中，即一次heapify操作，将每一个具有子节点的节点进行shiftdown()操作，使得堆称为最大堆
         for (int i = (n - 1) / 2; i >= 0; i--) {
             shiftDown(arr, n, i);
@@ -205,7 +205,7 @@ public class MaxHeap {
      * @param count    给定数组的元素个数
      * @param position 对索引位置的元素进行shiftdown操作
      */
-    void shiftDown(int[] arr, int count, int position) {
+    private static void shiftDown(int[] arr, int count, int position) {
         // 只要当前索引位置拥有左节点，则意味着当前节点没有抵达叶子节点，就需要判断该元素是否需要继续下移。不需要判断右节点就是因为完全二叉树的性质都是左侧聚簇的，不可能存在只有右节点没有左节点
         // 另外限制了在arr数组中只针对索引从0开始到第count-1个元素进行堆的shiftdown操作即可，count开始及其后面的元素已经按照升序排好，不能参与shiftdown操作了
         while (position * 2 + 1 < count) {
