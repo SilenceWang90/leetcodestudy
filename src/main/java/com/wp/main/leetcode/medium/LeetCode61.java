@@ -30,7 +30,7 @@ public class LeetCode61 {
     /**
      * 个人思路：双指针
      * 1、一个指针先行k距离，然后另一个指针同步开始运行，直到先行指针到达最后一个位置，这样就找到了要调整到队列头的节点
-     * 2、遍历剥离出来的指针，按照倒序放入一个辅助链表，然后插入到原链表头部即可
+     * 2、将剥离出来的链表加入到原链表的头部即可
      *
      * @param head 链表
      * @param k    移动距离
@@ -62,7 +62,13 @@ public class LeetCode61 {
                 left = left.getNext();
             }
         }
-
+        /** 3、截取队列后k个节点队列，就是left节点的next节点开始的全部节点。将该子链表加入到原链表的头部**/
+        // 原尾部节点指向头部节点
+        right.getNext().setNext(head);
+        // left的下一个节点作为链表新的头部节点
+        preNode.setNext(left.getNext());
+        // left作为新队列的尾部节点
+        left.setNext(null);
         return preNode.getNext();
     }
 }
