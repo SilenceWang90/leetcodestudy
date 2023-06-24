@@ -46,17 +46,25 @@ public class LeetCode61 {
      */
     private static ListNode individualExecution(ListNode head, int k) {
         /** 1、特殊情况处理**/
+        // 1.1、list为空
         if (head == null) {
             return null;
         }
+        // 1.2、获取链表的长度，如果k大于该值则我们只需要取模即可。因为我们只需要找到不满足整个链表移动的距离即可
+        int length = 1;
+        ListNode current = head;
+        while (current.getNext() != null) {
+            current = current.getNext();
+            length++;
+        }
+        k = k % length;
+        /** 2、递归链表获取要重置的节点**/
         ListNode preNode = new ListNode(-1);
         preNode.setNext(head);
-        /** 2、递归链表获取要重置的节点**/
         // 双指针左节点
         ListNode left = head;
         // 双指针右节点
         ListNode right = head;
-        ListNode current = head;
         // 左右节点距离
         int distance = 0;
         // 遍历链表
