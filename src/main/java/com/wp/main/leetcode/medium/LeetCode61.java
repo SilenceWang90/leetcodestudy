@@ -34,7 +34,7 @@ public class LeetCode61 {
         l2.setNext(l3);
         l3.setNext(l4);
         l4.setNext(l5);
-        System.out.println(head);
+        System.out.println(individualExecution(head, 2));
     }
 
     /**
