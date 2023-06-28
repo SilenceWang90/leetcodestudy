@@ -36,9 +36,9 @@ package com.wp.main.leetcode.medium;
 public class LeetCode62 {
     public static void main(String[] args) {
         System.out.println(individualExecution(3, 7));
-//        System.out.println(individualExecution(3, 2));
-//        System.out.println(individualExecution(7, 3));
-//        System.out.println(individualExecution(3, 3));
+        System.out.println(individualExecution(3, 2));
+        System.out.println(individualExecution(7, 3));
+        System.out.println(individualExecution(3, 3));
     }
 
     /**
