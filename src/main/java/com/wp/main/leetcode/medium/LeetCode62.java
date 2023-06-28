@@ -50,8 +50,26 @@ public class LeetCode62 {
      * @return
      */
     private static int individualExecution(int m, int n) {
+        int[][] towDimensionArray = new int[m][n];
         int result = 0;
+        for (int row = 0; row < m; row++) {
+            for (int column = 0; column < n; column++) {
+                if (row == 0 && column == 0) {
+                    // 出发点可达方式直接赋值为1
+                    towDimensionArray[0][0] = 1;
+                } else if (row == 0) {
+                    // 边界行处理
+                    towDimensionArray[row][column] = towDimensionArray[row][column - 1];
+                } else if (column == 0) {
+                    // 边界列处理
+                    towDimensionArray[row][column] = towDimensionArray[row - 1][column];
+                } else {
+                    // 非边界节点，每个节点等于其上面的节点和左边的节点之和
+                    towDimensionArray[row][column] = towDimensionArray[row][column - 1] + towDimensionArray[row - 1][column];
+                }
 
+            }
+        }
 
         return result;
     }
