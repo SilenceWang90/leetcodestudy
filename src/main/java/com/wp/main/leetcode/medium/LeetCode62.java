@@ -36,9 +36,9 @@ package com.wp.main.leetcode.medium;
 public class LeetCode62 {
     public static void main(String[] args) {
         System.out.println(individualExecution(3, 7));
-        System.out.println(individualExecution(3, 2));
-        System.out.println(individualExecution(7, 3));
-        System.out.println(individualExecution(3, 3));
+//        System.out.println(individualExecution(3, 2));
+//        System.out.println(individualExecution(7, 3));
+//        System.out.println(individualExecution(3, 3));
     }
 
     /**
@@ -51,7 +51,6 @@ public class LeetCode62 {
      */
     private static int individualExecution(int m, int n) {
         int[][] towDimensionArray = new int[m][n];
-        int result = 0;
         for (int row = 0; row < m; row++) {
             for (int column = 0; column < n; column++) {
                 if (row == 0 && column == 0) {
@@ -67,10 +66,8 @@ public class LeetCode62 {
                     // 非边界节点，每个节点等于其上面的节点和左边的节点之和
                     towDimensionArray[row][column] = towDimensionArray[row][column - 1] + towDimensionArray[row - 1][column];
                 }
-
             }
         }
-
-        return result;
+        return towDimensionArray[m-1][n-1];
     }
 }
