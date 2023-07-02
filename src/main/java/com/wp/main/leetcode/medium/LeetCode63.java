@@ -29,7 +29,8 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode63 {
     public static void main(String[] args) {
-        int[][] obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+//        int[][] obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+        int[][] obstacleGrid = {{0,1},{0,0}};
         System.out.println(individualExecution(obstacleGrid));
     }
 
