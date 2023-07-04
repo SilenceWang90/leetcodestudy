@@ -40,12 +40,18 @@ public class LeetCode66 {
         // 进位
         int carry = 0;
         for (int i = digits.length - 1; i >= 0; i--) {
-            // 当前位置进行+1运算。加和时要和进位一起进行加法运算
-            int current = digits[i] + 1 + carry;
+            int current;
+            if (i == digits.length - 1) {
+                // 当前位置进行+1运算。加和时要和进位一起进行加法运算
+                current = digits[i] + 1 + carry;
+            } else {
+                // 当前位置进行+1运算。加和时要和进位一起进行加法运算
+                current = digits[i] + carry;
+            }
             // 判断加和后是否存在进位，记录进位数
-            carry = current % 10;
+            carry = current / 10;
             // 当前位置赋值
-            digits[i] = current / 10;
+            digits[i] = current % 10;
         }
         // 加和计算后进位还有值，则需要扩充数组
         if (carry != 0) {
