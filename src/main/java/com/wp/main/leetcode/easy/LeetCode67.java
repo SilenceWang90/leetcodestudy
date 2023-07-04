@@ -55,14 +55,14 @@ public class LeetCode67 {
         // 同位置循环后判断a和b哪个字符串有剩余，剩余的字符串进行后续的计算
         if (aLength > n - 1) {
             // 字符串a有剩余
-            left = a.substring(0, aLength - n);
+            left = a.substring(0, aLength - n + 1);
         } else {
             // 字符串b有剩余
-            left = b.substring(0, bLength - n);
+            left = b.substring(0, bLength - n + 1);
         }
         /// 剩余字符串计算
         for (int i = left.length() - 1; i >= 0; i--) {
-            int current = left.charAt(i)-'0';
+            int current = left.charAt(i) - '0';
             int sum = current + carry;
             stringBuilder.append(sum % 2);
             carry = sum / 2;
