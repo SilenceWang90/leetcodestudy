@@ -22,10 +22,10 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode67 {
     public static void main(String[] args) {
-        String a = "11";
-        String b = "1";
-//        String a = "";
-//        String b = "";
+//        String a = "11";
+//        String b = "1";
+        String a = "1010";
+        String b = "1011";
         System.out.println(addBinary(a, b));
     }
 
