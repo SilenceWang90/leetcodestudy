@@ -22,8 +22,8 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode67 {
     public static void main(String[] args) {
-        String a = "";
-        String b = "";
+        String a = "11";
+        String b = "1";
 //        String a = "";
 //        String b = "";
         System.out.println(addBinary(a, b));
@@ -37,9 +37,9 @@ public class LeetCode67 {
         // 进位
         int carry = 0;
         while (n <= Math.min(aLength, bLength)) {
-            // 从后向前获取a和b同位置的字符
-            int aCurrent = a.charAt(aLength - n);
-            int bCurrent = b.charAt(bLength - n);
+            // 从后向前获取a和b同位置的字符，字符转数字
+            int aCurrent = a.charAt(aLength - n) - '0';
+            int bCurrent = b.charAt(bLength - n) - '0';
             // 求和
             int sum = aCurrent + bCurrent + carry;
             // 计算加和后的数值
@@ -53,7 +53,7 @@ public class LeetCode67 {
         }
         String left = "";
         // 同位置循环后判断a和b哪个字符串有剩余，剩余的字符串进行后续的计算
-        if (aLength > n) {
+        if (aLength > n - 1) {
             // 字符串a有剩余
             left = a.substring(0, aLength - n);
         } else {
@@ -62,7 +62,7 @@ public class LeetCode67 {
         }
         /// 剩余字符串计算
         for (int i = left.length() - 1; i >= 0; i--) {
-            int current = left.charAt(i);
+            int current = left.charAt(i)-'0';
             int sum = current + carry;
             stringBuilder.append(sum % 2);
             carry = sum / 2;
