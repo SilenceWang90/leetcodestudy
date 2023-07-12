@@ -24,10 +24,32 @@ package com.wp.main.leetcode.easy;
 public class LeetCode69 {
     public static void main(String[] args) {
         System.out.println(individualExecution(4));
-        System.out.println(individualExecution(8));
+//        System.out.println(individualExecution(8));
     }
 
+    /**
+     * 思路：递归，二分法
+     * 1、每次取当前值的1/2，然后进行平方计算，如果比当前值大，则再取左侧1/2，否则取右侧1/2。
+     * 2、如果平方计算等于当前值，则返回结果；如果平方值和前一次结果一样，也返回，意味着已经找到趋近于x的结果，
+     *
+     * @param x
+     * @return
+     */
     private static int individualExecution(int x) {
+        // 递归，初始区间为[0,x]
+        return recursion(0, x, x);
+    }
 
+    private static int recursion(int left, int right, int x) {
+        // 找到中间值(此逻辑计算平均值可避免溢出问题)
+        int middle = left + (right - left) / 2;
+        if (middle * middle > x) {
+            return recursion(left, middle, x);
+        } else if (middle * middle < x) {
+            return recursion(middle, right, x);
+        } else {
+            // 如果middle*middle=x，则得到结果
+            return middle;
+        }
     }
 }
