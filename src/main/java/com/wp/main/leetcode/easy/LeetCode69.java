@@ -23,8 +23,9 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode69 {
     public static void main(String[] args) {
-        System.out.println(individualExecution(4));
-        System.out.println(individualExecution(8));
+//        System.out.println(individualExecution(4));
+//        System.out.println(individualExecution(8));
+        System.out.println(individualExecution(2147395599));
     }
 
     /**
@@ -36,23 +37,28 @@ public class LeetCode69 {
      * @return
      */
     private static int individualExecution(int x) {
-        // 递归，初始区间为[0,x]
-        return recursion(0, x, x, -1);
+        if (x == 1) {
+            return 1;
+        } else {
+            // 递归，初始区间为[0,x]
+            return recursion(0, x, x, -1);
+        }
     }
 
     /**
      * 递归逻辑
-     * @param left 左边界
+     *
+     * @param left  左边界
      * @param right 右边界
-     * @param x 目标结果
-     * @param prev 上一次平方的结果，用于比对是否得到了无限趋近结果的值
+     * @param x     目标结果
+     * @param prev  上一次平方的结果，用于比对是否得到了无限趋近结果的值
      * @return 平凡根的结果
      */
-    private static int recursion(int left, int right, int x, int prev) {
+    private static int recursion(int left, int right, int x, long prev) {
         // 找到中间值(此逻辑计算平均值可避免溢出问题)
         int middle = left + (right - left) / 2;
-        // 计算平方值
-        int multuplicationResult = middle * middle;
+        // 计算平方值：越界处理
+        long multuplicationResult = (long) middle * middle;
         // 递归终止条件：如果当前的平方值等于上一次，则找到了无限趋近结果的值
         if (multuplicationResult == prev) {
             return left;
