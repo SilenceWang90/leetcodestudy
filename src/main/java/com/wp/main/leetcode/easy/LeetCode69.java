@@ -24,7 +24,7 @@ package com.wp.main.leetcode.easy;
 public class LeetCode69 {
     public static void main(String[] args) {
         System.out.println(individualExecution(4));
-//        System.out.println(individualExecution(8));
+        System.out.println(individualExecution(8));
     }
 
     /**
@@ -37,18 +37,35 @@ public class LeetCode69 {
      */
     private static int individualExecution(int x) {
         // 递归，初始区间为[0,x]
-        return recursion(0, x, x);
+        return recursion(0, x, x, -1);
     }
 
-    private static int recursion(int left, int right, int x) {
+    /**
+     * 递归逻辑
+     * @param left 左边界
+     * @param right 右边界
+     * @param x 目标结果
+     * @param prev 上一次平方的结果，用于比对是否得到了无限趋近结果的值
+     * @return 平凡根的结果
+     */
+    private static int recursion(int left, int right, int x, int prev) {
         // 找到中间值(此逻辑计算平均值可避免溢出问题)
         int middle = left + (right - left) / 2;
-        if (middle * middle > x) {
-            return recursion(left, middle, x);
-        } else if (middle * middle < x) {
-            return recursion(middle, right, x);
+        // 计算平方值
+        int multuplicationResult = middle * middle;
+        // 递归终止条件：如果当前的平方值等于上一次，则找到了无限趋近结果的值
+        if (multuplicationResult == prev) {
+            return left;
+        }
+        // 二分法逻辑
+        if (multuplicationResult > x) {
+            // 如果平方比目标值x大，那么就在左侧区间寻找结果
+            return recursion(left, middle, x, multuplicationResult);
+        } else if (multuplicationResult < x) {
+            // 如果平方比目标值x小，那么就在右侧区间寻找结果
+            return recursion(middle, right, x, multuplicationResult);
         } else {
-            // 如果middle*middle=x，则得到结果
+            // 如果middle*middle=x，则得到最终结果
             return middle;
         }
     }
