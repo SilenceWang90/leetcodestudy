@@ -41,9 +41,10 @@ package com.wp.main.leetcode.medium;
 public class LeetCode71 {
     public static void main(String[] args) {
         System.out.println(individualExecution("/home/"));
-//        System.out.println(individualExecution("/../"));
-//        System.out.println(individualExecution("/home//foo/"));
-//        System.out.println(individualExecution("/a/./b/../../c/"));
+        System.out.println(individualExecution("/../"));
+        System.out.println(individualExecution("/home//foo/"));
+//        System.out.println(individualExecution("/a/./b/../../
+//        c/"));
     }
 
     /**
@@ -88,6 +89,11 @@ public class LeetCode71 {
                 stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
                 continue;
             }
+            // 5、出现'///'则视为1个'/'，即如果已拼接的stringBuilder中的最后一位已经是'/'，再出现'/'就忽略
+            if (pathCharArray[i] == '/' && stringBuilder.charAt(stringBuilder.length() - 1) == '/') {
+                continue;
+            }
+
             // 记录有效的路径字符
             stringBuilder.append(pathCharArray[i]);
         }
