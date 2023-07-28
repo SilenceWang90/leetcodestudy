@@ -40,17 +40,17 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode71 {
     public static void main(String[] args) {
-        System.out.println(individualExecution("/home/"));
-        System.out.println(individualExecution("/../"));
-        System.out.println(individualExecution("/home//foo/"));
+//        System.out.println(individualExecution("/home/"));
+//        System.out.println(individualExecution("/../"));
+//        System.out.println(individualExecution("/home//foo/"));
         System.out.println(individualExecution("/a/./b/../../c/"));
     }
 
     /**
      * 个人思路：遍历字符串，记录/和.出现的记录，按照规则简化路径
      * 1、出现'.'和'..'则要进行简化处理：
-     * （1）出现'.'需要连带清除其下一位的'/'，即清除'./'
-     * （2）出现'..'需要连带清除其下一位的'/'，即清除'../'，然后将记录的目录清除最近添加的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
+     * （1）出现'.'需要连带清除其上一位的'/'，即清除'./'
+     * （2）出现'..'需要连带清除其上一位的'/'，即清除'../'，然后将记录的目录清除最近添加的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
      * <p>
      * 2、简化规则：
      * （1）必须以'/'开头
@@ -77,14 +77,15 @@ public class LeetCode71 {
             if (i == pathCharArray.length - 1 && pathCharArray[i] == '/') {
                 continue;
             }
-            // 3、出现'.'需要连带清除其下一位的'/'，即清除'./'
+            // 3、出现'.'需要连带清除其上一位的'/'，即清除'./'
             if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] != '.') {
-                i = i + 1;
                 continue;
             }
-            // 4、出现'..'需要连带清除其下一位的'/'，即清除'../'，然后将记录的目录清除最近添加的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
+            // 4、出现'..'需要连带清除其上一位的'/'和下一位的'.'，即清除'/..'
+            // 然后将记录的目录清除最近添加的目录以及上一层的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
             if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] == '.') {
-                i = i + 2;
+                i = i + 1;
+                stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("/"));
                 stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
                 continue;
             }
