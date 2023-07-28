@@ -67,28 +67,27 @@ public class LeetCode71 {
     private static String individualExecution(String path) {
         char[] pathCharArray = path.toCharArray();
         StringBuilder stringBuilder = new StringBuilder();
-        char slash = '/';
-        char dot = '.';
-        char doubleDot = '.';
         /** path整体逻辑处理*/
         for (int i = 0; i < pathCharArray.length; i++) {
             // 1、首位不是'/'则非绝对路径，返回null
-            if (pathCharArray[0] != slash) {
+            if (pathCharArray[0] != '/') {
                 return null;
             }
             // 2、最后一位是'/'则忽略
-            if (pathCharArray[pathCharArray.length - 1] == slash) {
+            if (pathCharArray[pathCharArray.length - 1] == '/') {
                 continue;
             }
             // 3、出现'.'需要连带清除其下一位的'/'，即清除'./'
-            if (pathCharArray[i] == dot) {
+            if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] != '.') {
                 i = i + 1;
                 continue;
             }
-            if (pathCharArray[i] == doubleDot) {
-
+            // 4、出现'..'需要连带清除其下一位的'/'，即清除'../'，然后将记录的目录清除最近添加的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
+            if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] == '.') {
+                i = i + 2;
+                stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
+                continue;
             }
-
             // 记录有效的路径字符
             stringBuilder.append(pathCharArray[i]);
         }
