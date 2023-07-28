@@ -85,8 +85,10 @@ public class LeetCode71 {
             // 然后将记录的目录清除最近添加的目录以及上一层的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
             if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] == '.') {
                 i = i + 1;
-                stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("/"));
-                stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
+                if(stringBuilder.lastIndexOf("/")!=0){
+                    stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("/"));
+                    stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
+                }
                 continue;
             }
             // 5、出现'///'则视为1个'/'，即如果除首位外，已拼接的stringBuilder中的最后一位已经是'/'，再出现'/'就忽略
