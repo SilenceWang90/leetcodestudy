@@ -40,9 +40,9 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode71 {
     public static void main(String[] args) {
-//        System.out.println(individualExecution("/home/"));
-//        System.out.println(individualExecution("/../"));
-//        System.out.println(individualExecution("/home//foo/"));
+        System.out.println(individualExecution("/home/"));
+        System.out.println(individualExecution("/../"));
+        System.out.println(individualExecution("/home//foo/"));
         System.out.println(individualExecution("/a/./b/../../c/"));
     }
 
