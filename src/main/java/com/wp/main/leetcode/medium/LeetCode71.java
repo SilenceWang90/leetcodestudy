@@ -43,8 +43,7 @@ public class LeetCode71 {
         System.out.println(individualExecution("/home/"));
         System.out.println(individualExecution("/../"));
         System.out.println(individualExecution("/home//foo/"));
-//        System.out.println(individualExecution("/a/./b/../../
-//        c/"));
+        System.out.println(individualExecution("/a/./b/../../c/"));
     }
 
     /**
@@ -93,7 +92,6 @@ public class LeetCode71 {
             if (i > 0 && pathCharArray[i] == '/' && stringBuilder.charAt(stringBuilder.length() - 1) == '/') {
                 continue;
             }
-
             // 记录有效的路径字符
             stringBuilder.append(pathCharArray[i]);
         }
