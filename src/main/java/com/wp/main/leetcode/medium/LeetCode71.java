@@ -41,9 +41,9 @@ package com.wp.main.leetcode.medium;
 public class LeetCode71 {
     public static void main(String[] args) {
         System.out.println(individualExecution("/home/"));
-        System.out.println(individualExecution("/../"));
-        System.out.println(individualExecution("/home//foo/"));
-        System.out.println(individualExecution("/a/./b/../../c/"));
+//        System.out.println(individualExecution("/../"));
+//        System.out.println(individualExecution("/home//foo/"));
+//        System.out.println(individualExecution("/a/./b/../../c/"));
     }
 
     /**
@@ -74,7 +74,7 @@ public class LeetCode71 {
                 return null;
             }
             // 2、最后一位是'/'则忽略
-            if (pathCharArray[pathCharArray.length - 1] == '/') {
+            if (i == pathCharArray.length - 1 && pathCharArray[i] == '/') {
                 continue;
             }
             // 3、出现'.'需要连带清除其下一位的'/'，即清除'./'
