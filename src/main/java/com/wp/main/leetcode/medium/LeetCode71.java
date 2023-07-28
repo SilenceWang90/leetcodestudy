@@ -50,15 +50,15 @@ public class LeetCode71 {
      * 个人思路：遍历字符串，记录/和.出现的记录，按照规则简化路径
      * 1、出现'.'和'..'则要进行简化处理：
      * （1）出现'.'需要连带清除其下一位的'/'，即清除'./'
-     * （2）出现'..'需要连带清除其下一位的'/'，即清除'../'
-     *
+     * （2）出现'..'需要连带清除其下一位的'/'，即清除'../'，然后将记录的目录清除最近添加的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
+     * <p>
      * 2、简化规则：
      * （1）必须以'/'开头
      * （2）目录名之间必须有且只能有1个'/'
      * （3）最后一个目录名(如果存在)不能以'/'结尾
      * （4）路径中的'.'和'..'都要按规则简化掉
      * （5）多个'/'视为一个'/',多个'...'视为文件或目录名称
-     *
+     * <p>
      * 3、记录有效的路径信息至StringBuilder
      *
      * @param path 路径参数
@@ -69,12 +69,28 @@ public class LeetCode71 {
         StringBuilder stringBuilder = new StringBuilder();
         char slash = '/';
         char dot = '.';
+        char doubleDot = '.';
+        /** path整体逻辑处理*/
         for (int i = 0; i < pathCharArray.length; i++) {
-            // 如果开头不是以'/'开始则返回null
-            if (i == 0 && pathCharArray[0] != slash) {
+            // 1、首位不是'/'则非绝对路径，返回null
+            if (pathCharArray[0] != slash) {
                 return null;
             }
+            // 2、最后一位是'/'则忽略
+            if (pathCharArray[pathCharArray.length - 1] == slash) {
+                continue;
+            }
+            // 3、出现'.'需要连带清除其下一位的'/'，即清除'./'
+            if (pathCharArray[i] == dot) {
+                i = i + 1;
+                continue;
+            }
+            if (pathCharArray[i] == doubleDot) {
 
+            }
+
+            // 记录有效的路径字符
+            stringBuilder.append(pathCharArray[i]);
         }
 
         return stringBuilder.toString();
