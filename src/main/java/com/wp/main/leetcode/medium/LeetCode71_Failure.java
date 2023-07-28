@@ -1,5 +1,8 @@
 package com.wp.main.leetcode.medium;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * @Description 简化路径
  * 给你一个字符串 path，表示指向某一文件或目录的Unix风格绝对路径（以 '/' 开头），请你将其转化为更加简洁的规范路径。
@@ -38,13 +41,45 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/7/18 9:23
  */
-public class LeetCode71 {
+public class LeetCode71_Failure {
     public static void main(String[] args) {
-        System.out.println(individualExecution("/home/"));
-        System.out.println(individualExecution("/../"));
-        System.out.println(individualExecution("/home//foo/"));
-        System.out.println(individualExecution("/a/./b/../../c/"));
+        System.out.println(standardExecution("/home/"));
+        System.out.println(standardExecution("/../"));
+        System.out.println(standardExecution("/home//foo/"));
+        System.out.println(standardExecution("/a/./b/../../c/"));
     }
+
+    /**
+     * 官方解法：因为每个"/"后都是目录，因此以"/"为分隔符获取所有目录，不仅可以排除多个"/"，还可以直接获得"."或".."等目录结构进行处理
+     * 利用双端队列结构装入目录，如果遇到"."则不作处理，如果遇到".."则弹出栈中的目录即可获得上一级目录
+     *
+     * @param path
+     * @return
+     */
+    public static String standardExecution(String path) {
+        String[] names = path.split("/");
+        Deque<String> stack = new ArrayDeque<String>();
+        for (String name : names) {
+            if ("..".equals(name)) {
+                if (!stack.isEmpty()) {
+                    stack.pollLast();
+                }
+            } else if (name.length() > 0 && !".".equals(name)) {
+                stack.offerLast(name);
+            }
+        }
+        StringBuffer ans = new StringBuffer();
+        if (stack.isEmpty()) {
+            ans.append('/');
+        } else {
+            while (!stack.isEmpty()) {
+                ans.append('/');
+                ans.append(stack.pollFirst());
+            }
+        }
+        return ans.toString();
+    }
+
 
     /**
      * 个人思路：遍历字符串，记录/和.出现的记录，按照规则简化路径
@@ -85,7 +120,7 @@ public class LeetCode71 {
             // 然后将记录的目录清除最近添加的目录以及上一层的目录，判断如果只剩下'/'则已到达根目录，不要清除'/'
             if (pathCharArray[i] == '.' && i < pathCharArray.length - 2 && pathCharArray[i + 1] == '.') {
                 i = i + 1;
-                if(stringBuilder.lastIndexOf("/")!=0){
+                if (stringBuilder.lastIndexOf("/") != 0) {
                     stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("/"));
                     stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
                 }
