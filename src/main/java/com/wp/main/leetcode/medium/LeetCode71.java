@@ -89,8 +89,8 @@ public class LeetCode71 {
                 stringBuilder.delete(stringBuilder.lastIndexOf("/") + 1, stringBuilder.length());
                 continue;
             }
-            // 5、出现'///'则视为1个'/'，即如果已拼接的stringBuilder中的最后一位已经是'/'，再出现'/'就忽略
-            if (pathCharArray[i] == '/' && stringBuilder.charAt(stringBuilder.length() - 1) == '/') {
+            // 5、出现'///'则视为1个'/'，即如果除首位外，已拼接的stringBuilder中的最后一位已经是'/'，再出现'/'就忽略
+            if (i > 0 && pathCharArray[i] == '/' && stringBuilder.charAt(stringBuilder.length() - 1) == '/') {
                 continue;
             }
 
