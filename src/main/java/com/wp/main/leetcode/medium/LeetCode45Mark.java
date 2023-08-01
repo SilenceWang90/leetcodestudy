@@ -10,12 +10,17 @@ package com.wp.main.leetcode.medium;
  * @Author admin
  * @Date 2023/4/22 12:16
  */
-public class LeetCode45 {
+public class LeetCode45Mark {
     public static void main(String[] args) {
         int[] nums = {2,3,0,1,4};
         System.out.println(individualExecute(nums));
     }
 
+    /**
+     * 官方解法：贪心算法
+     * @param nums
+     * @return
+     */
     private static int standardExecute(int[] nums){
         int length = nums.length;
         // end维护的是当前这一跳能达到的最右位置，若要超过该位置必须要进行一次跳跃，因此需将跳跃次数加1，并更新这次跳跃能到达的最右位置
