@@ -18,9 +18,18 @@ public class LeetCode45 {
 
     private static int standardExecute(int[] nums){
         int length = nums.length;
+        // end维护的是当前这一跳能达到的最右位置，若要超过该位置必须要进行一次跳跃，因此需将跳跃次数加1，并更新这次跳跃能到达的最右位置
         int end = 0;
+        // 目前能跳到的最远位置
         int maxPosition = 0;
         int steps = 0;
+        /**
+         * 1、拿到每个位置能跳到的最远距离(i + nums[i])，和已知能跳跃的最远距离maxPosition，二者取最大值更新当前能到达的最远距离
+         * 2、如果遍历i到达了上一次能跳跃最远距离的边界，那么接下来：
+         *  2.1、记录跳跃次数，steps+1。因为如果上一次跳跃已到达最远距离，那么再往后肯定就得再次跳跃才可以到达，所以step+1
+         *  2.2、更新当前能到达的最远距离maxPosition。因为到达边界前已经遍历了边界之内的所有节点，得到了这些节点所能到达最远的距离。
+         *  因此到达上一次边界后，将最新的最远的距离作为下一次跳跃的边界，
+         */
         for (int i = 0; i < length - 1; i++) {
             maxPosition = Math.max(maxPosition, i + nums[i]);
             if (i == end) {
