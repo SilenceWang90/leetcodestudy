@@ -36,6 +36,55 @@ public class Leetcode73 {
     }
 
     /**
+     * 官方解法：用二维矩阵的第一行[0][j]和第一列[i][0]记录对应行和列是否存在0，这样可以不用额外空间
+     *
+     * @param matrix
+     */
+    private static void standardExecution(int[][] matrix) {
+        int m = matrix.length, n = matrix[0].length;
+        /** 1、遍历首行和首列，用于记录首行和首列哪些位置存在0。因为要用首行的所有元素和首列的所有元素记录其对应的行和列是否存在0，那么首行和首列
+         * 的元素会被覆盖，对首行和首列处理的时候就无法确认是否存在0，因此先预处理首行和首列，记录存在0的位置 **/
+        boolean flagCol0 = false, flagRow0 = false;
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                flagCol0 = true;
+            }
+        }
+        for (int j = 0; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                flagRow0 = true;
+            }
+        }
+        /** 2、遍历除首行和首列外的元素[i][j]，如果存在0，则记录到首行对应列的位置即[0][y]以及首列对应的位置[x][0] **/
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = matrix[0][j] = 0;
+                }
+            }
+        }
+        /** 3、遍历除首行和首列外的元素，如果首行或首列对应位置即[0][y]或[x][0]存在0，那么此位置就要赋值为0，否则不需要处理 **/
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        /** 4、首行首列如果存在0，则直接将首行和首列置为0 **/
+        if (flagCol0) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+        if (flagRow0) {
+            for (int j = 0; j < n; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+    }
+
+    /**
      * 个人思路：
      * 1、遍历矩阵，如果遇到0则记录0所在的行和列
      * 2、用2个set，一个记录行rowSet，一个记录列columnSet。使用set也是方便去重，一行或一列出现多个0只需记录一次即可。
