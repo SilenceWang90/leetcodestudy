@@ -1,5 +1,9 @@
 package com.wp.main.leetcode.medium;
 
+import com.google.common.collect.Sets;
+
+import java.util.Set;
+
 /**
  * @Description 矩阵置零
  * 给定一个m x n的矩阵，如果一个元素为0，则将其所在行和列的所有元素都设为0。请使用原地算法。
@@ -31,15 +35,37 @@ public class Leetcode73 {
         individualExecution(matrix);
     }
 
+    /**
+     * 个人思路：
+     * 1、遍历矩阵，如果遇到0则记录0所在的行和列
+     * 2、用2个set，一个记录行rowSet，一个记录列columnSet。使用set也是方便去重，一行或一列出现多个0只需记录一次即可。
+     * 3、遍历矩阵，给标记的行和列赋值为0。判断行和列是否存在于rowSet或columnSet，存在的话直接赋值为0。
+     *
+     * @param matrix
+     */
     private static void individualExecution(int[][] matrix) {
+        // 1、创建set用于记录出现0的行和列
+        Set<Integer> rowSet = Sets.newHashSet();
+        Set<Integer> columnSet = Sets.newHashSet();
+        // 2、遍历矩阵，记录出现0的行和列
         for (int x = 0; x < matrix.length; x++) {
             int[] row = matrix[x];
             for (int y = 0; y < row.length; y++) {
-
+                if (matrix[x][y] == 0) {
+                    rowSet.add(x);
+                    columnSet.add(y);
+                }
             }
-
         }
+        // 3、遍历矩阵，给出现0的行和列赋值为0
+        for (int x = 0; x < matrix.length; x++) {
+            int[] row = matrix[x];
+            for (int y = 0; y < row.length; y++) {
+                if (rowSet.contains(x) || columnSet.contains(y)) {
+                    matrix[x][y] = 0;
+                }
+            }
+        }
+
     }
-
-
 }
