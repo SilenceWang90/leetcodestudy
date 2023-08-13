@@ -54,12 +54,12 @@ public class LeetCode74 {
         int column = matrix[0].length;
         // 1、行二分
         int top = 0, bottom = row - 1;
-        int rowNum = rowRecursion(top, bottom, matrix, target);
+        int rowNum = scanRow(top, bottom, matrix, target);
         // 2、列二分
         int[] rowTarget = matrix[rowNum];
         int left = 0;
         int right = rowTarget.length - 1;
-        exist = columnRecursion(left, right, rowTarget, target);
+        exist = scanColumn(left, right, rowTarget, target);
         return exist;
     }
 
@@ -72,9 +72,9 @@ public class LeetCode74 {
      * @param target 要查找的目标值
      * @return 返回数据所在行
      */
-    private static int rowRecursion(int top, int bottom, int[][] matrix, int target) {
-        int middle = top + (bottom - top) / 2;
+    private static int scanRow(int top, int bottom, int[][] matrix, int target) {
         while (top < bottom) {
+            int middle = top + (bottom - top) / 2;
             if (matrix[middle][0] == target) {
                 return middle;
             } else if (matrix[middle][0] < target) {
@@ -96,9 +96,9 @@ public class LeetCode74 {
      * @param target 目标值
      * @return
      */
-    private static boolean columnRecursion(int left, int right, int[] array, int target) {
-        int middle = left + (right - left) / 2;
+    private static boolean scanColumn(int left, int right, int[] array, int target) {
         while (left <= right) {
+            int middle = left + (right - left) / 2;
             // 找到该值，直接返回true
             if (array[middle] == target) {
                 return true;
