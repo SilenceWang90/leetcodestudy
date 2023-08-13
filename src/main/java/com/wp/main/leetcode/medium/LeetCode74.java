@@ -36,9 +36,79 @@ public class LeetCode74 {
     }
 
 
+    /**
+     * 个人思路：二分法，需要2次二分查找：
+     * 1、先通过行二分法判断target在哪一行
+     * 2、然后在该行通过二分法找到具体在哪个区间。
+     * 如果存在则返回true，否则返回false
+     *
+     * @param matrix 二维矩阵
+     * @param target 要查找的目标值
+     * @return 是否存在
+     */
     private static boolean individualExecution(int[][] matrix, int target) {
         boolean exist = false;
-
+        // 二维矩阵存在多少行
+        int row = matrix.length;
+        // 二维矩阵存在多少列
+        int column = matrix[0].length;
+        // 1、行二分
+        int top = 0, bottom = row - 1;
+        int rowNum = rowRecursion(top, bottom, matrix, target);
+        // 2、列二分
+        int[] rowTarget = matrix[rowNum];
+        int left = 0;
+        int right = rowTarget.length - 1;
+        exist = columnRecursion(left, right, rowTarget, target);
         return exist;
+    }
+
+    /**
+     * 行遍历
+     *
+     * @param top    首指针
+     * @param bottom 尾指针
+     * @param matrix 给定二维矩阵
+     * @param target 要查找的目标值
+     * @return 返回数据所在行
+     */
+    private static int rowRecursion(int top, int bottom, int[][] matrix, int target) {
+        int middle = top + (bottom - top) / 2;
+        while (top < bottom) {
+            if (matrix[middle][0] == target) {
+                return middle;
+            } else if (matrix[middle][0] < target) {
+                top = middle + 1;
+            } else {
+                bottom = middle - 1;
+            }
+        }
+        // 此处返回top或者bottom都可以，因为找到数据所在行时，top会和bottom相等~
+        return top;
+    }
+
+    /**
+     * 列遍历
+     *
+     * @param left   左指针
+     * @param right  右指针
+     * @param array  要遍历的数组
+     * @param target 目标值
+     * @return
+     */
+    private static boolean columnRecursion(int left, int right, int[] array, int target) {
+        int middle = left + (right - left) / 2;
+        while (left <= right) {
+            // 找到该值，直接返回true
+            if (array[middle] == target) {
+                return true;
+            } else if (array[middle] < target) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        // 遍历完成，仍未找到target，返回false
+        return false;
     }
 }
