@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
  * @Author admin
  * @Date 2023/8/13 9:04
  */
-@Slf4j
 public class LeetCode74 {
     public static void main(String[] args) {
         int[][] matrix = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
