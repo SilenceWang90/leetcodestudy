@@ -78,7 +78,15 @@ public class LeetCode74 {
             if (matrix[middle][0] == target) {
                 return middle;
             } else if (matrix[middle][0] < target) {
-                top = middle + 1;
+                // target大于某行首个元素，可能代表2个情况：
+                // （1）target就在该行
+                // （2）target不在该行，在后面的几行
+                // 因此要通过如下再判断一下target是否小于下一行的首个元素，是的话意味着target就在当前行就直接返回该行即可；否则继续向下半部区间查找即可
+                if (target < matrix[middle + 1][0]) {
+                    return middle;
+                } else {
+                    top = middle + 1;
+                }
             } else {
                 bottom = middle - 1;
             }
