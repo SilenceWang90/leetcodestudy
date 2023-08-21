@@ -36,11 +36,23 @@ public class LeetCode75 {
      * @param nums 给定数组
      */
     private static void individualExecution(int[] nums) {
-        // x是最后一个0元素的索引位置，y是第一个1元素的索引位置
-        // x从0开始，y从数组的最后一个位置开始
-        int x = 0, y = nums.length - 1;
-        for (int i = 0; i < nums.length; i++) {
+        // x是最后一个0元素的索引位置，y是第一个1元素的索引位置，i是当前遍历到的元素
+        // x和i从0开始，y从数组的最后一个位置开始
+        int x = 0, y = nums.length - 1, i = 0;
+        while (i < y) {
+            if (nums[i] > 1) {
+                /**1、当前元素比1大**/
 
+
+            } else if (nums[i] < 1) {
+                /**2、当前元素比1小**/
+                // 元素不用动，x指针右移一位
+                x++;
+            } else {
+                /**3、当前元素等于1**/
+                // 不用做任何处理，当前遍历元素右移一位即可
+            }
+            i++;
         }
     }
 }
