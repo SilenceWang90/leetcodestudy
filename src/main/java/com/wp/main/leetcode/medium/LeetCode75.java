@@ -27,7 +27,14 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode75 {
     public static void main(String[] args) {
+//        int[] nums = {2,0,2,1,1,0};
+        int[] nums = {2, 0, 1};
+        individualExecution(nums);
 
+        // 展示排序后的数组
+        for (int obj : nums) {
+            System.out.println(obj + " ");
+        }
     }
 
     /**
@@ -36,23 +43,35 @@ public class LeetCode75 {
      * @param nums 给定数组
      */
     private static void individualExecution(int[] nums) {
-        // x是最后一个0元素的索引位置，y是第一个1元素的索引位置，i是当前遍历到的元素
+        // x是最后一个0元素右侧的索引位置（即第一个1元素），y是第一个2元素左侧的索引位置（即最后一个1元素），i是当前遍历到的元素
         // x和i从0开始，y从数组的最后一个位置开始
         int x = 0, y = nums.length - 1, i = 0;
         while (i < y) {
             if (nums[i] > 1) {
                 /**1、当前元素比1大**/
-
-
+                // 1.1、i和当前y索引的元素互换位置
+                int temp = nums[y];
+                nums[y] = nums[i];
+                nums[i] = temp;
+                // 1.2、y指针左移
+                y--;
+                // 1.3、切记此时i指针不能动，因为移过来一个新的元素，下一次依旧从该元素进行判断
+                // no i++;
             } else if (nums[i] < 1) {
                 /**2、当前元素比1小**/
-                // 元素不用动，x指针右移一位
+                // 2.1、i和当前x索引的元素互换位置
+                int temp = nums[i];
+                nums[i] = nums[x];
+                nums[x] = temp;
+                // 2.2、x指针右移一位
                 x++;
+                // 2.3、遍历元素右移
+                i++;
             } else {
                 /**3、当前元素等于1**/
                 // 不用做任何处理，当前遍历元素右移一位即可
+                i++;
             }
-            i++;
         }
     }
 }
