@@ -27,8 +27,8 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode75 {
     public static void main(String[] args) {
-//        int[] nums = {2,0,2,1,1,0};
-        int[] nums = {2, 0, 1};
+        int[] nums = {2,0,2,1,1,0};
+//        int[] nums = {2, 0, 1};
         individualExecution(nums);
 
         // 展示排序后的数组
@@ -46,7 +46,7 @@ public class LeetCode75 {
         // x是最后一个0元素右侧的索引位置（即第一个1元素），y是第一个2元素左侧的索引位置（即最后一个1元素），i是当前遍历到的元素
         // x和i从0开始，y从数组的最后一个位置开始
         int x = 0, y = nums.length - 1, i = 0;
-        while (i < y) {
+        while (i <= y) {
             if (nums[i] > 1) {
                 /**1、当前元素比1大**/
                 // 1.1、i和当前y索引的元素互换位置
