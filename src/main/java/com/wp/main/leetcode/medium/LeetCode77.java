@@ -37,9 +37,9 @@ public class LeetCode77 {
     public static void main(String[] args) {
         int n = 4, k = 2;
         System.out.println(individualExecution(n, k));
-//        n = 1;
-//        k = 1;
-//        System.out.println(individualExecution(n, k));
+        n = 1;
+        k = 1;
+        System.out.println(individualExecution(n, k));
     }
 
     /**
@@ -73,8 +73,8 @@ public class LeetCode77 {
             return;
         }
         /**2、递归执行逻辑**/
-        // 2.1、按顺序循环选择，当选择的元素起始位置超过组合目标数量k时，不需要继续遍历了，因为不符合数量要求，所以i <= n - k + 1
-        for (int i = start; i <= n - k + 1; i++) {
+        // 2.1、按顺序循环选择
+        for (int i = start; i <= n; i++) {
             // 2.2、当前元素进入已选栈中
             stackCurrentCombination.push(i);
             // 2.3、下一层遍历选择的起始位置从下一位开始
