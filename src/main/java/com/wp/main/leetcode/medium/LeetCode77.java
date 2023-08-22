@@ -80,6 +80,7 @@ public class LeetCode77 {
             currentCombination.add(i);
             // 2.3、下一层遍历选择的起始位置从下一位开始
             start++;
+            // 2.4、递归选择元素
             recursion(stack, n, k, result, currentCombination, start);
             /**3、递归结束逻辑**/
             // 清除最后一个选入的元素
