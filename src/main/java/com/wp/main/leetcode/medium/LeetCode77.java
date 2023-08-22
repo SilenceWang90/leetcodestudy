@@ -52,7 +52,7 @@ public class LeetCode77 {
         Deque<Integer> stack = Lists.newLinkedList();
         List<List<Integer>> result = Lists.newArrayList();
         List<Integer> currentCombination = Lists.newArrayList();
-        recursion(stack, n, k, result, currentCombination);
+        recursion(stack, n, k, result, currentCombination, 1);
         return result;
     }
 
@@ -64,8 +64,9 @@ public class LeetCode77 {
      * @param k                  k个数字的组合
      * @param result             结果集
      * @param currentCombination 当前已筛选的集合
+     * @param start              元素选择的起始位置，每层的选择是从上一层的下一个位置进行筛选
      */
-    private static void recursion(Deque<Integer> stack, int n, int k, List<List<Integer>> result, List<Integer> currentCombination) {
+    private static void recursion(Deque<Integer> stack, int n, int k, List<List<Integer>> result, List<Integer> currentCombination, int start) {
         /**1、递归终止条件**/
         // 已经选中k个元素，则终止递归，将组合放入结果集中
         if (currentCombination.size() == k) {
@@ -74,11 +75,15 @@ public class LeetCode77 {
         }
         /**2、递归执行逻辑**/
         // 2.1、按顺序循环选择，当选择的元素起始位置超过组合目标数量k时，不需要继续遍历了，因为不符合数量要求，所以i <= n - k + 1
-        for (int i = 1; i <= n - k + 1; i++) {
-
+        for (int i = start; i <= n - k + 1; i++) {
+            // 2.2、当前元素进入已选栈中
+            currentCombination.add(i);
+            // 2.3、下一层遍历选择的起始位置从下一位开始
+            start++;
+            recursion(stack, n, k, result, currentCombination, start);
+            /**3、递归结束逻辑**/
+            // 清除最后一个选入的元素
+            stack.pop();
         }
-        /**3、递归结束逻辑**/
-        // 清除最后一个选入的元素
-        stack.pop();
     }
 }
