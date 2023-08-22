@@ -72,6 +72,10 @@ public class LeetCode77 {
             result.add(new ArrayList<>(stackCurrentCombination));
             return;
         }
+        // 优化：还有一种情况递归可终止。当前已选的数字数量+剩余可选数字数量如果比目标k值小，则递归可终止，因为接下来选一定不达标
+        if ((stackCurrentCombination.size() + (n - start + 1)) < k) {
+            return;
+        }
         /**2、递归执行逻辑**/
         // 2.1、按顺序循环选择
         for (int i = start; i <= n; i++) {
