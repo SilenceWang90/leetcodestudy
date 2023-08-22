@@ -2,6 +2,7 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -36,9 +37,9 @@ public class LeetCode77 {
     public static void main(String[] args) {
         int n = 4, k = 2;
         System.out.println(individualExecution(n, k));
-        n = 1;
-        k = 1;
-        System.out.println(individualExecution(n, k));
+//        n = 1;
+//        k = 1;
+//        System.out.println(individualExecution(n, k));
     }
 
     /**
@@ -51,40 +52,38 @@ public class LeetCode77 {
     private static List<List<Integer>> individualExecution(int n, int k) {
         Deque<Integer> stack = Lists.newLinkedList();
         List<List<Integer>> result = Lists.newArrayList();
-        List<Integer> currentCombination = Lists.newArrayList();
-        recursion(stack, n, k, result, currentCombination, 1);
+        recursion(stack, n, k, result, 1);
         return result;
     }
 
     /**
      * 递归逻辑：选择数字
      *
-     * @param stack              栈，存储已经筛选的数字
-     * @param n                  n个数字
-     * @param k                  k个数字的组合
-     * @param result             结果集
-     * @param currentCombination 当前已筛选的集合
-     * @param start              元素选择的起始位置，每层的选择是从上一层的下一个位置进行筛选
+     * @param stackCurrentCombination 栈，存储已经筛选的数字
+     * @param n                       n个数字
+     * @param k                       k个数字的组合
+     * @param result                  结果集
+     * @param start                   元素选择的起始位置，每层的选择是从上一层的下一个位置进行筛选
      */
-    private static void recursion(Deque<Integer> stack, int n, int k, List<List<Integer>> result, List<Integer> currentCombination, int start) {
+    private static void recursion(Deque<Integer> stackCurrentCombination, int n, int k, List<List<Integer>> result, int start) {
         /**1、递归终止条件**/
         // 已经选中k个元素，则终止递归，将组合放入结果集中
-        if (currentCombination.size() == k) {
-            result.add(currentCombination);
+        if (stackCurrentCombination.size() == k) {
+            result.add(new ArrayList<>(stackCurrentCombination));
             return;
         }
         /**2、递归执行逻辑**/
         // 2.1、按顺序循环选择，当选择的元素起始位置超过组合目标数量k时，不需要继续遍历了，因为不符合数量要求，所以i <= n - k + 1
         for (int i = start; i <= n - k + 1; i++) {
             // 2.2、当前元素进入已选栈中
-            currentCombination.add(i);
+            stackCurrentCombination.push(i);
             // 2.3、下一层遍历选择的起始位置从下一位开始
             start++;
             // 2.4、递归选择元素
-            recursion(stack, n, k, result, currentCombination, start);
+            recursion(stackCurrentCombination, n, k, result, start);
             /**3、递归结束逻辑**/
             // 清除最后一个选入的元素
-            stack.pop();
+            stackCurrentCombination.pop();
         }
     }
 }
