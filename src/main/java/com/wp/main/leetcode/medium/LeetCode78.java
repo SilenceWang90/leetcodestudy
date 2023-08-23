@@ -73,7 +73,7 @@ public class LeetCode78 {
         // 2.1、n为统计每次要选组合的数字数量，每次递归结束则组合中数字数量也会增加
         for (int i = start; i < nums.length; i++) {
             // 向当前集合加入选择的元素
-            currentCombination.add(i);
+            currentCombination.add(nums[i]);
             // 下一层递归起始位置+1，因为要求不能重复
             start++;
             // 递归选择
