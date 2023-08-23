@@ -2,7 +2,6 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,9 +40,16 @@ public class LeetCode78 {
         List<List<Integer>> result = Lists.newArrayList();
         // 当前已选的组合
         List<Integer> currentCombination = Lists.newArrayList();
-        recursion(nums, result, currentCombination, 1, 0);
-        // 空集合也算
-        result.add(new ArrayList<>());
+        // 组合中数字的数量
+        int n = 0;
+        // 起始位置
+        int start = 0;
+        while (n <= nums.length) {
+            recursion(nums, result, currentCombination, n, start);
+            // 针对新一轮的选择，组合数量+1，start起始位置归0
+            n++;
+            start = 0;
+        }
         return result;
     }
 
@@ -63,24 +69,18 @@ public class LeetCode78 {
             result.add(temp);
             return;
         }
-
         /**2、递归处理逻辑**/
         // 2.1、n为统计每次要选组合的数字数量，每次递归结束则组合中数字数量也会增加
-        while (n <= nums.length) {
-            for (int i = start; i < nums.length; i++) {
-                // 向当前集合加入选择的元素
-                currentCombination.add(i);
-                // 下一层递归起始位置+1，因为要求不能重复
-                start++;
-                // 递归选择
-                recursion(nums, result, currentCombination, n, start);
-                /**3、递归结束操作*/
-                // 将最后添加的元素清除
-                currentCombination.remove(currentCombination.size() - 1);
-            }
-            // 针对新一轮的选择，组合数量+1，start起始位置归0
-            n++;
-            start = 0;
+        for (int i = start; i < nums.length; i++) {
+            // 向当前集合加入选择的元素
+            currentCombination.add(i);
+            // 下一层递归起始位置+1，因为要求不能重复
+            start++;
+            // 递归选择
+            recursion(nums, result, currentCombination, n, start);
+            /**3、递归结束操作*/
+            // 将最后添加的元素清除
+            currentCombination.remove(currentCombination.size() - 1);
         }
     }
 }
