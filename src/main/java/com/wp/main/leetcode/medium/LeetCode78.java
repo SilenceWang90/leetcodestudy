@@ -27,7 +27,8 @@ import java.util.List;
  */
 public class LeetCode78 {
     public static void main(String[] args) {
-
+        int[] nums = {1, 2, 3};
+        System.out.println(individualExecution(nums));
     }
 
     /**
