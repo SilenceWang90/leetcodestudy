@@ -20,13 +20,15 @@ public class LeetCode79 {
      * @return 是否存在单词
      */
     private static boolean individualExecution(char[][] board, String word) {
-
-
+        // 当前选择的字符
+        int n = 0;
         for (int i = 0; i < board.length; i++) {
             char[] row = board[i];
-
             for (int j = 0; j < row.length; j++) {
-
+                if (board[i][j] == word.charAt(n)) {
+                    //
+                    n++;
+                }
             }
         }
 
