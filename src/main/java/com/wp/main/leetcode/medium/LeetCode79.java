@@ -65,7 +65,7 @@ public class LeetCode79 {
             }
         }
         // 下面字符是否是下一个字符
-        if (i + 1 <= rowNum && board[i + 1][j] != '\0' && board[i + 1][j] == word.charAt(n)) {
+        if (i + 1 < rowNum && board[i + 1][j] != '\0' && board[i + 1][j] == word.charAt(n)) {
             if (!recursion(board, word, n++, i + 1, j, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
@@ -83,7 +83,7 @@ public class LeetCode79 {
             }
         }
         // 右面字符是否是下一个字符
-        if (j + 1 <= columnNum && board[i][j + 1] != '\0' && board[i][j + 1] == word.charAt(n)) {
+        if (j + 1 < columnNum && board[i][j + 1] != '\0' && board[i][j + 1] == word.charAt(n)) {
             if (!recursion(board, word, n++, i, j + 1, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
