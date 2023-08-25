@@ -33,7 +33,7 @@ public class LeetCode79 {
             for (int j = 0; j < row.length; j++) {
                 if (board[i][j] == word.charAt(0)) {
                     // 进行字符的选择
-                    result = recursion(board, word, n++, i, j, rowNum, columnNum);
+                    result = recursion(board, word, ++n, i, j, rowNum, columnNum);
                     if (result) {
                         return true;
                     }
@@ -57,7 +57,7 @@ public class LeetCode79 {
         // 3、递归逻辑
         // 上面字符是否是下一个字符
         if (i - 1 >= 0 && board[i - 1][j] != '\0' && board[i - 1][j] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i - 1, j, rowNum, columnNum)) {
+            if (!recursion(board, word, ++n, i - 1, j, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
@@ -66,7 +66,7 @@ public class LeetCode79 {
         }
         // 下面字符是否是下一个字符
         if (i + 1 < rowNum && board[i + 1][j] != '\0' && board[i + 1][j] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i + 1, j, rowNum, columnNum)) {
+            if (!recursion(board, word, ++n, i + 1, j, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
@@ -75,7 +75,7 @@ public class LeetCode79 {
         }
         // 左面字符是否是下一个字符
         if (j - 1 >= 0 && board[i][j - 1] != '\0' && board[i][j - 1] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i, j - 1, rowNum, columnNum)) {
+            if (!recursion(board, word, ++n, i, j - 1, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
@@ -84,7 +84,7 @@ public class LeetCode79 {
         }
         // 右面字符是否是下一个字符
         if (j + 1 < columnNum && board[i][j + 1] != '\0' && board[i][j + 1] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i, j + 1, rowNum, columnNum)) {
+            if (!recursion(board, word, ++n, i, j + 1, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
