@@ -14,11 +14,23 @@ public class LeetCode79 {
 
     /**
      * 个人思路：
+     *
      * @param board 存储字母的二维数组
-     * @param word 目标单词
+     * @param word  目标单词
      * @return 是否存在单词
      */
-    private static boolean individualExecution(char[][] board, String word){
+    private static boolean individualExecution(char[][] board, String word) {
+
+
+        for (int i = 0; i < board.length; i++) {
+            char[] row = board[i];
+
+            for (int j = 0; j < row.length; j++) {
+
+            }
+        }
+
+
         return true;
     }
 }
