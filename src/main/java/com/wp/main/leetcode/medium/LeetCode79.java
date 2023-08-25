@@ -25,20 +25,23 @@ public class LeetCode79 {
         boolean result;
         // 当前选择的字符
         int n = 0;
+        int rowNum = board.length, columnNum = board[0].length;
         for (int i = 0; i < board.length; i++) {
             char[] row = board[i];
             for (int j = 0; j < row.length; j++) {
-                // 进行字符的选择
-                result = recursion(board, word, n, i, j);
-                if (result) {
-                    return true;
+                if (board[i][j] == word.charAt(0)) {
+                    // 进行字符的选择
+                    result = recursion(board, word, n++, i, j, rowNum, columnNum);
+                    if (result) {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
 
-    private static boolean recursion(char[][] board, String word, int n, int i, int j) {
+    private static boolean recursion(char[][] board, String word, int n, int i, int j, int rowNum, int columnNum) {
         // 1、递归终止条件：遍历正常结束前找到连续字符串
         if (n > word.length() - 1) {
             return true;
@@ -50,36 +53,36 @@ public class LeetCode79 {
         board[i][j] = '\0';
 
         // 3、递归逻辑
-        // 上面字符是否是下一个字符,todo:越界处理
-        if (board[i - 1][j] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i - 1, j)) {
+        // 上面字符是否是下一个字符
+        if (i - 1 >= 0 && board[i - 1][j] != '\0' && board[i - 1][j] == word.charAt(n)) {
+            if (!recursion(board, word, n++, i - 1, j, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
                 return true;
             }
         }
-        // 下面字符是否是下一个字符,todo:越界处理
-        if (board[i + 1][j] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i + 1, j)) {
+        // 下面字符是否是下一个字符
+        if (i + 1 <= rowNum && board[i + 1][j] != '\0' && board[i + 1][j] == word.charAt(n)) {
+            if (!recursion(board, word, n++, i + 1, j, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
                 return true;
             }
         }
-        // 左面字符是否是下一个字符,todo:越界处理
-        if (board[i][j - 1] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i, j - 1)) {
+        // 左面字符是否是下一个字符
+        if (j - 1 >= 0 && board[i][j - 1] != '\0' && board[i][j - 1] == word.charAt(n)) {
+            if (!recursion(board, word, n++, i, j - 1, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
                 return true;
             }
         }
-        // 右面字符是否是下一个字符,todo:越界处理
-        if (board[i][j + 1] == word.charAt(n)) {
-            if (!recursion(board, word, n++, i, j + 1)) {
+        // 右面字符是否是下一个字符
+        if (j + 1 <= columnNum && board[i][j + 1] != '\0' && board[i][j + 1] == word.charAt(n)) {
+            if (!recursion(board, word, n++, i, j + 1, rowNum, columnNum)) {
                 // 不符合word，还原
                 board[i][j] = temp;
             } else {
