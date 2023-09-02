@@ -37,7 +37,12 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode80 {
     public static void main(String[] args) {
-
+        int[] nums = {1, 1, 1, 2, 2, 3};
+//        int[] nums = {0,0,1,1,1,1,2,3,3};
+        System.out.println(individualExecution(nums));
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
     }
 
     /**
@@ -78,6 +83,7 @@ public class LeetCode80 {
                         int temp = nums[current];
                         nums[current] = nums[blank];
                         nums[blank] = temp;
+                        blank++;
                     }
 
                 }
@@ -86,11 +92,14 @@ public class LeetCode80 {
                 num = 1;
                 // 统计有效元素个数
                 length++;
+                // 更新preElement
+                preElement = nums[current];
                 // 如果存在空位则交换元素至空白位
                 if (blank > 0) {
                     int temp = nums[current];
                     nums[current] = nums[blank];
                     nums[blank] = temp;
+                    blank++;
                 }
             }
         }
