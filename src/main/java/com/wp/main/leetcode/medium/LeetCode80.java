@@ -58,11 +58,42 @@ public class LeetCode80 {
         // 当前元素的个数
         int num = 0;
         // 当前已遍历的元素
-        int preElement = 0;
-        // 有效元素的个数
+        int preElement = -1;
+        // 有效元素的个数（真实数组长度）
         int length = 0;
         for (int current = 0; current < nums.length; current++) {
+            if (nums[current] == preElement) {
+                /** 当前元素与preElement相同**/
+                num++;
+                // 元素重复超过2次，且没有出现空位时，blank初始化为当前位置
+                if (num > 2 && blank == 0) {
+                    blank = current;
+                }
+                // 元素未重复超过2次，
+                if (num <= 2) {
+                    // 统计有效元素个数
+                    length++;
+                    // 如果存在空位则交换元素至空白位
+                    if (blank > 0) {
+                        int temp = nums[current];
+                        nums[current] = nums[blank];
+                        nums[blank] = temp;
+                    }
 
+                }
+            } else {
+                /** 当前元素与preElement不同**/
+                num = 1;
+                // 统计有效元素个数
+                length++;
+                // 如果存在空位则交换元素至空白位
+                if (blank > 0) {
+                    int temp = nums[current];
+                    nums[current] = nums[blank];
+                    nums[blank] = temp;
+                }
+            }
         }
+        return length;
     }
 }
