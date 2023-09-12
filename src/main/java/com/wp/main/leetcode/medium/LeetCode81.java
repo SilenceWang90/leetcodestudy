@@ -51,7 +51,6 @@ public class LeetCode81 {
      * @return
      */
     private static boolean individualExecution(int[] nums, int target) {
-
         return recursion(nums, target, 0, nums.length - 1);
     }
 
