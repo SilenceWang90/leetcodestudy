@@ -32,13 +32,13 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode81 {
     public static void main(String[] args) {
-        int[] nums = {2, 5, 6, 0, 0, 1, 2};
+        /*int[] nums = {2, 5, 6, 0, 0, 1, 2};
         int target = 0;
-        System.out.println(individualExecution(nums, target));
+        System.out.println(individualExecution(nums, target));*/
 
-        /*int[] nums = {2,5,6,0,0,1,2};
+        int[] nums = {2, 5, 6, 0, 0, 1, 2};
         int target = 3;
-        System.out.println(individualExecution(nums,  target));*/
+        System.out.println(individualExecution(nums, target));
     }
 
     /**
@@ -52,7 +52,7 @@ public class LeetCode81 {
      */
     private static boolean individualExecution(int[] nums, int target) {
 
-        return recursion(nums, target, 0, nums.length);
+        return recursion(nums, target, 0, nums.length - 1);
     }
 
     /**
