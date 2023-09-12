@@ -36,8 +36,12 @@ public class LeetCode81 {
         int target = 0;
         System.out.println(individualExecution(nums, target));*/
 
-        int[] nums = {2, 5, 6, 0, 0, 1, 2};
+        /*int[] nums = {2, 5, 6, 0, 0, 1, 2};
         int target = 3;
+        System.out.println(individualExecution(nums, target));*/
+
+        int[] nums = {1,0,1,1,1};
+        int target = 0;
         System.out.println(individualExecution(nums, target));
     }
 
