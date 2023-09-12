@@ -40,7 +40,7 @@ public class LeetCode81 {
         int target = 3;
         System.out.println(individualExecution(nums, target));*/
 
-        int[] nums = {1,0,1,1,1};
+        int[] nums = {1, 0, 1, 1, 1};
         int target = 0;
         System.out.println(individualExecution(nums, target));
     }
@@ -78,18 +78,21 @@ public class LeetCode81 {
             return true;
         }
         /**2、递归逻辑**/
-        if (nums[left] <= nums[middle]) {
+        if (nums[left] == nums[middle] && nums[middle] == nums[right]) {
+            left++;
+            right--;
+        } else if (nums[left] <= nums[middle]) {
             /** 2.1、左侧数组有序**/
-            if (target < nums[middle]) {
+            if (nums[left] <= target && target < nums[middle]) {
                 // target在有序数组区间
                 right = middle - 1;
             } else {
                 // target不在有序数组区间
                 left = middle + 1;
             }
-        } else {
+        } else if (nums[middle] <= nums[right]) {
             /** 2.2、右侧数组有序**/
-            if (target > nums[middle]) {
+            if (target > nums[middle] && target <= nums[nums.length-1]) {
                 // target在有序数组区间
                 left = middle + 1;
             } else {
