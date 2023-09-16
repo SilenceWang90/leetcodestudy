@@ -28,19 +28,15 @@ import java.util.Map;
 public class LeetCode82 {
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
-        ListNode listNode2 = new ListNode(2);
-        ListNode listNode3 = new ListNode(3);
-        ListNode listNode4 = new ListNode(3);
-        ListNode listNode5 = new ListNode(4);
-        ListNode listNode6 = new ListNode(4);
-        ListNode listNode7 = new ListNode(5);
+        ListNode listNode2 = new ListNode(1);
+        ListNode listNode3 = new ListNode(1);
+        ListNode listNode4 = new ListNode(2);
+        ListNode listNode5 = new ListNode(3);
 
         listNode1.setNext(listNode2);
         listNode2.setNext(listNode3);
         listNode3.setNext(listNode4);
         listNode4.setNext(listNode5);
-        listNode5.setNext(listNode6);
-        listNode6.setNext(listNode7);
 
         ListNode result = individualExecution(listNode1);
         while (result != null) {
@@ -50,8 +46,8 @@ public class LeetCode82 {
     }
 
     private static ListNode individualExecution(ListNode head) {
-        // 设置一个top节点，便于对第一个节点的操作和其他节点相同
-        ListNode top = new ListNode(-1);
+        // 设置一个top节点，便于对第一个节点的操作和其他节点相同。因为数字范围是[-100,100]，所以赋值-101相当于一个不存在的节点值
+        ListNode top = new ListNode(-101);
         // 链表的尾结点，用于插入有效节点
         ListNode tail = top;
         // 记录出现的节点值出现的次数
@@ -70,7 +66,7 @@ public class LeetCode82 {
                 recordMap.put(current.getValue(), 1);
                 // 2.2、当前节点的prev节点是否重复，如果没有重复则添加到链表中
                 // 注意将top节点排除~
-                if (recordMap.get(prev.getValue()) != null && recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -1) {
+                if (recordMap.get(prev.getValue()) != null && recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -101) {
                     ListNode target = new ListNode(prev.getValue());
                     tail.setNext(target);
                     tail = tail.getNext();
