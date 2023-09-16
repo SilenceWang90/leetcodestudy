@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class LeetCode82 {
     public static void main(String[] args) {
-        /*ListNode listNode1 = new ListNode(1);
+        ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
         ListNode listNode3 = new ListNode(3);
         ListNode listNode4 = new ListNode(3);
@@ -46,19 +46,7 @@ public class LeetCode82 {
         while (result != null) {
             System.out.println(result.getValue() + " ");
             result = result.getNext();
-        }*/
-
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        ListNode c = new ListNode(3);
-        a = b;
-        System.out.println(a.getValue());
-        System.out.println(a == b);
-        b = c;
-        System.out.println(a.getValue());
-        System.out.println(a == c);
-        System.out.println(b.getValue());
-        System.out.println(a == b);
+        }
     }
 
     private static ListNode individualExecution(ListNode head) {
@@ -78,14 +66,14 @@ public class LeetCode82 {
                 recordMap.put(current.getValue(), recordMap.get(current.getValue()) + 1);
             } else {
                 /** 2、当前节点的元素未出现过 **/
-                // 2.1、当前节点的prev节点是否重复，如果没有重复则添加到链表中
+                // 2.1、记录当前元素出现次数
+                recordMap.put(current.getValue(), 1);
+                // 2.2、当前节点的prev节点是否重复，如果没有重复则添加到链表中
                 // 注意将top节点排除~
-                if (recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -1) {
+                if (recordMap.get(prev.getValue()) != null && recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -1) {
                     tail.setNext(prev);
                     tail = tail.getNext();
                 }
-                // 2.2、记录当前元素出现次数
-                recordMap.put(current.getValue(), 1);
             }
             // 节点后移
             prev = current;
