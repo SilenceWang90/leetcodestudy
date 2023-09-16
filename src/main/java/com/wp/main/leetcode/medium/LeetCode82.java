@@ -38,11 +38,31 @@ public class LeetCode82 {
         listNode3.setNext(listNode4);
         listNode4.setNext(listNode5);
 
-        ListNode result = individualExecution(listNode1);
+        ListNode result = standardExecution(listNode1);
         while (result != null) {
             System.out.println(result.getValue() + " ");
             result = result.getNext();
         }
+    }
+
+    private static ListNode standardExecution(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.setNext(head);
+        ListNode cur = dummy;
+        while (cur.getNext() != null && cur.getNext().getNext() != null) {
+            if (cur.getNext().getValue() == cur.getNext().getNext().getValue()) {
+                int x = cur.getNext().getValue();
+                while (cur.getNext() != null && cur.getNext().getValue() == x) {
+                    cur.setNext(cur.getNext().getNext());
+                }
+            } else {
+                cur = cur.getNext();
+            }
+        }
+        return dummy.getNext();
     }
 
     private static ListNode individualExecution(ListNode head) {
@@ -77,7 +97,7 @@ public class LeetCode82 {
             current = current.getNext();
         }
         // 结束后prev最后一个节点的处理
-        if(recordMap.get(prev.getValue()) <= 1){
+        if (recordMap.get(prev.getValue()) <= 1) {
             ListNode target = new ListNode(prev.getValue());
             tail.setNext(target);
             tail = tail.getNext();
