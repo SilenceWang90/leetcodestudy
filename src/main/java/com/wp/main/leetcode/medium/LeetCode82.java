@@ -78,8 +78,9 @@ public class LeetCode82 {
                 recordMap.put(current.getValue(), recordMap.get(current.getValue()) + 1);
             } else {
                 /** 2、当前节点的元素未出现过 **/
-                // 2.1、prev节点是否重复，如果没有重复则添加到队列中
-                if (recordMap.get(prev.getValue()) <= 1) {
+                // 2.1、当前节点的prev节点是否重复，如果没有重复则添加到链表中
+                // 注意将top节点排除~
+                if (recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -1) {
                     tail.setNext(prev);
                     tail = tail.getNext();
                 }
