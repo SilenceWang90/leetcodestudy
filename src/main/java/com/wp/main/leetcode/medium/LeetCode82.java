@@ -59,7 +59,7 @@ public class LeetCode82 {
         dummy.setNext(head);
         ListNode cur = dummy;
         while (cur.getNext() != null && cur.getNext().getNext() != null) {
-            if (cur.getNext().getValue() == cur.getNext().getNext().getValue()) {
+            if (cur.getNext().getValue().equals(cur.getNext().getNext().getValue())) {
                 int x = cur.getNext().getValue();
                 while (cur.getNext() != null && cur.getNext().getValue() == x) {
                     cur.setNext(cur.getNext().getNext());
