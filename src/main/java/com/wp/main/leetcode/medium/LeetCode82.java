@@ -24,7 +24,26 @@ import com.wp.main.common.ListNode;
  */
 public class LeetCode82 {
     public static void main(String[] args) {
+        ListNode listNode1 = new ListNode(1);
+        ListNode listNode2 = new ListNode(2);
+        ListNode listNode3 = new ListNode(3);
+        ListNode listNode4 = new ListNode(3);
+        ListNode listNode5 = new ListNode(4);
+        ListNode listNode6 = new ListNode(4);
+        ListNode listNode7 = new ListNode(5);
 
+        listNode1.setNext(listNode2);
+        listNode2.setNext(listNode3);
+        listNode3.setNext(listNode4);
+        listNode4.setNext(listNode5);
+        listNode5.setNext(listNode6);
+        listNode6.setNext(listNode7);
+
+        ListNode result = individualExecution(listNode1);
+        while (result != null) {
+            System.out.println(result.getValue() + " ");
+            result = result.getNext();
+        }
     }
 
     private static ListNode individualExecution(ListNode head) {
