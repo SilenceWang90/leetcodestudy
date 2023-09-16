@@ -68,12 +68,10 @@ public class LeetCode82 {
         ListNode tail = top;
         // 记录出现的节点值出现的次数
         Map<Integer, Integer> recordMap = new HashMap<>();
-
         // 当前遍历的节点
         ListNode current = head;
         // 当前遍历节点相邻的前一个节点
         ListNode prev = top;
-
         while (current != null) {
             if (recordMap.containsKey(current.getValue())) {
                 /** 1、当前节点的元素出现过 **/
