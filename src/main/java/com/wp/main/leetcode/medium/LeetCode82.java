@@ -71,13 +71,20 @@ public class LeetCode82 {
                 // 2.2、当前节点的prev节点是否重复，如果没有重复则添加到链表中
                 // 注意将top节点排除~
                 if (recordMap.get(prev.getValue()) != null && recordMap.get(prev.getValue()) <= 1 && prev.getValue() != -1) {
-                    tail.setNext(prev);
+                    ListNode target = new ListNode(prev.getValue());
+                    tail.setNext(target);
                     tail = tail.getNext();
                 }
             }
             // 节点后移
             prev = current;
             current = current.getNext();
+        }
+        // 结束后prev最后一个节点的处理
+        if(recordMap.get(prev.getValue()) <= 1){
+            ListNode target = new ListNode(prev.getValue());
+            tail.setNext(target);
+            tail = tail.getNext();
         }
         return top.getNext();
     }
