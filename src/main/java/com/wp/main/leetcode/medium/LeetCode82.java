@@ -77,7 +77,7 @@ public class LeetCode82 {
         while (current != null) {
             if (recordMap.containsKey(current.getValue())) {
                 /** 1、当前节点的元素出现过 **/
-
+                recordMap.put(current.getValue(), recordMap.get(current.getValue()) + 1);
             } else {
                 /** 2、当前节点的元素未出现过 **/
                 // 2.1、prev节点是否重复，如果没有重复则添加到队列中
@@ -85,16 +85,14 @@ public class LeetCode82 {
                     tail.setNext(prev);
                     tail = tail.getNext();
                 }
-
+                // 2.2、记录当前元素出现次数
+                recordMap.put(current.getValue(), 1);
             }
             // 节点后移
             prev = current;
             current = current.getNext();
         }
-
-
         return top.getNext();
-
     }
 }
 
