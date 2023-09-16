@@ -45,6 +45,12 @@ public class LeetCode82 {
         }
     }
 
+
+    /**
+     * 一次遍历，在原链表上直接将重复的节点跳过
+     * @param head
+     * @return
+     */
     private static ListNode standardExecution(ListNode head) {
         if (head == null) {
             return head;
@@ -65,6 +71,11 @@ public class LeetCode82 {
         return dummy.getNext();
     }
 
+    /**
+     * 一次遍历，创建新的链表
+     * @param head
+     * @return
+     */
     private static ListNode individualExecution(ListNode head) {
         // 设置一个top节点，便于对第一个节点的操作和其他节点相同。因为数字范围是[-100,100]，所以赋值-101相当于一个不存在的节点值
         ListNode top = new ListNode(-101);
