@@ -57,14 +57,18 @@ public class LeetCode82 {
         }
         ListNode dummy = new ListNode(0);
         dummy.setNext(head);
+        // 遍历节点，相当于有效链表的tail节点
         ListNode cur = dummy;
         while (cur.getNext() != null && cur.getNext().getNext() != null) {
+            // 1、连续两个节点相同，进行删除节点操作
             if (cur.getNext().getValue().equals(cur.getNext().getNext().getValue())) {
                 int x = cur.getNext().getValue();
                 while (cur.getNext() != null && cur.getNext().getValue() == x) {
+                    // 核心：设置cur的next节点为cur的next节点的next节点。相当于cur.next的值因为和x一样，所以就把cur.next.next作为cur的下一个节点
                     cur.setNext(cur.getNext().getNext());
                 }
             } else {
+                // 2、连续两个节点不相同，则意味着cur.next没有重复，可以加入到有效链表中
                 cur = cur.getNext();
             }
         }
