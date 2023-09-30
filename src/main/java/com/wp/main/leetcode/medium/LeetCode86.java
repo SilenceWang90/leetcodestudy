@@ -55,7 +55,7 @@ public class LeetCode86 {
             current = current.getNext();
         }
         // 拼接larger和smaller链表并返回
-        largerTail.setNext(smallerHead);
-        return largerHead;
+        smallerTail.setNext(largerHead.getNext());
+        return smallerHead.getNext();
     }
 }
