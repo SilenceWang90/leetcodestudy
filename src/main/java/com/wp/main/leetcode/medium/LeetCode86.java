@@ -28,26 +28,34 @@ public class LeetCode86 {
     }
 
     /**
-     * 个人思路：
+     * 个人思路：两个链表分别维护比x小的节点以及比x大的节点，然后拼接2个节点
      *
      * @param head 给定链表
      * @param x    指定参数
      * @return 返回重组链表
      */
     private static ListNode individual(ListNode head, int x) {
-        // 设置链表头部节点，便于统一节点操作
-        ListNode top = new ListNode(0);
-        top.setNext(head);
+        // 创建2个链表，一个存储比x大的链表，一个存储比x小的链表
+        ListNode largerHead = new ListNode(0);
+        ListNode largerTail = largerHead;
+        ListNode smallerHead = new ListNode(0);
+        ListNode smallerTail = smallerHead;
         // 遍历的当前节点
         ListNode current = head;
         // 节点遍历
         while (current != null) {
-
-
+            if (current.getValue() < x) {
+                largerTail.setNext(current);
+                largerTail = largerTail.getNext();
+            } else {
+                smallerTail.setNext(current);
+                smallerTail = smallerTail.getNext();
+            }
             // 遍历下一个节点
             current = current.getNext();
         }
-
-        return top.getNext();
+        // 拼接larger和smaller链表并返回
+        largerTail.setNext(smallerHead);
+        return largerHead;
     }
 }
