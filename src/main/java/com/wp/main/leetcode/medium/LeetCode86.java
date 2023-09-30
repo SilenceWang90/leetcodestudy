@@ -35,9 +35,18 @@ public class LeetCode86 {
      * @return 返回重组链表
      */
     private static ListNode individual(ListNode head, int x) {
+        // 设置链表头部节点，便于统一节点操作
         ListNode top = new ListNode(0);
         top.setNext(head);
+        // 遍历的当前节点
+        ListNode current = head;
+        // 节点遍历
+        while (current != null) {
 
+
+            // 遍历下一个节点
+            current = current.getNext();
+        }
 
         return top.getNext();
     }
