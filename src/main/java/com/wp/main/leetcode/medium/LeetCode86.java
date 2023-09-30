@@ -45,11 +45,11 @@ public class LeetCode86 {
         // 节点遍历
         while (current != null) {
             if (current.getValue() < x) {
-                largerTail.setNext(current);
-                largerTail = largerTail.getNext();
-            } else {
                 smallerTail.setNext(current);
                 smallerTail = smallerTail.getNext();
+            } else {
+                largerTail.setNext(current);
+                largerTail = largerTail.getNext();
             }
             // 遍历下一个节点
             current = current.getNext();
