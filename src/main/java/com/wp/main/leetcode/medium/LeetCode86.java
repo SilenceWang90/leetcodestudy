@@ -72,7 +72,7 @@ public class LeetCode86 {
             // 遍历下一个节点
             current = current.getNext();
         }
-        // 清除多余节点
+        // 清除多余节点，防止出现循环链表
         largerTail.setNext(null);
         // 拼接larger和smaller链表并返回
         smallerTail.setNext(largerHead.getNext());
