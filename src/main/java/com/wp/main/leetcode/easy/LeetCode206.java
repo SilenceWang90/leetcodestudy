@@ -64,8 +64,8 @@ public class LeetCode206 {
     private static ListNode recursion(ListNode origin, ListNode targetHead) {
         /**1、递归终止条件：递归找到队列的尾节点/**/
         if (origin.getNext() == null) {
-            // 设置新链表的头节点
-            targetHead = origin;
+            // 找到队列尾结点，队列开始转向
+            targetHead.setNext(origin);
             return origin;
         }
         /**2、递归逻辑：获取当前节点，origin向下推进**/
