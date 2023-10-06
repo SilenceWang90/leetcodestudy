@@ -57,7 +57,9 @@ public class LeetCode206 {
             return null;
         }
         ListNode targetHead = new ListNode(0);
-        recursion(head, targetHead);
+        ListNode result = recursion(head, targetHead);
+        // 尾节点的下一个节点清空，不然会变成双向链表
+        result.setNext(null);
         return targetHead.getNext();
     }
 
@@ -75,6 +77,7 @@ public class LeetCode206 {
         ListNode tempHead = recursion(origin, targetHead);
         /**3、递归终止操作**/
         tempHead.setNext(current);
+
         return current;
     }
 }
