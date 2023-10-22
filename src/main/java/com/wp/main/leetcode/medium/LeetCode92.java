@@ -99,7 +99,6 @@ public class LeetCode92 {
                 pre = current;
                 // 当前节点移到下一个节点
                 current = next;
-                n++;
                 // 当抵达right节点时
                 if (n == right) {
                     // 翻转部分已完成，current节点即为最右侧链表的头节点
@@ -108,6 +107,7 @@ public class LeetCode92 {
                     // 遍历可以停止了~
                     break;
                 }
+                n++;
             }
         }
         // 链表重新拼接
