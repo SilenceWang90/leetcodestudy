@@ -95,6 +95,24 @@ public class LeetCode92 {
      * @return
      */
     private static ListNode[] reverseListNode(ListNode head) {
+        // top节点：链表的总表头
+        ListNode top = new ListNode(-1);
+        top.setNext(head);
+        // 当前节点
+        ListNode current = head;
+        // 当前节点的相邻前一个节点
+        ListNode pre = top;
+        // 未翻转链表的表头(即当前节点的下一个节点)
+        ListNode restListHead = current.getNext();
+        // 翻转后链表的表头和表尾
+        ListNode[] result = new ListNode[2];
 
+        while (current != null) {
+
+
+            current = current.getNext();
+
+        }
+        return result;
     }
 }
