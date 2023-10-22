@@ -43,8 +43,8 @@ public class LeetCode92 {
     }
 
     /**
-     * 个人思路：遍历链表，将该链表一共拆分为3段，[start,left),[left,right],(right,end]
-     * 倒置[left,right]后重新链接3个链表，其中(right,end]不需要遍历完成，只需要记录right-1位置上的节点即可，用于链表拼接
+     * 个人思路：遍历链表，记录left和left的前置节点，从left开始倒置，直到right节点，并记录right的后置节点。
+     * 到right节点倒置完成后，left的前置节点指向right节点，left节点指向right的后置节点。
      *
      * @param head  给定队列头指针
      * @param left  左侧位置
@@ -52,67 +52,67 @@ public class LeetCode92 {
      * @return
      */
     private static ListNode individualExecution(ListNode head, int left, int right) {
-        // 记录当前节点的位置，用于判断是否和left、right重合
+        // 链表为空或要翻转的部分只有1个节点，直接当前链表即可
+        if (head == null || left == right) {
+            return head;
+        }
+        // 记录当前节点的位置，用于判断是否遍历到left节点、right节点
         int n = 1;
         // 设置top节点，链表的总表头，统一链表行为(头部节点具有特殊性)
         ListNode top = new ListNode(-1);
         top.setNext(head);
-        // pre为current的前一个节点
-        ListNode pre = top;
         // 当前节点
         ListNode current = head;
-        // 要倒转链表的头节点
+        // 当前节点的相邻前置节点
+        ListNode pre = top;
+        // 当前节点的相邻后置节点
+        ListNode next;
+        // left节点
         ListNode leftNode = null;
-        // 最后一段链表的头节点
-        ListNode rightListNodeHead = null;
+        // left前置节点
+        ListNode leftPreNode = null;
+        // right节点
+        ListNode rightNode = null;
+        // right后置节点
+        ListNode rightNestNode = null;
+        // 遍历节点
         while (current != null) {
-            if (n == left) {
-                // 当前节点为left时，记录当前节点
+            if (n < left) {
+                // 未到指定翻转区域，继续遍历
+                current = current.getNext();
+                pre = pre.getNext();
+                n++;
+            } else if (n == left) {
+                // 如果遍历到left节点，标记leftNode和leftPreNode
+                leftPreNode = pre;
                 leftNode = current;
-            } else if (n == right) {
-                // 当前节点为right时，记录rightListNodeHead(最后一段链表的头节点)为其下一个节点
-                rightListNodeHead = current.getNext();
-                // 不需要再遍历~
-                break;
+                current = current.getNext();
+                pre = pre.getNext();
+                n++;
+            } else if (n > left && n <= right) {
+                // 翻转
+                // 记录下一个待翻转的节点，用于current节点翻转后可以正确顺移~
+                next = current.getNext();
+                // 当前节点翻转，指向前一个节点
+                current.setNext(pre);
+                // pre节点后移到当前节点
+                pre = current;
+                // 当前节点移到下一个节点
+                current = next;
+                n++;
+                // 当抵达right节点时
+                if (n == right) {
+                    // 翻转部分已完成，current节点即为最右侧链表的头节点
+                    rightNode = pre;
+                    rightNestNode = current;
+                    // 遍历可以停止了~
+                    break;
+                }
             }
-            // 当前节点后移
-            current = current.getNext();
-            // 当前节点的前一个节点后移
-            pre = pre.getNext();
         }
-        // 翻转[left,right]
-        ListNode[] middleList = reverseListNode(leftNode);
-        // 拼接三段链表
-        pre.setNext(middleList[0]);
-        middleList[1].setNext(rightListNodeHead);
+        // 链表重新拼接
+        leftPreNode.setNext(rightNode);
+        leftNode.setNext(rightNestNode);
         return top.getNext();
-    }
-
-    /**
-     * 倒置链表：返回链表的头尾节点，头节点为链表数组0位置的节点，尾结点为链表数组1位置的节点
-     *
-     * @param head 链表头
-     * @return
-     */
-    private static ListNode[] reverseListNode(ListNode head) {
-        // top节点：链表的总表头
-        ListNode top = new ListNode(-1);
-        top.setNext(head);
-        // 当前节点
-        ListNode current = head;
-        // 当前节点的相邻前一个节点
-        ListNode pre = top;
-        // 未翻转链表的表头(即当前节点的下一个节点)
-        ListNode restListHead = current.getNext();
-        // 翻转后链表的表头和表尾
-        ListNode[] result = new ListNode[2];
-
-        while (current != null) {
-
-
-            current = current.getNext();
-
-        }
-        return result;
     }
 }
