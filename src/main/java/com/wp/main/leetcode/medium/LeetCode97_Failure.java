@@ -31,17 +31,24 @@ package com.wp.main.leetcode.medium;
  * @Author wangpeng
  * @Date 2023/10/25 16:46
  */
-public class LeetCode97 {
+public class LeetCode97_Failure {
     public static void main(String[] args) {
 
     }
 
+    /**
+     * 思路：动态规划。注意题干中说明|n - m| <= 1，即s1切割出来的子字符串的个数与s2切割出来的子字符串的个数差不超过1，
+     * @param s1
+     * @param s2
+     * @param s3
+     * @return
+     */
     private static boolean individualExecution(String s1, String s2, String s3) {
-        boolean result = false;
-        for (int i = 0; i < s3.length(); i++) {
-            char current = s3.charAt(i);
+        // 1、如果s1.length+s2.length!=s3.length，那么s3必然不可能是s1和s2交错而成
+        int n = s1.length(), m = s2.length(), t = s3.length();
+        if (n + m != t) {
+            return false;
         }
 
-        return result;
     }
 }
