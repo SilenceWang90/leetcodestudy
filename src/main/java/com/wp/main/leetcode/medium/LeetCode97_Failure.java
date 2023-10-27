@@ -33,11 +33,14 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode97_Failure {
     public static void main(String[] args) {
-
+        String s1 = "aabcc";
+        String s2 = "dbbca";
+        String s3 = "aadbbcbcac";
+        System.out.println(individualExecution(s1, s2, s3));
     }
 
     /**
-     * 思路：动态规划。
+     * 思路：动态规划。boolean类型二维数组f[i][j]，表示s1的前i的字符串和s2的前j个字符串，能不能交错组成s3。
      *
      * @param s1
      * @param s2
@@ -45,7 +48,15 @@ public class LeetCode97_Failure {
      * @return
      */
     private static boolean individualExecution(String s1, String s2, String s3) {
+        int m = s1.length();
+        int n = s2.length();
+        // 如果s1+s2的长度不等于s3，肯定无法交错组成s3
+        if (s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
 
+        boolean[][] result = new boolean[m][n];
 
+        return false;
     }
 }
