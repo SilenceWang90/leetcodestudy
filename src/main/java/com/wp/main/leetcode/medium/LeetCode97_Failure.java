@@ -79,7 +79,7 @@ public class LeetCode97_Failure {
                     // 当j为0时，s2字符串的结果对能否交错没影响，只有s1字符串的结果影响能否交错形成s3。
                     // 必须额外判断一下j==0，否则j-1就越界了～～～
                     if (j == 0) {
-                        result[i][j] = result[i][0];
+                        result[i][j] = result[i][j] || result[i][0];
                     } else {
                         result[i][j] = result[i][j] || result[i][j - 1];
                     }
