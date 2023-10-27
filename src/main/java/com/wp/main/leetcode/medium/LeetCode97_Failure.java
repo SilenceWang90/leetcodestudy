@@ -37,18 +37,15 @@ public class LeetCode97_Failure {
     }
 
     /**
-     * 思路：动态规划。注意题干中说明|n - m| <= 1，即s1切割出来的子字符串的个数与s2切割出来的子字符串的个数差不超过1，
+     * 思路：动态规划。
+     *
      * @param s1
      * @param s2
-     * @param s3
+     * @param s3 判断s3能否由s1和s2交错而成
      * @return
      */
     private static boolean individualExecution(String s1, String s2, String s3) {
-        // 1、如果s1.length+s2.length!=s3.length，那么s3必然不可能是s1和s2交错而成
-        int n = s1.length(), m = s2.length(), t = s3.length();
-        if (n + m != t) {
-            return false;
-        }
+
 
     }
 }
