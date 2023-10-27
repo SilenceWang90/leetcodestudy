@@ -61,12 +61,22 @@ public class LeetCode97_Failure {
         // 动态规划逻辑
         for (int i = 0; i <= m; i++) {
             for (int j = 0; j <= n; j++) {
-                // 如果s1的第i个字符和s3的第i+j个字符相等，那么s3能否被s1和s2交错组成，取决于s1的i-1个字符串和s2的j个字符串能否组成s3的i+j-1字符串
-                if (i > 0 && s1.charAt(i) == s3.charAt(i + j)) {
-                    result[i][j] = result[i - 1][j];
+                // 如果s1的第i个字符和s3的第i+j个字符相等，那么s3能否被s1和s2交错组成，取决于s1的i-1个字符串和s2的j个字符串能否组成s3的i+j-1字符串(即result[i-1][j]是true还是false)
+                if (s1.charAt(i) == s3.charAt(i + j)) {
+                    // 当i为0时，s1字符串的结果对能否交错没影响，只有s2字符串的结果影响能否交错形成s3。
+                    // 必须额外判断一下i==0，否则i-1就越界了～～～
+                    if (i == 0) {
+                        result[i][j] = result[0][j];
+                    } else {
+                        result[i][j] = result[i - 1][j];
+                    }
                 }
+                // 如果s2的第j个字符和s3的第i+j个字符相等，那么s3能否被s1和s2交错组成，取决于s2的j-1个字符串和s1的i个字符串能否组成s3的i+j-1字符串(即result[i][j-1]是true还是false)
                 if (j > 0 && s2.charAt(j) == s3.charAt(i + j)) {
-                    result[i][j] = result[i][j - 1];
+                    /** 此处需要额外与result[i][j]进行一次或运算，因为如果s3的i+j位置的字符之前等于s1字符串第i个位置字符的时候，可以交错形成，那么即使s2第j个位置不能让s3交错而成，那么s3的i+j的位置也是能交错而成的
+                     * 即s1和s2有一个能成就行～
+                     **/
+                    result[i][j] = result[i][j] || result[i][j - 1];
                 }
             }
         }
