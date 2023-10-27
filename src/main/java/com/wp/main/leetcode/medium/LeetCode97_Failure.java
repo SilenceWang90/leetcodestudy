@@ -51,7 +51,7 @@ public class LeetCode97_Failure {
         int m = s1.length();
         int n = s2.length();
         // 如果s1+s2的长度不等于s3，肯定无法交错组成s3
-        if (s1.length() + s2.length() != s3.length()) {
+        if (m + n != s3.length()) {
             return false;
         }
 
