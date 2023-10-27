@@ -54,9 +54,16 @@ public class LeetCode97_Failure {
         if (m + n != s3.length()) {
             return false;
         }
+        /** 二维数组长度比字符串长度多1，因为要额外记录result[0][0]位置上的数据(边界数据)为true。所以要在原有长度m和n基础上额外+1 **/
+        boolean[][] result = new boolean[m + 1][n + 1];
+        result[0][0] = true;
 
-        boolean[][] result = new boolean[m][n];
 
-        return false;
+
+        /** 最终的值就是s1和s2是否能交错形成s3的结果
+         *  注意：数组定义长度是m+1和n+1，但是数组从坐标取值赋值的时候是从0开始的，所以result[m][n]获得的就是result二维数组第m+1个和n+1个的数字
+         *  数组这个经常容易因为定义数组长度时的概念没理解透彻，所以造成理解困难或困惑
+         */
+        return result[m][n];
     }
 }
