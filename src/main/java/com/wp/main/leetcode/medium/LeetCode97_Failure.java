@@ -56,8 +56,20 @@ public class LeetCode97_Failure {
         }
         /** 二维数组长度比字符串长度多1，因为要额外记录result[0][0]位置上的数据(边界数据)为true。所以要在原有长度m和n基础上额外+1 **/
         boolean[][] result = new boolean[m + 1][n + 1];
+        // s3的前0个字符肯定和s1和s2前0个字符能匹配，相当于边界值确认为true
         result[0][0] = true;
-
+        // 动态规划逻辑
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                // 如果s1的第i个字符和s3的第i+j个字符相等，那么s3能否被s1和s2交错组成，取决于s1的i-1个字符串和s2的j个字符串能否组成s3的i+j-1字符串
+                if (i > 0 && s1.charAt(i) == s3.charAt(i + j)) {
+                    result[i][j] = result[i - 1][j];
+                }
+                if (j > 0 && s2.charAt(j) == s3.charAt(i + j)) {
+                    result[i][j] = result[i][j - 1];
+                }
+            }
+        }
 
 
         /** 最终的值就是s1和s2是否能交错形成s3的结果
