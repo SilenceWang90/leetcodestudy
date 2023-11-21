@@ -37,6 +37,10 @@ public class LeetCode94 {
         root.setRight(right);
         right.setLeft(left);
         System.out.println(individualExecute(root));
+        TreeNode root2 = new TreeNode();
+        System.out.println(individualExecute(root2));
+        TreeNode root3 = new TreeNode(1);
+        System.out.println(individualExecute(root3));
     }
 
     /**
@@ -53,9 +57,15 @@ public class LeetCode94 {
         return result;
     }
 
+    /**
+     * 递归逻辑
+     *
+     * @param root
+     * @param result
+     */
     private static void recursion(TreeNode root, List<Integer> result) {
         /**
-         * 1、递归终止条件：节点为空则停止遍历，集合中加入数据
+         * 1、递归终止条件：节点为空
          */
         if (root == null) {
             return;
@@ -66,10 +76,7 @@ public class LeetCode94 {
         // 递归左节点
         recursion(root.left, result);
         result.add(root.val);
-        // 加入根结点
-        result.add(root.val);
         // 递归右节点
         recursion(root.right, result);
-        result.add(root.val);
     }
 }
