@@ -24,8 +24,10 @@ public class LeetCode96_Failure {
     public static Integer nums = 0;
 
     public static void main(String[] args) {
-        System.out.println(individualExecution(4));
-        System.out.println(numTrees(4));
+        System.out.println(individualExecution(3));
+        System.out.println(numTrees(3));
+//        System.out.println(individualExecution(4));
+//        System.out.println(numTrees(4));
 //        System.out.println(individualExecution(1));
     }
 
@@ -75,19 +77,22 @@ public class LeetCode96_Failure {
      * 步骤一：以某一个数字为根节点，那么以该节点为根的二叉搜索树个数是左子树二叉搜索树的个数*右子树二叉搜索树的个数
      * 步骤二：然后将每一个节点在步骤一得到的结果进行累加，就是所有的结果。
      * 其中，当n为0或1的时候能形成的二叉搜索树的数量为1
+     *
      * @param n
      * @return
      */
     public static int numTrees(int n) {
-        int[] G = new int[n + 1];
-        G[0] = 1;
-        G[1] = 1;
-        for (int i = 2; i <= n; ++i) {
-            for (int j = 1; j <= i; ++j) {
-                G[i] += G[j - 1] * G[i - j];
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                int leftNum = dp[j - 1];
+                int rightNum = dp[i - j];
+                dp[i] += leftNum * rightNum;
             }
         }
-        return G[n];
+        return dp[n];
     }
 
 }
