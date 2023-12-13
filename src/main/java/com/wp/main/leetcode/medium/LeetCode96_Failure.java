@@ -25,11 +25,41 @@ public class LeetCode96_Failure {
 
     public static void main(String[] args) {
         System.out.println(individualExecution(3));
-        System.out.println(numTrees(3));
 //        System.out.println(individualExecution(4));
 //        System.out.println(numTrees(4));
 //        System.out.println(individualExecution(1));
     }
+
+
+    /**
+     * 官方思路：以任何一个数i作为根节点，能组成的二叉树搜索树的数量为其左子树的数量*右子树的数量，然后对不同i的结果进行累加，就是n个数字能组成的不同二叉树的数量。按照以上思路，通过动态规划的方式即可获取n个数字能组成的二叉树。
+     * 动态规划思路整理：任意n个数字，以i为根节点：其左侧数字取值为[1,i-1]，即共有i-1个数字；右侧数字取值范围为[i+1,n]，即共有n-i个数字。
+     * i-1和n-i的结果都是小于n的，因此任意第n项的结果可以从前n项中获取。所以遍历所有情况，通过一维数组记录任意n项数字可以构成的二叉树的数量结果即可。第n项的结果是基于前n项的。
+     * 重点：构成二叉树搜索树的条件，造成了左子树的数字只能是比根节点小的，右子树的数字只能比根节点大！！！
+     *
+     * @param n 连续不同的数字个数
+     * @return
+     */
+    private static int standardExecution(int n) {
+        // 记录n个数字可以构成的二叉搜索树
+        int[] record = new int[n + 1];
+        // 边界值
+        record[0] = 1;
+        record[1] = 1;
+        /** 第一层循环：任意数字i能组成的搜索二叉树的数量，边界值0和1已经知道了，因此初始值从2开始 **/
+        for (int i = 2; i <= n; i++) {
+            /** 第二层循环：当前有i个数字(第一层循环的值)，以任意根节点能组成的搜索二叉树的数量。因此从根节点为1开始直到i **/
+            for (int j = 1; j <= i; j++) {
+                // 左子树的数量：之前的结果
+                int leftNum = record[j - 1];
+                // 右子树的数量：之前的结果
+                int rightNum = record[i - j];
+                record[i] = record[i] + leftNum * rightNum;
+            }
+        }
+        return record[n];
+    }
+
 
     /**
      * 个人思路：递归遍历。假设一棵树有3个节点，那么这棵树要想成为二叉搜索树就需要使得：左节点比根节点小，右节点比根节点大。
@@ -69,30 +99,6 @@ public class LeetCode96_Failure {
                 total++;
             }
         }
-    }
-
-    /**
-     * 官方解法：至少在创建左子树和右子树这个思想上是正确的！！！聊以安慰
-     * 动态规划：设定一维数组，该数组每个索引位置上的值表示n个不同的元素能够组成的二叉搜索树的个数
-     * 步骤一：以某一个数字为根节点，那么以该节点为根的二叉搜索树个数是左子树二叉搜索树的个数*右子树二叉搜索树的个数
-     * 步骤二：然后将每一个节点在步骤一得到的结果进行累加，就是所有的结果。
-     * 其中，当n为0或1的时候能形成的二叉搜索树的数量为1
-     *
-     * @param n
-     * @return
-     */
-    public static int numTrees(int n) {
-        int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            for (int j = 1; j <= i; j++) {
-                int leftNum = dp[j - 1];
-                int rightNum = dp[i - j];
-                dp[i] += leftNum * rightNum;
-            }
-        }
-        return dp[n];
     }
 
 }
