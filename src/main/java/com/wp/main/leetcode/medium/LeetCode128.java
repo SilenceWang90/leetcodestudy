@@ -41,7 +41,7 @@ public class LeetCode128 {
      */
     private static int individualExecution(int[] nums) {
         /** 1、通过hashset去重nums数组**/
-        Set<Integer> sets = Sets.newHashSet();
+        Set<Integer> sets = Sets.newLinkedHashSet();
         for (int obj : nums) {
             sets.add(obj);
         }
