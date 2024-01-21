@@ -49,19 +49,16 @@ public class LeetCode128 {
         int result = 0;
         /** 2、遍历nums数组，查找最长连续序列**/
         for (int obj : nums) {
-            // 记录当前的长度
-            int currentResult = 1;
-            // 如果当前的数字的前一个数字存在，则不需要遍历了，因为当前数字开始的序列是其前一个数字的子序列，不需要重复遍历，提高效率
-            if (sets.contains(obj - 1)) {
+            if (!sets.contains(obj - 1)) {
+                // 记录当前的长度
+                int currentResult = 1;
+                int n = 1;
+                while (sets.contains(obj + n)) {
+                    currentResult++;
+                    n++;
+                }
                 result = Math.max(currentResult, result);
-                continue;
             }
-            int n = 1;
-            while (sets.contains(obj + n)) {
-                currentResult++;
-                n++;
-            }
-            result = Math.max(currentResult, result);
         }
         return result;
     }
