@@ -60,7 +60,7 @@ public class LeetCode100 {
         boolean left = individualExecution(p.left, q.left);
         // 2.2、根节点是否相同2
         boolean current = (p.val == q.val);
-        // 2.3、右子树是否相同
+        // 2.3、右子树是否相同3
         boolean right = individualExecution(p.right, q.right);
         // 返回当前子树是否相同
         return left && right && current;
