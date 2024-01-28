@@ -50,19 +50,19 @@ public class LeetCode100 {
             return false;
         }
 
-        /*// bbbbb以上代码可以优化为如下：很不错~
+        /*// 以上代码可以优化为如下：很不错~
         if (p == null || q == null) {
             return p == q;
         }*/
 
         /** 2、递归逻辑：递归遍历(中序遍历)节点 **/
-        // 2.1、左子树是否相同1
+        // 2.1、左子树是否相同
         boolean left = individualExecution(p.left, q.left);
-        // 2.2、根节点是否相同2
+        // 2.2、根节点是否相同
         boolean current = (p.val == q.val);
-        // 2.3、右子树是否相同3
+        // 2.3、右子树是否相同
         boolean right = individualExecution(p.right, q.right);
-        // 返回当前子树是否相同4 5 6
+        // 返回当前子树是否相同
         return left && right && current;
     }
 }
