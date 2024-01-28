@@ -50,7 +50,7 @@ public class LeetCode100 {
             return false;
         }
 
-        /*// 以上代码可以优化为如下：很不错~1111111
+        /*// 以上代码可以优化为如下：很不错~
         if (p == null || q == null) {
             return p == q;
         }*/
