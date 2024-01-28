@@ -62,7 +62,7 @@ public class LeetCode100 {
         boolean current = (p.val == q.val);
         // 2.3、右子树是否相同3
         boolean right = individualExecution(p.right, q.right);
-        // 返回当前子树是否相同4 5
+        // 返回当前子树是否相同4 5 6
         return left && right && current;
     }
 }
