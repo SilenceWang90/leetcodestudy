@@ -56,7 +56,7 @@ public class LeetCode100 {
         }*/
 
         /** 2、递归逻辑：递归遍历(中序遍历)节点 **/
-        // 2.1、左子树是否相同
+        // 2.1、左子树是否相同1
         boolean left = individualExecution(p.left, q.left);
         // 2.2、根节点是否相同
         boolean current = (p.val == q.val);
