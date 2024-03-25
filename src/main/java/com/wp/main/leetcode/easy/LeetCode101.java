@@ -12,17 +12,28 @@ public class LeetCode101 {
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
-
+        TreeNode left1 = new TreeNode(2);
+        TreeNode right1 = new TreeNode(2);
+        root.setLeft(left1);
+        root.setRight(right1);
+        TreeNode left2 = new TreeNode(3);
+        TreeNode right2 = new TreeNode(3);
+        TreeNode left3 = new TreeNode(4);
+        TreeNode right3 = new TreeNode(4);
+        left1.setLeft(left2);
+        left1.setRight(right3);
+        right1.setLeft(left3);
+        right1.setRight(right2);
+        System.out.println(individualExecution(root));
     }
 
     /**
      * 个人思路：递归
      *
-     * @param treeNode 树根结点
+     * @param root 树根结点
      */
-    public static void individualExecution(TreeNode treeNode) {
-
-
+    public static boolean individualExecution(TreeNode root) {
+        return symmetry(root.left, root.right);
     }
 
     public static boolean symmetry(TreeNode leftNode, TreeNode rightNode) {
