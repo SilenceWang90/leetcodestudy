@@ -37,26 +37,19 @@ public class LeetCode94 {
         return recursion(root);
     }
 
-    private static boolean recursion(TreeNode root) {
+    private static boolean recursion(TreeNode currentNode) {
         /** 1、递归终止条件 **/
-        if (root == null) {
+        if (currentNode == null) {
             return true;
         }
-        /** 2、递归逻辑 **/
-        if (root.left != null & root.right != null) {
-            if (root.left.val < root.val && root.val < root.right.val) {
-                boolean left = recursion(root.left);
-                boolean right = recursion(root.right);
-                return left && right;
-            } else {
-                return false;
-            }
-        } else if (root.left != null) {
-            return root.left.val < root.val;
-        } else if (root.right != null) {
-            return root.right.val > root.val;
+        /** 2、递归逻辑处理 **/
+        if (currentNode.left != null && currentNode.left.val >= currentNode.val
+                || currentNode.right != null && currentNode.right.val <= currentNode.val) {
+            return false;
         } else {
-            return true;
+            boolean left = recursion(currentNode.left);
+            boolean right = recursion(currentNode.right);
+            return left && right;
         }
     }
 }
