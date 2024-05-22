@@ -12,7 +12,6 @@ import com.wp.main.common.TreeNode;
  **/
 public class LeetCode104 {
     public static void main(String[] args) {
-        TreeNode treeNode = new TreeNode();
     }
 
     /**
