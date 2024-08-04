@@ -50,6 +50,7 @@ public class LeetCode45Mark {
          *  因此到达上一次边界后，将最新的最远的距离作为下一次跳跃的边界，
          */
         for (int i = 0; i < length - 1; i++) {
+            // 记录抵达当前end边界前，当前节点能跳的最远的地方。作为抵达边界后，下一次跳跃的边界。
             maxPosition = Math.max(maxPosition, i + nums[i]);
             if (i == end) {
                 end = maxPosition;
