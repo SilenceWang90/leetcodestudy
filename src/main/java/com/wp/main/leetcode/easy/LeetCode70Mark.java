@@ -91,4 +91,31 @@ public class LeetCode70Mark {
         }
         return result;
     }
+
+    /**
+     * 个人根据滚动数组实现的写法，就个人而言比较好理解～
+     *
+     * @param n
+     * @return
+     */
+    private static int standardExecute2(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+        // 第一个值
+        int p = 1;
+        // 第二个值
+        int q = 2;
+        // 累计结果，第一阶台阶为边界值，结果为1，我们从第一阶台阶开始爬起
+        int result = 0;
+        for (int i = 3; i <= n; i++) {
+            result = p + q;
+            p = q;
+            q = result;
+        }
+        return result;
+    }
 }
