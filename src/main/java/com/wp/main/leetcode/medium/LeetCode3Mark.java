@@ -2,7 +2,9 @@ package com.wp.main.leetcode.medium;
 
 import com.google.common.collect.Maps;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * MARK：窗口滑动法
@@ -20,21 +22,20 @@ import java.util.Map;
  * 输入: "abcabcbb"
  * 输出: 3
  * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
- *
+ * <p>
  * 示例 2:
  * <p>
  * 输入: "bbbbb"
  * 输出: 1
  * 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
- *
+ * <p>
  * 示例 3:
  * <p>
  * 输入: "pwwkew"
  * 输出: 3
  * 解释: 因为无重复字符的最长子串是"wke"，所以其长度为 3。
- *
+ * <p>
  * 请注意，你的答案必须是 子串 的长度，"pwke"是一个子序列，不是子串。
- *
  * @Date 2020/11/18 20:22
  * @Created by wangpeng116
  */
@@ -44,6 +45,29 @@ public class LeetCode3Mark {
 //        String target = "bbbbb";
         String target = "pwwkew";
         System.out.println("最长公共字符串长度为：" + myExecute(target));
+    }
+
+    /**
+     * 官方解法：遍历一次数组，使用双指针，用set或map记录已遍历的字符。
+     * 如果不重复则加入到set/map中，且右指针++；如果重复则右移左指针，且移动前的左指针对应的字符要移除
+     *
+     * @param s
+     * @return
+     */
+    public static int standard(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int left = 0, right = 0;
+        int maxLength = 0;
+        while (right < n) {
+            if (!set.contains(s.charAt(right))) {
+                set.add(s.charAt(right++));
+                maxLength = Math.max(maxLength, right - left);
+            } else {
+                set.remove(s.charAt(left++));
+            }
+        }
+        return maxLength;
     }
 
     /**
@@ -85,5 +109,4 @@ public class LeetCode3Mark {
         System.out.println("最长字符串为：" + str);
         return max;
     }
-
 }
