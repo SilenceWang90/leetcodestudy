@@ -41,10 +41,9 @@ public class LeetCode45Mark {
     private static int testDp(int[] nums) {
         int[] dp = new int[nums.length];
         dp[0] = 0;
-        // 不需要遍历到最后一个元素，因为最后一个元素不需要再往后跳了
         for (int i = 0; i < nums.length; i++) {
             int current = nums[i];
-            // 防止current导致数组越界，取current和数组长度最小的
+            // 防止数组越界，取i+current和数组长度最小的
             for (int j = i + 1; j <= Math.min(i + current, nums.length - 1); j++) {
                 if (dp[j] == 0) {
                     dp[j] = dp[i] + 1;
