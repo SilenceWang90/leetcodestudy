@@ -26,10 +26,33 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode45Mark {
     public static void main(String[] args) {
-        int[] nums = {2, 3, 0, 1, 4};
-        System.out.println(standardExecute(nums));
+//        int[] nums = {2, 3, 0, 1, 4};
+        int[] nums = {2, 3, 1, 1, 4};
+//        System.out.println(standardExecute(nums));
+        System.out.println(testDp(nums));
     }
 
+    /**
+     * 动态规划做法：效率没有贪心算法快，因为为了维护dp表，还需要对dp表额外做一次循环赋值
+     *
+     * @param nums
+     * @return
+     */
+    private static int testDp(int[] nums) {
+        int[] dp = new int[nums.length];
+        dp[0] = 0;
+        // 不需要遍历到最后一个元素，因为最后一个元素不需要再往后跳了
+        for (int i = 0; i < nums.length; i++) {
+            int current = nums[i];
+            // 防止current导致数组越界，取current和数组长度最小的
+            for (int j = i + 1; j <= Math.min(i + current, nums.length - 1); j++) {
+                if (dp[j] == 0) {
+                    dp[j] = dp[i] + 1;
+                }
+            }
+        }
+        return dp[dp.length - 1];
+    }
 
     /**
      * 官方解法：贪心算法：每次跳跃的最大位置就是该次跳跃的边界，下一次跳跃最大的位置取决于当次抵达最大位置前，每一个位置能抵达的最大位置的最大值
