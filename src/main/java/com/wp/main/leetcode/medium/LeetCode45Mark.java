@@ -27,29 +27,7 @@ package com.wp.main.leetcode.medium;
 public class LeetCode45Mark {
     public static void main(String[] args) {
         int[] nums = {2, 3, 0, 1, 4};
-        int step = 1;
-        int max = nums[0];
-        int end = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (i < end) {
-                // 跳跃边界内的节点，从他们跳跃能到达的最远的地方，作为下一次跳跃的边界
-                max = Math.max(max, i + nums[i]);
-            } else if (i == end) {
-                // 已到达边界
-                if (i == nums.length - 1) {
-                    System.out.println(step);
-                    break;
-                }
-                // 到达边界，记录step+1，因为下一个节点就是下一次跳跃
-                max = Math.max(max, i + nums[i]);
-                end = max;
-                step++;
-            } else {
-                // 达不到
-                step = -1;
-            }
-        }
-        System.out.println(step);
+        System.out.println(standardExecute(nums));
     }
 
 
