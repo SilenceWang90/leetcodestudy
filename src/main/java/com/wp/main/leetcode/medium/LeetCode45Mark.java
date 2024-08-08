@@ -7,16 +7,16 @@ package com.wp.main.leetcode.medium;
  * 0 <= j <= nums[i]
  * i + j < n
  * 返回到达nums[n - 1] 的最小跳跃次数。生成的测试用例可以到达 nums[n - 1]。
- *
+ * <p>
  * 示例 1:
  * 输入: nums = [2,3,1,1,4]
  * 输出: 2
  * 解释: 跳到最后一个位置的最小跳跃数是 2。从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
- *
+ * <p>
  * 示例 2:
  * 输入: nums = [2,3,0,1,4]
  * 输出: 2
- *
+ * <p>
  * 提示:
  * 1 <= nums.length <= 104
  * 0 <= nums[i] <= 1000
@@ -26,16 +26,40 @@ package com.wp.main.leetcode.medium;
  */
 public class LeetCode45Mark {
     public static void main(String[] args) {
-        int[] nums = {2,3,0,1,4};
-        System.out.println(individualExecute(nums));
+        int[] nums = {2, 3, 0, 1, 4};
+        int step = 1;
+        int max = nums[0];
+        int end = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (i < end) {
+                // 跳跃边界内的节点，从他们跳跃能到达的最远的地方，作为下一次跳跃的边界
+                max = Math.max(max, i + nums[i]);
+            } else if (i == end) {
+                // 已到达边界
+                if (i == nums.length - 1) {
+                    System.out.println(step);
+                    break;
+                }
+                // 到达边界，记录step+1，因为下一个节点就是下一次跳跃
+                max = Math.max(max, i + nums[i]);
+                end = max;
+                step++;
+            } else {
+                // 达不到
+                step = -1;
+            }
+        }
+        System.out.println(step);
     }
+
 
     /**
      * 官方解法：贪心算法：每次跳跃的最大位置就是该次跳跃的边界，下一次跳跃最大的位置取决于当次抵达最大位置前，每一个位置能抵达的最大位置的最大值
+     *
      * @param nums
      * @return
      */
-    private static int standardExecute(int[] nums){
+    private static int standardExecute(int[] nums) {
         int length = nums.length;
         // end维护的是当前这一跳能达到的最右位置，若要超过该位置必须要进行一次跳跃，因此需将跳跃次数加1，并更新这次跳跃能到达的最右位置
         int end = 0;
@@ -58,6 +82,38 @@ public class LeetCode45Mark {
             }
         }
         return steps;
+    }
+
+    /**
+     * 强化功能：既判断是否可达，也判断可达的话用的跳跃次数是多少
+     * 是否可达，如果可达则最小跳跃次数是多少，不可达的话返回-1，可达的话返回最小的跳跃次数
+     *
+     * @param nums
+     * @return
+     */
+    private static int myStandardExecute(int[] nums) {
+        int step = 0;
+        int max = 0;
+        int end = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i < end) {
+                // 跳跃边界内的节点，从他们跳跃能到达的最远的地方，作为下一次跳跃的边界
+                max = Math.max(max, i + nums[i]);
+            } else if (i == end) {
+                // 已到达边界
+                if (i == nums.length - 1) {
+                    return step;
+                }
+                // 到达边界，记录step+1，因为下一个节点就是下一次跳跃
+                max = Math.max(max, i + nums[i]);
+                end = max;
+                step++;
+            } else {
+                // 达不到
+                step = -1;
+            }
+        }
+        return step;
     }
 
     /**
