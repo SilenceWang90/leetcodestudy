@@ -110,7 +110,7 @@ public class LeetCode45Mark {
                 step++;
             } else {
                 // 达不到
-                step = -1;
+                return -1;
             }
         }
         return step;
