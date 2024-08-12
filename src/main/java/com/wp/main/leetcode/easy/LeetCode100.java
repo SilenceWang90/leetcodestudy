@@ -40,27 +40,21 @@ public class LeetCode100 {
      * @return p和q是否相同
      */
     private static boolean individualExecution(TreeNode p, TreeNode q) {
-        /** 1、节点是否相等判断 **/
-        // 两个节点的下一个节点都为空，则null必然等于null，返回true。
+        /** 1、当前节点是否相等判断 **/
+        // 1.1、两个节点都为空，则null必然等于null，返回true。
         if (p == null && q == null) {
             return true;
         }
-        // 两个节点有一个为空，另一个不为空，则两个二叉树不相等
+        // 1.1、两个节点有一个为空，另一个不为空，则两个二叉树不相等
         if (p == null || q == null) {
             return false;
         }
-
-        /*// 以上代码可以优化为如下：很不错~
-        if (p == null || q == null) {
-            return p == q;
-        }*/
-
-        /** 2、递归逻辑：递归遍历(中序遍历)节点 **/
-        // 2.1、左子树是否相同
-        boolean left = individualExecution(p.left, q.left);
-        // 2.2、根节点是否相同
+        // 1.3、当前节点是否相同
         boolean current = (p.val == q.val);
-        // 2.3、右子树是否相同
+        /** 2、递归逻辑：递归遍历节点 **/
+        // 2.1、左节点是否相同
+        boolean left = individualExecution(p.left, q.left);
+        // 2.2、右节点是否相同
         boolean right = individualExecution(p.right, q.right);
         // 返回当前子树是否相同
         return left && right && current;
