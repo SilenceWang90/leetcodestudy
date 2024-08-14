@@ -14,6 +14,23 @@ public class LeetCode104 {
     public static void main(String[] args) {
     }
 
+
+    /**
+     * 官方解法：最大深度就是当前节点的左右子树深度最大的值然后再+1
+     * +1是因为左右子节点到达当前根节点的高度是1
+     * @param root
+     * @return
+     */
+    public int standardExecution(TreeNode root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftHeight = standardExecution(root.left);
+            int rightHeight = standardExecution(root.right);
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
+
     /**
      * 个人思路：递归
      *
