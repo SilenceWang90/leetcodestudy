@@ -37,6 +37,8 @@ public class Exam3 {
                         }
                     }
                 }
+                /** 执行完成后唤醒其他线程，防止线程一直运行中 **/
+                even.signal();
             } finally {
                 // 手动释放锁
                 lock.unlock();
@@ -61,6 +63,8 @@ public class Exam3 {
                         }
                     }
                 }
+                /** 执行完成后唤醒其他线程，防止线程一直运行中 **/
+                odd.signal();
             } finally {
                 // 手动释放锁
                 lock.unlock();
@@ -70,6 +74,7 @@ public class Exam3 {
         /** 创建线程任务并执行 **/
         new Thread(threadOdd).start();
         new Thread(threadEven).start();
+        System.out.println("主线程执行完成");
     }
 }
 
