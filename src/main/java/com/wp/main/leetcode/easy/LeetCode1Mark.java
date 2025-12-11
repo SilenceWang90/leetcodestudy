@@ -22,8 +22,6 @@ import java.util.Map;
  */
 public class LeetCode1Mark {
     public static void main(String[] args) {
-        System.out.println("你好！！！！！！！！！");
-        System.out.println("第二次你好！！！！！！！！！");
         Integer[] nums = {1, 3, 4, 5, 6, 8, 9};
         Integer target = 10;
         Integer[] result = standardExecute(nums, target);
