@@ -24,6 +24,7 @@ public class LeetCode1Mark {
     public static void main(String[] args) {
         System.out.println("1111");
         System.out.println("2222");
+        System.out.println("3333");
         Integer[] nums = {1, 3, 4, 5, 6, 8, 9};
         Integer target = 10;
         Integer[] result = standardExecute(nums, target);
