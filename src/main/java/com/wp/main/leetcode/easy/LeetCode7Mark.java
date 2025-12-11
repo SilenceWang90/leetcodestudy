@@ -35,7 +35,6 @@ package com.wp.main.leetcode.easy;
  */
 public class LeetCode7Mark {
     public static void main(String[] args) {
-        System.out.println("我也说你好啊啊啊！！！！！！！");
         Integer x = Integer.valueOf("1435230921");
         Integer y = Integer.valueOf("-843523094");
         /**标准答案**/
