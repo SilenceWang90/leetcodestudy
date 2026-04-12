@@ -73,7 +73,8 @@ public class LeetCode104 {
         // 遍历该层所有节点，然后将其子节点都放入队列中
         for (int i = 0; i < nums; i++) {
             TreeNode treeNode = queue.pop();
-            // 将该节点的左右节点记录在队列中
+            // 如果该节点不为空，将该节点的左右节点记录在队列中。
+            // 注意空节点不能放入queue，不然queue集合大小虽然不是空，但是里面存的都是null节点是不对的哦！
             if (treeNode != null && treeNode.left != null) {
                 queue.offer(treeNode.left);
             }
